@@ -37,4 +37,4 @@ Setup is for a fresh database only. It seeds generic demonstration content and g
 | `/api/stripe/webhook`, `/api/health` | Payment events and health check |
 | `/demo`, `/admin` | Retained multi-page demonstration and operator-only CMS |
 
-See [DEPLOYMENT.md](./DEPLOYMENT.md) for activation and hosting and [AUDIT.md](./AUDIT.md) for verification. Design provenance remains in DESIGN.md; Geist's license is in `src/app/fonts/OFL.txt`.
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for activation and hosting and [AUDIT.md](./AUDIT.md) for verification. Geist's license is in `src/app/fonts/OFL.txt`.

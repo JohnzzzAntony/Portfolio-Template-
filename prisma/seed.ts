@@ -1,9 +1,8 @@
 /**
  * Seeds the database with a complete, working site.
  *
- * The *structure* mirrors the reference design (same pages, same section keys,
- * same counters). All copy and imagery is this project's own — no third-party
- * text, photography or trademarks. See DESIGN.md.
+ * Demonstration content for the operator CMS and /demo pages.
+ * All copy and imagery is this project's own.
  *
  *   npm run db:seed
  */

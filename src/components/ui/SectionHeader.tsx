@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 
 /**
  * The parenthesised eyebrow + "/0N" counter that opens every major section.
- * Load-bearing to the aesthetic, not decoration — see DESIGN.md.
+ * Load-bearing to the aesthetic, not decoration.
  */
 export function SectionHeader({
   label,

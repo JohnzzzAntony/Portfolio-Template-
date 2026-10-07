@@ -64,3 +64,6 @@ next-env.d.ts
 /.ui-fixture.mjs
 /scripts/rebrand-local.py
 /portfolio-mockups/
+
+# Local design notes
+/DESIGN.md
