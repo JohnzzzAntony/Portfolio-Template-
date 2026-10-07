@@ -1,0 +1,21 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: rydge-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: rydge
+      POSTGRES_PASSWORD: rydge
+      POSTGRES_DB: rydge
+    ports:
+      - "5433:5432"
+    volumes:
+      - rydge-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U rydge -d rydge"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  rydge-pgdata:

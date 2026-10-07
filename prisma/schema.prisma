@@ -1,0 +1,338 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ---------------------------------------------------------------- auth
+
+enum Role {
+  ADMIN
+  EDITOR
+}
+
+model User {
+  id           String     @id @default(cuid())
+  email        String     @unique
+  name         String
+  passwordHash String
+  role         Role       @default(EDITOR)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  portfolio    Portfolio?
+  purchases    Purchase[]
+}
+
+// ------------------------------------------------------------- settings
+
+/// Single-row table. Always read/written with id = 1.
+model SiteSettings {
+  id Int @id @default(1)
+
+  brandName   String @default("Forma")
+  brandSuffix String @default("Studio")
+  tagline     String @default("Full-service creative studio")
+  logoLight   String @default("/brand/logo-light.svg")
+  logoDark    String @default("/brand/logo-dark.svg")
+  favicon     String @default("/favicon.ico")
+
+  coordinates  String @default("50.4509° N, 30.5225° E")
+  email        String @default("welcome@example.com")
+  supportEmail String @default("support@example.com")
+  phone        String @default("+1 837 652 8800")
+  address      String @default("398 11th St, San Francisco, CA, USA")
+  addressUrl   String @default("https://www.google.com/maps")
+
+  footerHeadline String @default("Have a project in mind?")
+  footerCtaLabel String @default("Let's Talk")
+  footerCtaUrl   String @default("/contact")
+  footerImage    String @default("/media/footer-bg.svg")
+  badgeText      String @default("LET'S TALK · SAY HELLO · ")
+
+  credits   String @default("Designed & built in-house.")
+  copyright String @default("©2021 — 2026")
+
+  metaTitle       String @default("Forma Studio — Creative Studio")
+  metaDescription String @default("A full-service creative studio crafting beautiful digital experiences.")
+  ogImage         String @default("/media/og.svg")
+
+  updatedAt DateTime @updatedAt
+}
+
+model NavItem {
+  id      String  @id @default(cuid())
+  label   String
+  href    String
+  order   Int     @default(0)
+  visible Boolean @default(true)
+
+  @@index([order])
+}
+
+model SocialLink {
+  id    String @id @default(cuid())
+  label String
+  url   String
+  order Int    @default(0)
+
+  @@index([order])
+}
+
+// ------------------------------------------------- page + section copy
+
+/// One row per route. `key` is the stable identifier the frontend queries by.
+model Page {
+  id   String @id @default(cuid())
+  key  String @unique // home | about | services | portfolio | blog | contact
+  name String
+
+  title           String
+  metaLeft        String @default("")
+  metaRight       String @default("")
+  heroImage       String @default("")
+  heroImageMobile String @default("")
+
+  seoTitle       String @default("")
+  seoDescription String @default("")
+  ogImage        String @default("")
+
+  sections  Section[]
+  updatedAt DateTime  @updatedAt
+}
+
+/// Editable copy block within a page. `key` identifies which component renders it.
+model Section {
+  id     String @id @default(cuid())
+  pageId String
+  page   Page   @relation(fields: [pageId], references: [id], onDelete: Cascade)
+
+  key        String // intro | about | mission | story-marquee | ...
+  label      String @default("") // the parenthesised "(About)" eyebrow
+  index      String @default("") // the "/01" counter
+  heading    String @default("")
+  subheading String @default("")
+  body       String @default("")
+  image      String @default("")
+  ctaLabel   String @default("")
+  ctaUrl     String @default("")
+
+  order   Int     @default(0)
+  visible Boolean @default(true)
+
+  @@unique([pageId, key])
+  @@index([pageId, order])
+}
+
+// ------------------------------------------------------------ portfolio
+
+model Service {
+  id           String  @id @default(cuid())
+  slug         String  @unique
+  index        String  @default("") // "/001"
+  title        String
+  description  String  @default("")
+  image        String  @default("")
+  /// JSON-encoded string[] (SQLite has no native array type). Serialized in src/lib/admin/form.ts, parsed in src/lib/cms.ts.
+  capabilities String  @default("[]")
+  order        Int     @default(0)
+  published    Boolean @default(true)
+
+  projects Project[] @relation("ProjectServices")
+
+  @@index([order])
+}
+
+model Project {
+  id       String @id @default(cuid())
+  slug     String @unique
+  title    String
+  client   String @default("")
+  year     String @default("")
+  overview String @default("")
+
+  coverImage   String @default("")
+  previewImage String @default("")
+  viewUrl      String @default("")
+
+  order       Int      @default(0)
+  featured    Boolean  @default(false)
+  published   Boolean  @default(true)
+  publishedAt DateTime @default(now())
+
+  seoTitle       String @default("")
+  seoDescription String @default("")
+
+  images   ProjectImage[]
+  services Service[]      @relation("ProjectServices")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([order])
+  @@index([published, order])
+}
+
+model ProjectImage {
+  id        String  @id @default(cuid())
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  url       String
+  alt       String  @default("")
+  order     Int     @default(0)
+
+  @@index([projectId, order])
+}
+
+// ----------------------------------------------------------------- blog
+
+model Post {
+  id         String @id @default(cuid())
+  slug       String @unique
+  title      String
+  excerpt    String @default("")
+  body       String @default("")
+  coverImage String @default("")
+  author     String @default("")
+  /// JSON-encoded string[] (SQLite has no native array type). Serialized in src/lib/admin/form.ts, parsed in src/lib/cms.ts.
+  tags       String @default("[]")
+
+  published   Boolean  @default(true)
+  publishedAt DateTime @default(now())
+
+  seoTitle       String @default("")
+  seoDescription String @default("")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([published, publishedAt])
+}
+
+// ----------------------------------------------------- about-page lists
+
+model TeamMember {
+  id           String @id @default(cuid())
+  name         String
+  role         String @default("")
+  photo        String @default("")
+  linkedinUrl  String @default("")
+  instagramUrl String @default("")
+  order        Int    @default(0)
+
+  @@index([order])
+}
+
+model Award {
+  id       String @id @default(cuid())
+  title    String
+  category String @default("")
+  year     String @default("")
+  url      String @default("")
+  order    Int    @default(0)
+
+  @@index([order])
+}
+
+model Benefit {
+  id          String @id @default(cuid())
+  index       String @default("")
+  title       String
+  description String @default("")
+  image       String @default("")
+  order       Int    @default(0)
+
+  @@index([order])
+}
+
+model Achievement {
+  id    String @id @default(cuid())
+  value String
+  label String @default("")
+  image String @default("")
+  order Int    @default(0)
+
+  @@index([order])
+}
+
+model ApproachItem {
+  id          String @id @default(cuid())
+  letter      String @default("")
+  title       String
+  description String @default("")
+  order       Int    @default(0)
+
+  @@index([order])
+}
+
+model PlaygroundImage {
+  id    String @id @default(cuid())
+  url   String
+  alt   String @default("")
+  order Int    @default(0)
+
+  @@index([order])
+}
+
+// -------------------------------------------------------------- inbound
+
+model ContactSubmission {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([read, createdAt])
+}
+
+model Media {
+  id        String   @id @default(cuid())
+  url       String
+  filename  String
+  alt       String   @default("")
+  mime      String   @default("")
+  size      Int      @default(0)
+  width     Int      @default(0)
+  height    Int      @default(0)
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+}
+
+// Customer content is isolated from the platform demo CMS.
+model Portfolio {
+  id               String   @id @default(cuid())
+  ownerId          String   @unique
+  owner            User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  slug             String   @unique
+  content          String
+  publishedContent String?
+  published        Boolean  @default(false)
+  revision         Int      @default(0)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model Purchase {
+  id              String   @id @default(cuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  checkoutId      String?  @unique
+  paymentIntentId String?  @unique
+  priceId         String
+  status          String   @default("PENDING")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([userId, status])
+}
+
+model PaymentEvent {
+  id          String   @id
+  type        String
+  processedAt DateTime @default(now())
+}
