@@ -11,12 +11,12 @@ export async function uploadPortfolioImage(form: FormData): Promise<{ url?: stri
   const bytes = Buffer.from(await file.arrayBuffer());
   const detected = imageType(bytes);
   if (!detected) return { error: "Use JPG, PNG, WebP, AVIF or GIF. SVG uploads are not accepted." };
-  const directory = path.join(process.env.UPLOAD_DIR || path.join(process.cwd(), "storage", "uploads"), user.sub);
+  const directory = path.join(/*turbopackIgnore: true*/ process.env.UPLOAD_DIR || path.join(process.cwd(), "storage", "uploads"), user.sub);
   try {
     await mkdir(directory, { recursive: true });
-    if ((await readdir(directory)).length >= 100) return { error: "Your 100-image allowance is full. Contact the site operator to remove unused images." };
+    if ((await readdir(/*turbopackIgnore: true*/ directory)).length >= 100) return { error: "Your 100-image allowance is full. Contact the site operator to remove unused images." };
     const filename = `${randomUUID()}.${detected.extension}`;
-    await writeFile(path.join(directory, filename), bytes, { flag: "wx" });
+    await writeFile(/*turbopackIgnore: true*/ path.join(/*turbopackIgnore: true*/ directory, filename), bytes, { flag: "wx" });
     return { url: `/uploads/${user.sub}/${filename}` };
   } catch { return { error: "Image upload failed. Please try again." }; }
 }

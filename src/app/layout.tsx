@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 
+import { siteUrl } from "@/lib/site-url";
 import "./globals.css";
 
 // Bundle the font so production builds work without a Google Fonts connection.
@@ -12,7 +13,7 @@ const grotesk = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
+  metadataBase: siteUrl(),
   title: { default: "Forma Portfolio", template: "%s" },
 };
 

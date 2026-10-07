@@ -2,15 +2,15 @@ import "server-only";
 import Stripe from "stripe";
 import { prisma } from "@/lib/prisma";
 import { paymentMatches } from "@/lib/payment-policy";
+import { siteUrl } from "@/lib/site-url";
 
 export function stripeClient() {
   if (!process.env.STRIPE_SECRET_KEY) throw new Error("Payments are not configured.");
   return new Stripe(process.env.STRIPE_SECRET_KEY, { maxNetworkRetries: 2 });
 }
 export function siteOrigin() {
-  const raw = process.env.NEXT_PUBLIC_SITE_URL;
-  if (!raw) throw new Error("Set NEXT_PUBLIC_SITE_URL.");
-  const url = new URL(raw);
+  if (!process.env.NEXT_PUBLIC_SITE_URL?.trim()) throw new Error("Set NEXT_PUBLIC_SITE_URL.");
+  const url = siteUrl();
   if (process.env.NODE_ENV === "production" && url.protocol !== "https:" && url.hostname !== "localhost") throw new Error("Production requires HTTPS.");
   return url.origin;
 }

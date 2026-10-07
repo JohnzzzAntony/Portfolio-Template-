@@ -13,8 +13,8 @@ export async function GET(_request: Request, { params }: { params: Promise<{ own
   const isPublished = portfolio.published && portfolio.publishedContent?.includes(url);
   if (!isPublished && (await getSession())?.sub !== owner) return new Response(null, { status: 404 });
   try {
-    const directory = process.env.UPLOAD_DIR || path.join(process.cwd(), "storage", "uploads");
-    const bytes = await readFile(path.join(directory, owner, filename));
+    const directory = process.env.UPLOAD_DIR || path.join(/*turbopackIgnore: true*/ process.cwd(), "storage", "uploads");
+    const bytes = await readFile(/*turbopackIgnore: true*/ path.join(/*turbopackIgnore: true*/ directory, owner, filename));
     const extensions: Record<string,string> = { jpg: "image/jpeg", png: "image/png", webp: "image/webp", avif: "image/avif", gif: "image/gif" };
     return new Response(bytes, { headers: { "Content-Type": extensions[filename.split('.').pop()!], "X-Content-Type-Options": "nosniff", "Cache-Control": "private, no-store", "Content-Security-Policy": "sandbox" } });
   } catch { return new Response(null, { status: 404 }); }
