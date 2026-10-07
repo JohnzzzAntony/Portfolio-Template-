@@ -15,6 +15,7 @@ Copy `.env.example` locally. On the host, use private environment settings.
 | `STRIPE_SECRET_KEY` | Your Stripe secret key; test mode first |
 | `STRIPE_PRICE_ID` | Active, positive, one-time Price ID |
 | `STRIPE_WEBHOOK_SECRET` | Signing secret for this host's webhook |
+| `STRIPE_LIVE_MODE` | Leave blank to stay in the Stripe sandbox; `enabled` allows live keys |
 | `ADMIN_EMAIL`, `ADMIN_PASSWORD` | Initial operator credentials; seeding only |
 
 Generate a secret with `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"`. Initial admin password must be unique and at least 12 characters. Do not commit secrets or ship database backups.
@@ -44,7 +45,9 @@ The existing local database is already upgraded and migration `20261007000000_in
 1. Create a product and a positive one-time price. Set all three Stripe settings.
 2. Register `https://YOUR_HOST/api/stripe/webhook` for `checkout.session.completed`, `checkout.session.async_payment_succeeded`, `charge.refunded`, and `charge.dispute.created`.
 3. In test mode, register, complete checkout and verify editing unlocks. Test cancellation, duplicate events, delayed payment, refund and dispute. A return URL alone never unlocks access.
-4. Switch to the live secret key, live Price ID and live endpoint signing secret only after acceptance testing.
+4. Switch to the live secret key, live Price ID and live endpoint signing secret only after acceptance testing, and set `STRIPE_LIVE_MODE=enabled`.
+
+The platform currently runs in the **Stripe sandbox**: only `sk_test_`/`rk_test_` keys are accepted, live-mode webhook events are ignored, and startup fails if a live key is configured without `STRIPE_LIVE_MODE=enabled`. The dashboard labels checkout as a sandbox and lists Stripe's test card `4242 4242 4242 4242` (any future expiry, any CVC). Local webhook testing: `stripe listen --forward-to localhost:3000/api/stripe/webhook` and use the printed `whsec_` secret.
 
 All three Stripe values can remain blank for preview-only hosting; checkout is disabled. Partial configuration fails startup. Implementation follows [Stripe fulfillment](https://docs.stripe.com/checkout/fulfillment) and [signature verification](https://docs.stripe.com/webhooks/signatures).
 

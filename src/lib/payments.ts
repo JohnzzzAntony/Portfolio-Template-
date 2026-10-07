@@ -4,9 +4,15 @@ import { prisma } from "@/lib/prisma";
 import { paymentMatches } from "@/lib/payment-policy";
 import { siteUrl } from "@/lib/site-url";
 
+/** Payments run in the Stripe sandbox until the operator opts in with STRIPE_LIVE_MODE=enabled. */
+export const liveModeEnabled = () => process.env.STRIPE_LIVE_MODE === "enabled";
+export const isSandboxKey = (key = process.env.STRIPE_SECRET_KEY ?? "") => /^(sk|rk)_test_/.test(key);
+
 export function stripeClient() {
-  if (!process.env.STRIPE_SECRET_KEY) throw new Error("Payments are not configured.");
-  return new Stripe(process.env.STRIPE_SECRET_KEY, { maxNetworkRetries: 2 });
+  const key = process.env.STRIPE_SECRET_KEY;
+  if (!key) throw new Error("Payments are not configured.");
+  if (!isSandboxKey(key) && !liveModeEnabled()) throw new Error("Live Stripe keys are disabled. Use sandbox (sk_test_) keys or set STRIPE_LIVE_MODE=enabled.");
+  return new Stripe(key, { maxNetworkRetries: 2 });
 }
 export function siteOrigin() {
   if (!process.env.NEXT_PUBLIC_SITE_URL?.trim()) throw new Error("Set NEXT_PUBLIC_SITE_URL.");
@@ -14,7 +20,8 @@ export function siteOrigin() {
   if (process.env.NODE_ENV === "production" && url.protocol !== "https:" && url.hostname !== "localhost") throw new Error("Production requires HTTPS.");
   return url.origin;
 }
-export const paymentsConfigured = () => !!(process.env.STRIPE_SECRET_KEY && process.env.STRIPE_PRICE_ID && process.env.STRIPE_WEBHOOK_SECRET);
+export const paymentsConfigured = () => !!(process.env.STRIPE_SECRET_KEY && process.env.STRIPE_PRICE_ID && process.env.STRIPE_WEBHOOK_SECRET) && (isSandboxKey() || liveModeEnabled());
+export const paymentsSandbox = () => paymentsConfigured() && isSandboxKey();
 
 const checkoutLocks = new Map<string, Promise<void>>();
 /** Serialize checkout creation per customer on the supported single instance. */
@@ -47,6 +54,8 @@ export async function fulfillCheckout(checkoutId: string, userId?: string) {
 }
 
 export async function processStripeEvent(event: Stripe.Event) {
+  // A live-mode event can never unlock access while the platform is in sandbox.
+  if (event.livemode && !liveModeEnabled()) return;
   if (await prisma.paymentEvent.findUnique({ where: { id: event.id } })) return;
   if (["checkout.session.completed", "checkout.session.async_payment_succeeded"].includes(event.type)) {
     const session = event.data.object as Stripe.Checkout.Session;
