@@ -1,29 +1,19 @@
 "use client";
 
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/rydge/ui";
 
-/** Per-route boundary for the public site — keeps the shell and design intact. */
-export default function SiteError({
-  error,
-  reset,
-}: {
-  error: Error & { digest?: string };
-  reset: () => void;
-}) {
+/** Per-route boundary for the demo site — keeps the shell and design intact. */
+export default function SiteError({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
   return (
-    <section className="flex min-h-svh flex-col items-center justify-center gap-[var(--m-medium)] px-[var(--page-x)] text-center">
-      <h1 className="t-page-title">Error</h1>
-      <p className="t-para-md max-w-[40ch]">
-        Something went wrong loading this page.
-      </p>
-      {error.digest && (
-        <p className="t-caption text-muted">Reference: {error.digest}</p>
-      )}
-      <div className="flex flex-wrap items-center justify-center gap-4">
-        <Button onClick={reset}>Try again</Button>
-        <Button href="/" variant="secondary" spark={false}>
-          Back to home
-        </Button>
+    <section className="section align-center">
+      <div className="container-fluid">
+        <div className="page-title-wrap"><h1 className="page-title">Error</h1></div>
+        <div className="mb-medium"><p className="paragraph-medium no-indent">Something went wrong loading this page.</p></div>
+        {error.digest && <p className="section-caption muted mb-small">Reference: {error.digest}</p>}
+        <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
+          <button type="button" className="button black" onClick={reset}><span className="button-clip"><span className="button-inner"><span className="button-label"><span>Try again</span><span aria-hidden="true">Try again</span></span></span></span></button>
+          <Button href="/">Back to home</Button>
+        </div>
       </div>
     </section>
   );

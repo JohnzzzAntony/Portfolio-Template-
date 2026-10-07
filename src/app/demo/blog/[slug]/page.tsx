@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { Marquee } from "@/components/motion/Marquee";
-import { Reveal } from "@/components/motion/Reveal";
-import { Button } from "@/components/ui/Button";
-import { ScrollCue } from "@/components/ui/ScrollCue";
-import { getPost, getPosts, getSettings } from "@/lib/cms";
+import { BlogSection, PageTop } from "@/components/rydge/sections";
+import { getPost, getPosts } from "@/lib/cms";
+import { postItem } from "@/lib/demo-content";
+import { ART, media } from "@/lib/media";
 import { formatDate } from "@/lib/utils";
 
 type Params = { params: Promise<{ slug: string }> };
@@ -19,73 +18,48 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
   const post = await getPost(slug);
   if (!post) return {};
-
   const title = post.seoTitle || post.title;
   const description = post.seoDescription || post.excerpt;
-
   return {
     title,
     description,
     alternates: { canonical: `/demo/blog/${encodeURIComponent(post.slug)}` },
-    openGraph: {
-      title,
-      description,
-      type: "article",
-      publishedTime: post.publishedAt.toISOString(),
-      images: post.coverImage ? [post.coverImage] : undefined,
-    },
+    openGraph: { title, description, type: "article", publishedTime: post.publishedAt.toISOString(), images: [media(post.coverImage, ART.hero)] },
   };
 }
 
-export default async function BlogPostPage({ params }: Params) {
+export default async function PostPage({ params }: Params) {
   const { slug } = await params;
-  const [post, settings] = await Promise.all([getPost(slug), getSettings()]);
+  const post = await getPost(slug);
   if (!post) notFound();
+
+  const related = (await getPosts()).filter((p) => p.slug !== post.slug).slice(0, 3);
+  const paragraphs = post.body.split(/\n{2,}/).map((p) => p.trim()).filter(Boolean);
 
   return (
     <article>
-      <header className="px-[var(--page-x)] pb-[var(--section-y-md)] pt-[calc(var(--nav-h)+var(--page-title-y))]">
-        <h1 className="t-display uppercase">{post.title}</h1>
-
-        <div className="hairline mt-[var(--m-medium)] flex flex-wrap items-baseline justify-between gap-4 pt-[var(--m-xs)]">
-          <time dateTime={post.publishedAt.toISOString()} className="t-caption">
-            {formatDate(post.publishedAt)}
-          </time>
-          {post.author && <span className="t-caption">{post.author}</span>}
-          <ScrollCue className="ml-auto" />
+      <PageTop
+        small
+        title={post.title}
+        captions={[<time key="d" dateTime={post.publishedAt.toISOString()}>{formatDate(post.publishedAt)}</time>, `(${post.author || "©"})`]}
+        image={media(post.coverImage, ART.light[0])}
+      />
+      <div className="section no-pt">
+        <div className="container-medium">
+          <div className="rich-text" data-ix="fade-up">
+            {paragraphs.map((paragraph, i) => <p key={i}>{paragraph}</p>)}
+          </div>
         </div>
-      </header>
-
-      {post.coverImage && (
-        <figure className="px-[var(--page-x)]">
-          {/* eslint-disable-next-line @next/next/no-img-element -- CMS-supplied, may be remote */}
-          <img
-            src={post.coverImage}
-            alt=""
-            className="aspect-[16/9] w-full object-cover"
-          />
-        </figure>
+      </div>
+      {related.length > 0 && (
+        <BlogSection
+          label="(Related Articles)"
+          index={`©${new Date().getUTCFullYear()}`}
+          heading={"Explore more\nArticles"}
+          posts={related.map(postItem)}
+          cta={{ body: "Writing on design systems, motion and the parts of the process that usually go undocumented.", label: "View All Articles", href: "/blog" }}
+        />
       )}
-
-      <Reveal className="shell section-md mx-auto max-w-[68ch]">
-        {post.body.split("\n\n").map((paragraph, i) => (
-          <p key={i} className="mb-[var(--m-rich)] text-[length:var(--fs-body)] leading-[var(--lh-8)]">
-            {paragraph}
-          </p>
-        ))}
-      </Reveal>
-
-      <section className="section-md">
-        <Marquee speed={28} repeat={3} itemClassName="pr-[3vw]">
-          <span className="text-[length:var(--fs-marquee)] font-semibold uppercase leading-[var(--lh-1)] tracking-[var(--ls-1)]">
-            {settings.brandName} {settings.brandSuffix}
-          </span>
-        </Marquee>
-
-        <Reveal className="shell mt-[var(--m-large)] flex justify-center">
-          <Button href="/blog">Back to all posts</Button>
-        </Reveal>
-      </section>
     </article>
   );
 }

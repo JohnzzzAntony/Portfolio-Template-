@@ -1,24 +1,21 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { PageHero } from "@/components/layout/PageHero";
-import { Marquee } from "@/components/motion/Marquee";
-import { Reveal } from "@/components/motion/Reveal";
-import { SplitText } from "@/components/motion/SplitText";
-import { BenefitsSection } from "@/components/sections/BenefitsSection";
-import { MissionSection } from "@/components/sections/MissionSection";
-import { Button } from "@/components/ui/Button";
-import { SectionHeader } from "@/components/ui/SectionHeader";
 import {
-  getAchievements,
-  getApproach,
-  getAwards,
-  getBenefits,
-  getPage,
-  getSettings,
-  getTeam,
-  sectionMap,
-} from "@/lib/cms";
+  AboutSection,
+  Achievements,
+  AwardsList,
+  BenefitsSection,
+  CardsGrid,
+  CtaRow,
+  PageTop,
+  SplitMission,
+  TeamGrid,
+} from "@/components/rydge/sections";
+import { SectionHead } from "@/components/rydge/ui";
+import { getAchievements, getApproach, getAwards, getBenefits, getPage, getSettings, getTeam, sectionMap } from "@/lib/cms";
+import { missionWords } from "@/lib/demo-content";
+import { ART, media } from "@/lib/media";
 import { pageMetadata } from "@/lib/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -29,227 +26,110 @@ export default async function AboutPage() {
   const page = await getPage("about");
   if (!page) notFound();
 
-  const [settings, achievements, approach, awards, benefits, team] =
-    await Promise.all([
-      getSettings(),
-      getAchievements(),
-      getApproach(),
-      getAwards(),
-      getBenefits(),
-      getTeam(),
-    ]);
-
+  const [settings, achievements, approach, awards, benefits, team] = await Promise.all([
+    getSettings(),
+    getAchievements(),
+    getApproach(),
+    getAwards(),
+    getBenefits(),
+    getTeam(),
+  ]);
   const s = sectionMap(page.sections);
+  const year = new Date().getUTCFullYear();
+  const [l1, l2, l3, sup] = missionWords(s.mission?.heading);
 
   return (
     <>
-      <PageHero
-        title={page.title}
-        metaLeft={page.metaLeft}
-        metaRight={page.metaRight}
-      />
+      <PageTop title={page.title} pill={settings.tagline} captions={[page.metaLeft, page.metaRight]} />
 
-      {/* ---------------------------------------------------- achievements */}
       {achievements.length > 0 && (
-        <Reveal
-          as="ul"
-          stagger
-          className="shell section-md grid gap-[var(--gutter-x)] sm:grid-cols-2 lg:grid-cols-4"
-        >
-          {achievements.map((item) => (
-            <li key={item.id} className="flex flex-col">
-              {item.image && (
-                // eslint-disable-next-line @next/next/no-img-element -- CMS-supplied, may be remote
-                <img
-                  src={item.image}
-                  alt=""
-                  loading="lazy"
-                  className="aspect-square w-full object-cover"
-                />
-              )}
-              <span className="mt-[var(--m-small)] block text-[length:var(--fs-achievement)] font-semibold leading-[var(--lh-3)] tracking-[var(--ls-3)]">
-                {item.value}
-              </span>
-              <span className="t-caption text-muted">{item.label}</span>
-            </li>
-          ))}
-        </Reveal>
+        <div className="mb-large">
+          <Achievements items={achievements.map((a, i) => ({ value: a.value, label: a.label, image: media(a.image, ART.dark[i % 3]) }))} />
+        </div>
       )}
 
-      {/* ----------------------------------------------------------- about */}
       {s.about && (
-        <section className="section shell">
-          <SectionHeader label={s.about.label} index={s.about.index} />
-          <div className="mt-[var(--m-large)] grid gap-[var(--gutter-y-sm)] lg:grid-cols-[1.4fr_1fr] lg:items-end">
-            <div>
-              <SplitText as="p" by="line" text={s.about.body} className="t-lead max-w-[22ch]" />
-              {s.about.ctaUrl && (
-                <Reveal delay={0.2} className="mt-[var(--m-medium)]">
-                  <Button href={s.about.ctaUrl}>{s.about.ctaLabel || "View our services"}</Button>
-                </Reveal>
-              )}
+        <AboutSection
+          label={s.about.label}
+          body={s.about.body.replace(/\n/g, " ")}
+          cta={s.about.ctaUrl ? { label: s.about.ctaLabel || "View our services", href: s.about.ctaUrl } : undefined}
+          images={[media(s.about.image, ART.portrait), ART.pill]}
+          marquee={s["story-marquee"]?.heading ? { heading: s["story-marquee"].heading, index: s["story-marquee"].index } : undefined}
+        />
+      )}
+
+      {approach.length > 0 && (
+        <section className="section shadow">
+          <div className="container-fluid">
+            <div className="mb-large">
+              <SectionHead label={s.approach?.label} index={s.approach?.index}>
+                {s.approach?.body && <p className="paragraph-large" data-ix="lines">{s.approach.body.replace(/\n/g, " ")}</p>}
+              </SectionHead>
             </div>
-            {s.about.image && (
-              <Reveal as="figure">
-                {/* eslint-disable-next-line @next/next/no-img-element -- CMS-supplied, may be remote */}
-                <img src={s.about.image} alt="" className="aspect-[4/5] w-full object-cover" />
-              </Reveal>
-            )}
+            <CardsGrid parallax items={approach.map((a) => ({ number: a.letter, title: a.title, text: a.description }))} />
           </div>
         </section>
       )}
 
-      {/* --------------------------------------------- "Our Story" marquee */}
-      {s["story-marquee"]?.heading && (
-        <Marquee speed={30} repeat={3} itemClassName="flex items-baseline gap-[3vw] pr-[3vw]">
-          <span className="text-[length:var(--fs-marquee)] font-semibold uppercase leading-[var(--lh-1)] tracking-[var(--ls-1)]">
-            {s["story-marquee"].heading}
-          </span>
-          <span className="t-caption">{s["story-marquee"].index}</span>
-        </Marquee>
-      )}
-
-      {/* -------------------------------------------------------- approach */}
-      {approach.length > 0 && (
-        <section className="section shell">
-          <SectionHeader label={s.approach?.label} index={s.approach?.index} />
-          {s.approach?.body && (
-            <SplitText
-              as="p"
-              by="line"
-              text={s.approach.body}
-              className="t-lead mt-[var(--m-large)] max-w-[26ch]"
-            />
-          )}
-          <Reveal
-            as="ul"
-            stagger
-            className="mt-[var(--m-large)] grid gap-[var(--gutter-x)] md:grid-cols-3"
-          >
-            {approach.map((item) => (
-              <li key={item.id} className="hairline flex flex-col pt-[var(--m-small)]">
-                <span className="t-caption text-muted">{item.letter}</span>
-                <h3 className="t-card-title mt-[var(--m-xs)] uppercase">{item.title}</h3>
-                <p className="t-para-md mt-[var(--m-small)]">{item.description}</p>
-              </li>
-            ))}
-          </Reveal>
-        </section>
-      )}
-
-      {/* --------------------------------------------------------- mission */}
       {s.mission && (
-        <MissionSection
+        <SplitMission
           label={s.mission.label}
+          eyebrow={`${settings.brandName} ${settings.brandSuffix}\n/ ©${year}`}
+          words={[l1, l2, l3]}
+          sup={sup}
+          text={s.mission.body}
           index={s.mission.index}
-          heading={s.mission.heading}
-          body={s.mission.body}
-          image={s.mission.image}
-          eyebrow={`${settings.brandName} ${settings.brandSuffix}`}
-          ctaLabel={s.mission.ctaLabel}
-          ctaUrl={s.mission.ctaUrl}
+          image={media(s.mission.image, ART.mission)}
+          circle={s.mission.ctaUrl ? { href: s.mission.ctaUrl, text: `${s.mission.ctaLabel} · ${s.mission.ctaLabel} · `, label: s.mission.ctaLabel || "Learn more" } : undefined}
         />
       )}
 
-      {/* ---------------------------------------------------------- awards */}
       {awards.length > 0 && (
-        <section className="section shell">
-          <SectionHeader label={s.awards?.label} index={s.awards?.index} />
-          <h2 className="t-display mt-[var(--m-large)] uppercase">
-            {s.awards?.heading || "Awards & Recognitions"}
-          </h2>
-          <ul className="mt-[var(--m-large)]">
-            {awards.map((award) => (
-              <li key={award.id}>
-                <a
-                  href={award.url || "#"}
-                  target={award.url ? "_blank" : undefined}
-                  rel="noreferrer noopener"
-                  className="hairline group flex items-center gap-6 py-[var(--m-base)] transition-colors duration-500 hover:bg-ink hover:text-paper"
-                >
-                  <span className="text-[length:var(--fs-project-list-title)] font-semibold tracking-[var(--ls-5)]">
-                    {award.title}
-                  </span>
-                  <span className="t-caption ml-auto hidden opacity-70 md:block">
-                    {award.category}
-                  </span>
-                  <span className="t-caption tabular-nums">{award.year}</span>
-                  <svg
-                    viewBox="0 0 24 24"
-                    className="size-5 shrink-0 transition-transform duration-500 group-hover:rotate-45"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth={1.8}
-                    aria-hidden="true"
-                  >
-                    <path d="M7 17 17 7M9 7h8v8" strokeLinecap="square" />
-                  </svg>
-                </a>
-              </li>
-            ))}
-          </ul>
+        <section className="section shadow">
+          <div className="container-fluid">
+            <div className="mb-large">
+              <SectionHead label={s.awards?.label} index={s.awards?.index}>
+                <h3 className="heading-medium" data-ix="lines">{s.awards?.heading || "Awards & Recognitions"}</h3>
+              </SectionHead>
+            </div>
+            <div className="mb-large"><AwardsList items={awards} /></div>
+            <CtaRow cta={{ body: "Recognition is nice. Work that keeps working for the people who commissioned it is the point.", label: "View portfolio", href: "/portfolio" }} />
+          </div>
         </section>
       )}
 
-      {/* -------------------------------------------------------- benefits */}
       {benefits.length > 0 && (
         <BenefitsSection
           label={s.benefits?.label}
           index={s.benefits?.index}
-          heading={s.benefits?.heading}
-          subheading={s.benefits?.subheading}
-          benefits={benefits}
+          headingOne={s.benefits?.heading}
+          headingTwo={s.benefits?.subheading}
+          items={benefits.map((b) => ({ index: b.index, title: b.title, text: b.description, image: media(b.image, ART.dark[0]) }))}
         />
       )}
 
-      {/* ------------------------------------------------------------ team */}
       {team.length > 0 && (
-        <section className="section shell">
-          <SectionHeader label={s.team?.label} index={s.team?.index} />
-          {s.team?.body && (
-            <SplitText
-              as="p"
-              by="line"
-              text={s.team.body}
-              className="t-lead mt-[var(--m-large)] max-w-[26ch]"
-            />
-          )}
-
-          <Reveal
-            as="ul"
-            stagger
-            className="mt-[var(--m-large)] grid gap-[var(--gutter-x)] md:grid-cols-3"
-          >
-            {team.map((member) => (
-              <li key={member.id} className="group flex flex-col">
-                <div className="relative overflow-hidden">
-                  {member.photo && (
-                    // eslint-disable-next-line @next/next/no-img-element -- CMS-supplied, may be remote
-                    <img
-                      src={member.photo}
-                      alt={member.name}
-                      loading="lazy"
-                      className="aspect-[4/5] w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-105"
-                    />
-                  )}
-                  <div className="absolute inset-x-0 bottom-0 flex translate-y-full gap-3 bg-ink/80 p-4 text-paper transition-transform duration-500 group-hover:translate-y-0">
-                    {member.linkedinUrl && (
-                      <a href={member.linkedinUrl} target="_blank" rel="noreferrer noopener" className="t-caption hover:opacity-70">
-                        LinkedIn
-                      </a>
-                    )}
-                    {member.instagramUrl && (
-                      <a href={member.instagramUrl} target="_blank" rel="noreferrer noopener" className="t-caption hover:opacity-70">
-                        Instagram
-                      </a>
-                    )}
-                  </div>
-                </div>
-                <h3 className="t-card-title mt-[var(--m-small)]">{member.name}</h3>
-                <span className="t-caption text-muted">{member.role}</span>
-              </li>
-            ))}
-          </Reveal>
+        <section className="section">
+          <div className="overflow-hidden">
+            <div className="container-fluid">
+              <div className="mb-large">
+                <SectionHead label={s.team?.label} index={s.team?.index}>
+                  {s.team?.body && <p className="paragraph-large" data-ix="lines">{s.team.body.replace(/\n/g, " ")}</p>}
+                </SectionHead>
+              </div>
+              <TeamGrid
+                members={team.map((m, i) => ({
+                  name: m.name,
+                  role: m.role,
+                  photo: media(m.photo, ART.dark[i % 3]),
+                  links: [
+                    ...(m.linkedinUrl ? [{ label: "LinkedIn", href: m.linkedinUrl }] : []),
+                    ...(m.instagramUrl ? [{ label: "Instagram", href: m.instagramUrl }] : []),
+                  ],
+                }))}
+              />
+            </div>
+          </div>
         </section>
       )}
     </>

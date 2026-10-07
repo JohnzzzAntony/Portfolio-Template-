@@ -1,0 +1,73 @@
+/* Account pages (sign in, register, workspace, editor) in the template's
+   monochrome language: oversized titles, hairline fields, pill buttons. */
+@layer components {
+  .platform-main { padding: 0 var(--r-page-x) var(--r-section-y-md); }
+  .platform-kicker { font-size: var(--r-fs-caption); line-height: 1.205; letter-spacing: 0.01em; text-transform: uppercase; }
+  .platform-title { font-size: 7.8125vw; line-height: 0.9; font-weight: 600; letter-spacing: -0.0425em; text-transform: uppercase; margin: 1.5rem 0 0; }
+  .platform-lede { font-size: var(--r-fs-paragraph-medium); line-height: 1.25; letter-spacing: -0.016em; max-width: 36rem; }
+  .platform-muted { color: var(--r-muted); font-size: 1rem; }
+  .platform-error, .platform-notice { padding: 1rem 1.25rem; border-radius: var(--r-radius); font-size: 1rem; }
+  .platform-notice { background: #f2f2f2; border: 1px solid var(--r-line); }
+  .platform-error { background: #ffc5c5; color: #751515; }
+
+  .platform-button { display: inline-flex; align-items: center; justify-content: center; gap: 0.75rem; min-height: 2.875rem; padding: 0.25em 2em; border: 1px solid var(--r-black); border-radius: 5rem; background: var(--r-black); color: var(--r-white); font: inherit; font-size: 1rem; line-height: 1; font-weight: 600; letter-spacing: 0.01em; text-transform: uppercase; cursor: pointer; transition: background 0.3s, color 0.3s; }
+  .platform-button:hover { background: var(--r-white); color: var(--r-black); }
+  .platform-button.secondary { background: transparent; color: var(--r-black); }
+  .platform-button.secondary:hover { background: var(--r-black); color: var(--r-white); }
+  .platform-button:disabled { opacity: 0.45; cursor: not-allowed; }
+  .auth-dark .platform-button { background: var(--r-white); color: var(--r-black); border-color: var(--r-white); }
+  .auth-dark .platform-button:hover { background: transparent; color: var(--r-white); }
+  .platform-link { box-shadow: 0 1px 0 0 currentColor; transition: box-shadow 0.1s linear; display: inline-block; font-size: var(--r-fs-caption); letter-spacing: 0.01em; text-transform: uppercase; }
+  .platform-link:hover { box-shadow: 0 5px 0 0 currentColor; }
+  button.platform-link { background: none; border: 0; padding: 0; cursor: pointer; }
+
+  .platform-head { display: grid; grid-template-columns: repeat(12, minmax(10px, 1fr)); column-gap: var(--r-gutter-x); row-gap: 1.5rem; padding: 6.7vw 0 var(--r-m-medium); align-items: end; }
+  .platform-head > :first-child { grid-column: 1 / 10; }
+  .platform-head > :last-child:not(:first-child) { grid-column: 10 / 13; justify-self: end; }
+
+  .auth-shell { display: grid; grid-template-columns: repeat(12, minmax(10px, 1fr)); column-gap: var(--r-gutter-x); row-gap: 3rem; padding: 4vw 0 var(--r-section-y-md); }
+  .auth-intro { grid-column: 1 / 7; display: flex; flex-direction: column; gap: 2rem; }
+  .auth-card { grid-column: 8 / 13; align-self: start; padding: var(--r-card-p); border: 1px solid var(--r-line); border-radius: var(--r-radius); background: var(--r-white); }
+  .auth-card h2 { font-size: var(--r-fs-card-title-large); line-height: 1.087; font-weight: 500; letter-spacing: -0.038em; margin-bottom: 0.5rem; }
+  .auth-dark { background: var(--r-black); color: var(--r-white); border-color: var(--r-black); }
+  .auth-dark .platform-form input { color: var(--r-white); border-color: #ffffff80; }
+
+  .platform-form { display: flex; flex-direction: column; gap: 0.5rem; margin: 1.5rem 0; }
+  .platform-form label { display: flex; flex-direction: column; gap: 0.25rem; padding-top: 1rem; font-size: var(--r-fs-caption); letter-spacing: 0.01em; text-transform: uppercase; }
+  .platform-form input, .platform-form textarea { width: 100%; padding: 0.5rem 0 0.85rem; border: 0; border-bottom: 1px solid var(--r-black); border-radius: 0; background: transparent; color: inherit; font: inherit; font-size: 1.25rem; letter-spacing: -0.02em; text-transform: none; }
+  .platform-form textarea { resize: vertical; }
+  .platform-form input:focus, .platform-form textarea:focus { outline: none; border-bottom-width: 2px; }
+  .platform-form fieldset { border: 1px solid var(--r-line); border-radius: var(--r-radius); }
+
+  .workspace-card { display: grid; grid-template-columns: 1.4fr 1fr; gap: 4rem; padding: var(--r-card-p); margin-top: var(--r-m-medium); border: 1px solid var(--r-line); border-radius: var(--r-radius); }
+  .workspace-card h2 { font-size: var(--r-fs-heading-small); line-height: 0.85; font-weight: 600; letter-spacing: -0.0425em; text-transform: uppercase; margin: 1.5rem 0; }
+  .workspace-card p { margin-bottom: 1rem; }
+  .workspace-actions { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 1.25rem; }
+  .price-label { font-size: var(--r-fs-card-title-large); letter-spacing: -0.038em; font-weight: 500; }
+
+  .editor-shell { max-width: 1280px; margin: 0 auto; }
+  .editor-form section { padding: 2.5rem 0; border-top: 1px solid var(--r-black); }
+  .editor-section-title { display: flex; align-items: baseline; gap: 2rem; margin-bottom: 1.5rem; }
+  .editor-section-title > span { font-size: var(--r-fs-caption); letter-spacing: 0.01em; }
+  .editor-section-title h2 { font-size: var(--r-fs-card-title-large); line-height: 1.087; font-weight: 500; letter-spacing: -0.038em; }
+  .editor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem var(--r-gutter-fixed); }
+  .editor-item { display: flex; flex-direction: column; gap: 0.5rem; margin: 1.5rem 0; padding: 1.5rem; }
+  .editor-item legend { padding: 0 0.5rem; font-size: var(--r-fs-caption); letter-spacing: 0.01em; text-transform: uppercase; }
+  .editor-savebar { position: sticky; bottom: 0; z-index: 10; display: flex; flex-wrap: wrap; align-items: center; gap: 1.25rem; padding: 1rem 0; background: var(--r-white); border-top: 1px solid var(--r-black); }
+  .upload-control { display: inline-flex !important; flex-direction: row !important; align-items: center; justify-content: center; min-height: 2.875rem; padding: 0.25em 1.5em !important; border: 1px solid var(--r-black); border-radius: 5rem; font-weight: 600; cursor: pointer; }
+  .upload-control input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+
+  .preview-banner { position: relative; z-index: 60; display: flex; justify-content: center; gap: 1rem; padding: 0.65rem 1rem; background: var(--r-black); color: var(--r-white); font-size: 0.95rem; letter-spacing: 0.01em; text-transform: uppercase; }
+  .preview-banner a { box-shadow: 0 1px 0 0 currentColor; }
+
+  .platform-footer { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1.5rem; padding: 2rem var(--r-page-x); background: var(--r-black); color: var(--r-white); font-size: var(--r-fs-caption); letter-spacing: 0.01em; text-transform: uppercase; }
+  .platform-footer .nav-logo { font-size: 2rem; text-transform: none; }
+}
+
+@media (max-width: 991px) {
+  .auth-intro, .auth-card { grid-column: 1 / 13; }
+  .workspace-card, .editor-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .platform-title { font-size: 12vw; }
+  .platform-head > :first-child, .platform-head > :last-child:not(:first-child) { grid-column: 1 / 13; justify-self: start; }
+  .editor-savebar { position: static; }
+}

@@ -1,14 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { PageHero } from "@/components/layout/PageHero";
-import { Reveal } from "@/components/motion/Reveal";
-import { SplitText } from "@/components/motion/SplitText";
-import { ServicesAccordion } from "@/components/sections/ServicesAccordion";
-import { ProjectCard } from "@/components/portfolio/ProjectCard";
-import { Button } from "@/components/ui/Button";
-import { SectionHeader } from "@/components/ui/SectionHeader";
-import { getFeaturedProject, getPage, getServices, sectionMap } from "@/lib/cms";
+import { PageTop, ProjectCard, ServicesGalleryHero, ServiceStackItem } from "@/components/rydge/sections";
+import { Button, SectionHead } from "@/components/rydge/ui";
+import { getFeaturedProject, getPage, getServices, getSettings, sectionMap } from "@/lib/cms";
+import { projectItem } from "@/lib/demo-content";
+import { ART, media } from "@/lib/media";
 import { pageMetadata } from "@/lib/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -19,46 +16,49 @@ export default async function ServicesPage() {
   const page = await getPage("services");
   if (!page) notFound();
 
-  const [services, featured] = await Promise.all([
-    getServices(),
-    getFeaturedProject(),
-  ]);
-
+  const [settings, services, featured] = await Promise.all([getSettings(), getServices(), getFeaturedProject()]);
   const s = sectionMap(page.sections);
+  const gallery = services.map((service, i) => media(service.image, ART.dark[i % 3])).slice(0, 3);
 
   return (
     <>
-      <PageHero
-        title={page.title}
-        metaLeft={page.metaLeft}
-        metaRight={page.metaRight}
-        image={page.heroImage}
-      />
+      <PageTop title={page.title} pill={settings.tagline} captions={[page.metaLeft, page.metaRight]}>
+        <ServicesGalleryHero background={media(page.heroImage, ART.page)} images={gallery} />
+      </PageTop>
 
-      <section className="section shell">
-        <SectionHeader label={s.expertise?.label} index={s.expertise?.index} />
-        {s.expertise?.body && (
-          <SplitText
-            as="p"
-            by="line"
-            text={s.expertise.body}
-            className="t-lead mt-[var(--m-large)] max-w-[26ch]"
-          />
-        )}
-        <ServicesAccordion services={services} className="mt-[var(--m-large)]" />
+      <section className="section no-pb">
+        <div className="container-fluid">
+          <div className="mb-small">
+            <SectionHead label={s.expertise?.label} index={s.expertise?.index}>
+              {s.expertise?.body && <p className="paragraph-large" data-ix="lines">{s.expertise.body.replace(/\n/g, " ")}</p>}
+            </SectionHead>
+          </div>
+        </div>
       </section>
 
+      <div>
+        {services.map((service, i) => (
+          <ServiceStackItem
+            key={service.id}
+            title={service.title}
+            text={service.description}
+            tags={service.capabilities}
+            image={media(service.image, ART.dark[i % 3])}
+            thumb={ART.dark[(i + 1) % 3]}
+          />
+        ))}
+      </div>
+
       {featured && (
-        <section className="section shell">
-          <SectionHeader label={s.featured?.label} index={s.featured?.index} />
-          <Reveal className="mt-[var(--m-large)]">
-            <ProjectCard project={featured} className="aspect-[16/9]" />
-          </Reveal>
-          <Reveal className="mt-[var(--m-medium)] flex justify-center">
-            <Button href="/portfolio">
-              {s.featured?.ctaLabel || "View all Projects"}
-            </Button>
-          </Reveal>
+        <section className="section shadow no-pb">
+          <div className="container-fluid">
+            <div className="mb-small"><SectionHead label={s.featured?.label} index={s.featured?.index} /></div>
+            <div className="mb-medium"><ProjectCard project={projectItem(featured)} full /></div>
+            <div className="align-center" data-ix="fade-up">
+              <Button href={s.featured?.ctaUrl || "/portfolio"}>{s.featured?.ctaLabel || "View all Projects"}</Button>
+            </div>
+          </div>
+          <div style={{ height: "var(--r-section-y)" }} />
         </section>
       )}
     </>
