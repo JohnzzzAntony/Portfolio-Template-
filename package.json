@@ -14,24 +14,27 @@
     "db:generate": "prisma generate",
     "db:studio": "prisma studio",
     "db:seed": "tsx prisma/seed.ts",
-    "setup": "npm run db:generate && npm run db:deploy && npm run db:seed && npm run assets:generate",
-    "assets:generate": "node scripts/generate-placeholders.mjs",
+    "setup": "npm run db:generate && npm run db:deploy && npm run db:seed",
     "check": "npm run lint && npm run typecheck && npm run build",
     "db:deploy": "prisma migrate deploy",
-    "prestart": "node scripts/check-env.mjs",
+    "prestart": "node scripts/check-env.mjs && prisma migrate deploy",
     "test": "node --experimental-strip-types --test scripts/platform-policy.test.mjs",
-    "test:integration": "node --experimental-strip-types scripts/platform-smoke.mjs"
+    "test:integration": "node --experimental-strip-types scripts/platform-smoke.mjs",
+    "admin:create": "node scripts/create-admin.mjs",
+    "art:generate": "node scripts/generate-art.mjs"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.1147.0",
     "@prisma/client": "^6.1.0",
     "bcryptjs": "^2.4.3",
     "clsx": "^2.1.1",
     "gsap": "^3.12.5",
     "jose": "^5.9.6",
     "next": "^16.4.0",
+    "prisma": "^6.1.0",
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "server-only": "^0.0.1",
@@ -47,7 +50,6 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "^16.4.0",
-    "prisma": "^6.1.0",
     "tailwindcss": "^4",
     "tsx": "^4.19.2",
     "typescript": "^5"

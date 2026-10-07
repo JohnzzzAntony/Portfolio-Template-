@@ -1,7 +1,7 @@
-import { Footer } from "@/components/rydge/Footer";
-import { Interactions } from "@/components/rydge/Interactions";
-import { Nav } from "@/components/rydge/Nav";
-import { AboutSection, CallToAction, Hero, PortfolioSection, ServicesCarousel, SplitMission } from "@/components/rydge/sections";
+import { Footer } from "@/components/editorial/Footer";
+import { Interactions } from "@/components/editorial/Interactions";
+import { Nav } from "@/components/editorial/Nav";
+import { AboutSection, CallToAction, Hero, PortfolioSection, ServicesCarousel, SplitMission } from "@/components/editorial/sections";
 import type { PortfolioContent } from "@/lib/portfolio-content";
 
 const ART = {

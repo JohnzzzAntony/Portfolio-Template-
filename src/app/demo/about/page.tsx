@@ -11,8 +11,8 @@ import {
   PageTop,
   SplitMission,
   TeamGrid,
-} from "@/components/rydge/sections";
-import { SectionHead } from "@/components/rydge/ui";
+} from "@/components/editorial/sections";
+import { SectionHead } from "@/components/editorial/ui";
 import { getAchievements, getApproach, getAwards, getBenefits, getPage, getSettings, getTeam, sectionMap } from "@/lib/cms";
 import { missionWords } from "@/lib/demo-content";
 import { ART, media } from "@/lib/media";

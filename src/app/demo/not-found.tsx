@@ -1,4 +1,4 @@
-import { Button } from "@/components/rydge/ui";
+import { Button } from "@/components/editorial/ui";
 
 export const metadata = { title: "Not found" };
 

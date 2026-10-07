@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { ContactForm } from "@/components/forms/ContactForm";
-import { Mail, Phone, Pin } from "@/components/rydge/icons";
-import { BenefitsSection, ContactLines, PageTop, ProjectCard, StoryMarquee } from "@/components/rydge/sections";
-import { Button, SectionHead } from "@/components/rydge/ui";
+import { Mail, Phone, Pin } from "@/components/editorial/icons";
+import { BenefitsSection, ContactLines, PageTop, ProjectCard, StoryMarquee } from "@/components/editorial/sections";
+import { Button, SectionHead } from "@/components/editorial/ui";
 import { getFeaturedProject, getPage, getSettings, sectionMap } from "@/lib/cms";
 import { projectItem } from "@/lib/demo-content";
 import { ART, media } from "@/lib/media";

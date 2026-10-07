@@ -18,19 +18,20 @@ async function main() {
   const email = (process.env.ADMIN_EMAIL ?? "admin@example.com").toLowerCase();
   const password = process.env.ADMIN_PASSWORD;
   if (!password || password.length < 12 || password === "ChangeMe123!") {
-    throw new Error("Set ADMIN_PASSWORD to a unique password of at least 12 characters before seeding.");
+    // Content can be seeded without an operator; re-run with ADMIN_PASSWORD to add one.
+    console.warn("ADMIN_PASSWORD is unset or too weak — skipping the operator account. Set a unique password of 12+ characters and re-run to create it.");
+  } else {
+    await prisma.user.upsert({
+      where: { email },
+      update: {},
+      create: {
+        email,
+        name: "Studio Admin",
+        role: "ADMIN",
+        passwordHash: await bcrypt.hash(password, 12),
+      },
+    });
   }
-
-  await prisma.user.upsert({
-    where: { email },
-    update: {},
-    create: {
-      email,
-      name: "Studio Admin",
-      role: "ADMIN",
-      passwordHash: await bcrypt.hash(password, 12),
-    },
-  });
 
   // --------------------------------------------------------------- settings
   await prisma.siteSettings.upsert({
@@ -621,7 +622,7 @@ async function main() {
   });
 
   console.log("Seed complete.");
-  console.log(`Admin account: ${email}. Use your configured ADMIN_PASSWORD.`);
+  if (password && password.length >= 12 && password !== "ChangeMe123!") console.log(`Admin account: ${email}. Use your configured ADMIN_PASSWORD.`);
 }
 
 type SectionSeed = {

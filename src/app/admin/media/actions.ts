@@ -1,7 +1,6 @@
 "use server";
 
 import { randomUUID } from "node:crypto";
-import { mkdir, unlink, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 import { revalidatePath } from "next/cache";
@@ -10,9 +9,9 @@ import { requireSession } from "@/lib/auth";
 import type { UploadState } from "@/lib/admin/state";
 import { prisma } from "@/lib/prisma";
 import { imageType } from "@/lib/image-type";
+import { deleteObject, putObject } from "@/lib/storage";
 import { slugify } from "@/lib/utils";
 
-const UPLOAD_DIR = path.join(process.cwd(), "public", "media");
 const MAX_BYTES = 8 * 1024 * 1024;
 
 export async function uploadMedia(
@@ -38,15 +37,11 @@ export async function uploadMedia(
   const filename = `${stem}-${randomUUID().slice(0, 8)}.${extension}`;
 
   try {
-    await mkdir(UPLOAD_DIR, { recursive: true });
-    await writeFile(
-      path.join(UPLOAD_DIR, filename),
-      bytes,
-    );
+    await putObject(`media/${filename}`, bytes, mime);
 
     await prisma.media.create({
       data: {
-        url: `/media/${filename}`,
+        url: `/files/${filename}`,
         filename,
         alt: String(formData.get("alt") ?? "").trim(),
         mime,
@@ -54,7 +49,7 @@ export async function uploadMedia(
       },
     });
   } catch {
-    await unlink(path.join(UPLOAD_DIR, filename)).catch(() => {});
+    await deleteObject(`media/${filename}`).catch(() => {});
     return { status: "error", message: "Upload failed." };
   }
 
@@ -68,11 +63,8 @@ export async function deleteMedia(id: string) {
   const record = await prisma.media.findUnique({ where: { id } });
   if (!record) return;
 
-  // Resolve and confine to the upload directory before unlinking.
-  const target = path.resolve(UPLOAD_DIR, path.basename(record.filename));
-  if (target.startsWith(path.resolve(UPLOAD_DIR))) {
-    await unlink(target).catch(() => {});
-  }
+  // Only objects this manager stored are removed; legacy /media files are left alone.
+  if (record.url.startsWith("/files/")) await deleteObject(`media/${path.basename(record.filename)}`).catch(() => {});
 
   await prisma.media.delete({ where: { id } });
   revalidatePath("/admin/media");

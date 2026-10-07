@@ -1,7 +1,7 @@
 import Link from "next/link";
 
-import { Interactions } from "@/components/rydge/Interactions";
-import { Nav } from "@/components/rydge/Nav";
+import { Interactions } from "@/components/editorial/Interactions";
+import { Nav } from "@/components/editorial/Nav";
 
 export const PLATFORM_NAV = [
   { label: "Template", href: "/template" },

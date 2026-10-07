@@ -1,7 +1,6 @@
-import { readFile } from "node:fs/promises";
-import path from "node:path";
 import { prisma } from "@/lib/prisma";
 import { getSession } from "@/lib/auth";
+import { contentTypeFor, getObject } from "@/lib/storage";
 export const runtime = "nodejs";
 export async function GET(_request: Request, { params }: { params: Promise<{ owner: string; filename: string }> }) {
   const { owner, filename } = await params;
@@ -12,10 +11,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ own
   if (!paid || !portfolio) return new Response(null, { status: 404 });
   const isPublished = portfolio.published && portfolio.publishedContent?.includes(url);
   if (!isPublished && (await getSession())?.sub !== owner) return new Response(null, { status: 404 });
-  try {
-    const directory = process.env.UPLOAD_DIR || path.join(/*turbopackIgnore: true*/ process.cwd(), "storage", "uploads");
-    const bytes = await readFile(/*turbopackIgnore: true*/ path.join(/*turbopackIgnore: true*/ directory, owner, filename));
-    const extensions: Record<string,string> = { jpg: "image/jpeg", png: "image/png", webp: "image/webp", avif: "image/avif", gif: "image/gif" };
-    return new Response(bytes, { headers: { "Content-Type": extensions[filename.split('.').pop()!], "X-Content-Type-Options": "nosniff", "Cache-Control": "private, no-store", "Content-Security-Policy": "sandbox" } });
-  } catch { return new Response(null, { status: 404 }); }
+  const bytes = await getObject(`uploads/${owner}/${filename}`);
+  if (!bytes) return new Response(null, { status: 404 });
+  return new Response(Buffer.from(bytes), { headers: { "Content-Type": contentTypeFor(filename), "X-Content-Type-Options": "nosniff", "Cache-Control": "private, no-store", "Content-Security-Policy": "sandbox" } });
 }

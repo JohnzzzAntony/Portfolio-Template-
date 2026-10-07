@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { PageTop, ProjectCard, ServicesGalleryHero, ServiceStackItem } from "@/components/rydge/sections";
-import { Button, SectionHead } from "@/components/rydge/ui";
+import { PageTop, ProjectCard, ServicesGalleryHero, ServiceStackItem } from "@/components/editorial/sections";
+import { Button, SectionHead } from "@/components/editorial/ui";
 import { getFeaturedProject, getPage, getServices, getSettings, sectionMap } from "@/lib/cms";
 import { projectItem } from "@/lib/demo-content";
 import { ART, media } from "@/lib/media";

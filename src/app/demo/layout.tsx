@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
-import { Footer } from "@/components/rydge/Footer";
-import { Interactions } from "@/components/rydge/Interactions";
-import { Nav } from "@/components/rydge/Nav";
-import { Button } from "@/components/rydge/ui";
+import { Footer } from "@/components/editorial/Footer";
+import { Interactions } from "@/components/editorial/Interactions";
+import { Nav } from "@/components/editorial/Nav";
+import { Button } from "@/components/editorial/ui";
 import { getNav, getSettings, getSocials } from "@/lib/cms";
 import { ART, media } from "@/lib/media";
 

@@ -1,44 +1,47 @@
 # Deploy Forma Portfolio
 
-Supported target: one always-on Node.js 22.18+ or 24 LTS instance with a persistent disk, behind HTTPS. SQLite and local uploads require persistent storage. Do not use an ephemeral serverless filesystem or multiple replicas.
+Supported target: one always-on Node.js 22.18+ or 24 LTS instance (e.g. Railway) behind HTTPS, with **PostgreSQL** (Neon) and **S3-compatible object storage** (Neon storage). The app filesystem can be ephemeral: data lives in Postgres and uploads in the bucket. Run a single instance — checkout serialization and rate limits are in memory.
 
 ## Environment
 
-Copy `.env.example` locally. On the host, use private environment settings.
+Copy `.env.example` locally. On the host, use private environment settings (Railway → service → Variables).
 
 | Variable | Value |
 | --- | --- |
-| `DATABASE_URL` | Absolute SQLite URL, e.g. `file:/var/lib/forma/forma.db` |
+| `DATABASE_URL` | Neon **pooled** connection string (`…-pooler…`) |
+| `DIRECT_URL` | Neon **direct** connection string, used for migrations |
 | `AUTH_SECRET` | Random signing secret of at least 32 characters |
-| `NEXT_PUBLIC_SITE_URL` | Your HTTPS public origin |
-| `UPLOAD_DIR` | Persistent absolute directory, e.g. `/var/lib/forma/uploads` |
-| `STRIPE_SECRET_KEY` | Your Stripe secret key; test mode first |
+| `NEXT_PUBLIC_SITE_URL` | Your public origin (a bare host is accepted; HTTPS is assumed) |
+| `AWS_ENDPOINT_URL_S3` | Storage endpoint, e.g. `https://br-….storage….neon.tech` |
+| `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` | Storage credential |
+| `AWS_REGION` | e.g. `ap-southeast-1` |
+| `S3_BUCKET` | Bucket name; defaults to `media` |
+| `STRIPE_SECRET_KEY` | Stripe sandbox secret key (`sk_test_…`) |
 | `STRIPE_PRICE_ID` | Active, positive, one-time Price ID |
 | `STRIPE_WEBHOOK_SECRET` | Signing secret for this host's webhook |
 | `STRIPE_LIVE_MODE` | Leave blank to stay in the Stripe sandbox; `enabled` allows live keys |
-| `ADMIN_EMAIL`, `ADMIN_PASSWORD` | Initial operator credentials; seeding only |
+| `ADMIN_EMAIL`, `ADMIN_PASSWORD` | Operator account; only while running `npm run admin:create` |
 
-Generate a secret with `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"`. Initial admin password must be unique and at least 12 characters. Do not commit secrets or ship database backups.
+Generate a secret with `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"`. Do not commit secrets. If a credential is ever pasted into chat, email or a ticket, rotate it.
+
+`npm start` validates the environment and runs `prisma migrate deploy` before starting, so schema changes apply on each release. The build prerenders the `/demo` pages, so the database must be reachable at build time.
 
 ## Fresh deployment
 
 ```sh
 npm ci
-npm run db:generate
-npm run db:deploy
-npm run db:seed
-npm run assets:generate
-npm run lint
-npm test
-npm run build
+npm run db:deploy        # apply migrations (also runs on every start)
+npm run db:seed          # demo CMS content — empty installations only
+ADMIN_EMAIL=you@example.com ADMIN_PASSWORD='…' npm run admin:create
+npm run lint && npm test && npm run build
 npm start
 ```
 
-Seed only an empty installation. It replaces demo CMS collections. Never seed on routine releases. Remove the initial admin password from the environment after provisioning. The build needs a populated database for the retained demo's prerendered pages.
+Seed only an empty installation: it replaces the demo CMS collections (it never touches customer accounts, portfolios or purchases). `npm run admin:create` only creates the operator or resets its password; remove `ADMIN_PASSWORD` from the environment afterwards.
 
-Later releases: back up the database and uploads, install locked dependencies, generate Prisma, apply migrations, build and restart. Keep `public/media` if using the legacy operator media manager; customer uploads use `UPLOAD_DIR`. The Procfile starts the app, and `npm start` validates settings first.
+## Storage
 
-The existing local database is already upgraded and migration `20261007000000_initial` baselined. For an older database, back it up, apply the additive schema update, verify it matches, then baseline using `npx prisma migrate resolve --applied 20261007000000_initial`. Do not baseline an empty database.
+Uploads go to the bucket under two prefixes: `uploads/<owner>/<uuid>.<ext>` (customer images, private, streamed by `/uploads/…` only to the owner or when published by a paying customer) and `media/<name>.<ext>` (operator CMS images, public at `/files/…`, cached immutably). Objects are never public in the bucket itself. Without storage variables, uploads fall back to `storage/` on local disk — fine for development, lost on container redeploys.
 
 ## Stripe activation
 
@@ -59,7 +62,7 @@ Partial/full refunds and disputes revoke access. Dispute resolution requires ope
 - Customer flow: register → dashboard → Stripe → editor → `/p/{slug}`.
 - Customer content, uploads and payments are separate from the operator CMS.
 - Uploads: raster images, 8 MB each, 100 files per account. Unpublished assets require the owner's session. Cleanup of unused files is currently manual.
-- Back up SQLite using its online backup tool or pause writes while copying. Restore the database and upload directory together.
+- Neon provides point-in-time restore; keep bucket versioning or periodic copies for uploads, and restore both together.
 - Password recovery, email verification, custom domains, multiple templates and subscriptions are not implemented. Establish operator support before accepting paying customers.
 - Provide business support details, refund terms and privacy information before live sales. No fabricated legal policy is included.
 
@@ -73,4 +76,4 @@ npm run build
 npm run test:integration
 ```
 
-Integration tests create/remove synthetic customers and fixture entitlements. They do not call Stripe or charge cards. Live checkout and webhook delivery remain an acceptance step using your account.
+Integration tests create/remove synthetic customers and fixture entitlements in the configured database. They do not call Stripe or charge cards. Live checkout and webhook delivery remain an acceptance step using your account.

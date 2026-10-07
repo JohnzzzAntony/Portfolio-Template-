@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { BlogSection, PageTop } from "@/components/rydge/sections";
+import { BlogSection, PageTop } from "@/components/editorial/sections";
 import { getPost, getPosts } from "@/lib/cms";
 import { postItem } from "@/lib/demo-content";
 import { ART, media } from "@/lib/media";

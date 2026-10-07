@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { CallToAction, PortfolioSection } from "@/components/rydge/sections";
-import { Marquee, ScrollDown } from "@/components/rydge/ui";
-import { WorkSlides } from "@/components/rydge/WorkSlides";
+import { CallToAction, PortfolioSection } from "@/components/editorial/sections";
+import { Marquee, ScrollDown } from "@/components/editorial/ui";
+import { WorkSlides } from "@/components/editorial/WorkSlides";
 import { getPage, getProjects, getSettings, sectionMap } from "@/lib/cms";
 import { projectItem } from "@/lib/demo-content";
 import { ART, media } from "@/lib/media";

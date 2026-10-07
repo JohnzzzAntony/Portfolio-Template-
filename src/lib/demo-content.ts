@@ -1,4 +1,4 @@
-import type { PostItem, ProjectItem } from "@/components/rydge/sections";
+import type { PostItem, ProjectItem } from "@/components/editorial/sections";
 import { ART, media } from "@/lib/media";
 import { formatDate } from "@/lib/utils";
 

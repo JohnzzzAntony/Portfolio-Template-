@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { CtaRow, PageTop, ProjectCard } from "@/components/rydge/sections";
-import { Button, Marquee, SectionHead } from "@/components/rydge/ui";
+import { CtaRow, PageTop, ProjectCard } from "@/components/editorial/sections";
+import { Button, Marquee, SectionHead } from "@/components/editorial/ui";
 import { getProject, getProjects, getRelatedProjects } from "@/lib/cms";
 import { projectItem } from "@/lib/demo-content";
 import { ART, media } from "@/lib/media";

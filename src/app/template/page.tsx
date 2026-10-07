@@ -1,5 +1,5 @@
 import { CustomerPortfolio } from "@/components/platform/CustomerPortfolio";
-import { Button } from "@/components/rydge/ui";
+import { Button } from "@/components/editorial/ui";
 import { starterContent } from "@/lib/portfolio-content";
 
 export const metadata = { title: "Explore the template — Forma", alternates: { canonical: "/template" } };

@@ -16,7 +16,7 @@ export default async function MediaPage() {
     <>
       <PageTitle
         title="Media"
-        description="Uploads are written to /public/media. Copy a URL and paste it into any image field."
+        description="Uploads are stored in object storage and served from /files. Copy a URL and paste it into any image field."
       />
 
       <UploadForm />

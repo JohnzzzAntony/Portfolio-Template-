@@ -9,7 +9,7 @@ import {
   PortfolioSection,
   ServicesCarousel,
   SplitMission,
-} from "@/components/rydge/sections";
+} from "@/components/editorial/sections";
 import { getBenefits, getPage, getPlayground, getPosts, getProjects, getServices, getSettings, sectionMap } from "@/lib/cms";
 import { missionWords, postItem, projectItem } from "@/lib/demo-content";
 import { ART, media } from "@/lib/media";

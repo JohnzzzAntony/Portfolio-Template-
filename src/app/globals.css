@@ -1,8 +1,8 @@
 @import "tailwindcss";
-@import "./rydge.css";
+@import "./editorial.css";
 @import "./account.css";
 
-/* Tailwind theme for the operator CMS; public pages use rydge.css. */
+/* Tailwind theme for the operator CMS; public pages use editorial.css. */
 @theme {
   --color-ink: #000000;
   --color-paper: #ffffff;

@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/components/rydge/ui";
+import { Button } from "@/components/editorial/ui";
 
 /** Per-route boundary for the demo site — keeps the shell and design intact. */
 export default function SiteError({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {

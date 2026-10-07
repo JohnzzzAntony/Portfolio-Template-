@@ -225,7 +225,7 @@ function ImageField({
         type="text"
         value={url}
         onChange={(e) => setUrl(e.target.value)}
-        placeholder="/media/example.jpg or https://…"
+        placeholder="/files/example.jpg or https://…"
         aria-describedby={describedBy}
         className={cn(inputBase, invalid && "border-red-500")}
       />

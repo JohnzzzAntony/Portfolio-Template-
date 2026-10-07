@@ -1,6 +1,6 @@
-import { Footer } from "@/components/rydge/Footer";
-import { Interactions } from "@/components/rydge/Interactions";
-import { Nav } from "@/components/rydge/Nav";
+import { Footer } from "@/components/editorial/Footer";
+import { Interactions } from "@/components/editorial/Interactions";
+import { Nav } from "@/components/editorial/Nav";
 import {
   AboutSection,
   BenefitsSection,
@@ -9,8 +9,8 @@ import {
   PortfolioSection,
   ServicesCarousel,
   SplitMission,
-} from "@/components/rydge/sections";
-import { Button } from "@/components/rydge/ui";
+} from "@/components/editorial/sections";
+import { Button } from "@/components/editorial/ui";
 import { ART } from "@/lib/media";
 
 export const metadata = {
