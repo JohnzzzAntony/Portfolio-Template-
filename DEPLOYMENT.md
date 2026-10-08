@@ -50,7 +50,7 @@ Uploads go to the bucket under two prefixes: `uploads/<owner>/<uuid>.<ext>` (cus
 3. In test mode, register, complete checkout and verify editing unlocks. Test cancellation, duplicate events, delayed payment, refund and dispute. A return URL alone never unlocks access.
 4. Switch to the live secret key, live Price ID and live endpoint signing secret only after acceptance testing, and set `STRIPE_LIVE_MODE=enabled`.
 
-The platform currently runs in the **Stripe sandbox**: only `sk_test_`/`rk_test_` keys are accepted, live-mode webhook events are ignored, and startup fails if a live key is configured without `STRIPE_LIVE_MODE=enabled`. The dashboard labels checkout as a sandbox and lists Stripe's test card `4242 4242 4242 4242` (any future expiry, any CVC). Local webhook testing: `stripe listen --forward-to localhost:3000/api/stripe/webhook` and use the printed `whsec_` secret.
+The platform currently runs in the **Stripe sandbox**: only `sk_test_`/`rk_test_` keys are accepted, live-mode webhook events are ignored, and a live key without `STRIPE_LIVE_MODE=enabled` logs a warning at startup and keeps checkout disabled. The dashboard labels checkout as a sandbox and lists Stripe's test card `4242 4242 4242 4242` (any future expiry, any CVC). Local webhook testing: `stripe listen --forward-to localhost:3000/api/stripe/webhook` and use the printed `whsec_` secret.
 
 All three Stripe values can remain blank for preview-only hosting; checkout is disabled. Partial configuration fails startup. Implementation follows [Stripe fulfillment](https://docs.stripe.com/checkout/fulfillment) and [signature verification](https://docs.stripe.com/webhooks/signatures).
 

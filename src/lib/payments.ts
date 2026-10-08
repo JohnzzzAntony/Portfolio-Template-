@@ -5,11 +5,13 @@ import { paymentMatches } from "@/lib/payment-policy";
 import { siteUrl } from "@/lib/site-url";
 
 /** Payments run in the Stripe sandbox until the operator opts in with STRIPE_LIVE_MODE=enabled. */
-export const liveModeEnabled = () => process.env.STRIPE_LIVE_MODE === "enabled";
-export const isSandboxKey = (key = process.env.STRIPE_SECRET_KEY ?? "") => /^(sk|rk)_test_/.test(key);
+export const liveModeEnabled = () => process.env.STRIPE_LIVE_MODE?.trim() === "enabled";
+/** Hosting dashboards often keep pasted quotes or whitespace around values. */
+const secretKey = () => (process.env.STRIPE_SECRET_KEY ?? "").trim().replace(/^["']|["']$/g, "");
+export const isSandboxKey = (key = secretKey()) => /^(sk|rk)_test_/.test(key);
 
 export function stripeClient() {
-  const key = process.env.STRIPE_SECRET_KEY;
+  const key = secretKey();
   if (!key) throw new Error("Payments are not configured.");
   if (!isSandboxKey(key) && !liveModeEnabled()) throw new Error("Live Stripe keys are disabled. Use sandbox (sk_test_) keys or set STRIPE_LIVE_MODE=enabled.");
   return new Stripe(key, { maxNetworkRetries: 2 });
