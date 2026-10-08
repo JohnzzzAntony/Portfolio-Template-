@@ -4,7 +4,7 @@ Public branding is now Forma Portfolio. Personal branding was removed from publi
 
 Customer flow: registration → one-time purchase → personal editor → private preview → publication at `/p/{slug}`. The advertised template and customer renderer share a component and starter content. Customers edit branding, biography, projects, services, contacts, social links and images. The legacy multi-page CMS is a separate operator demonstration at `/demo`.
 
-Design: monochrome editorial system modelled on the Rydge Webflow template — Overused Grotesk, viewport-scaled display type, 3D letter-flip hero, line reveals, momentum carousels, scroll-scrubbed mission scene, grid/list portfolio, sticky benefits and draggable playground (GSAP). Applied to the landing page, the customer template, the /demo studio and the account pages. Imagery is the project owner's own mockups plus generated monochrome artwork; no Rydge photography or copy is reused.
+Design: monochrome editorial system modelled on the Rydge Webflow template — Overused Grotesk, viewport-scaled display type, 3D letter-flip hero, line reveals, momentum carousels, scroll-scrubbed mission scene, grid/list portfolio, sticky benefits and draggable playground (GSAP). Applied to the landing page, the customer template, the /demo studio and the account pages. Imagery is generated monochrome placeholder artwork only; no Rydge photography or copy is reused.
 
 ## Security boundaries
 

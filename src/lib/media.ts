@@ -13,10 +13,10 @@ export const ART = {
 };
 
 /**
- * Older content points at generated /media/*.svg placeholders, which are
- * git-ignored and therefore missing from deployments. Treat them as unset.
+ * Older content points at generated /media/*.svg placeholders or the retired
+ * /images/work screenshots, neither of which is deployed. Treat them as unset.
  */
 export function media(src: string | null | undefined, fallback = ""): string {
-  if (!src || /^\/media\/[\w-]+\.svg$/.test(src)) return fallback;
+  if (!src || /^\/media\/[\w-]+\.svg$/.test(src) || src.startsWith("/images/work/")) return fallback;
   return src;
 }

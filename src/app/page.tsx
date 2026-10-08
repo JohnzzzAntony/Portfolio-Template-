@@ -19,15 +19,16 @@ export const metadata = {
   alternates: { canonical: "/" },
 };
 
-const work = (slug: string, n = 1) => `/images/work/${slug}-mockup-${n}.webp`;
+/** Placeholder artwork only — no real client work on the product page. */
+const art = (n: number) => [...ART.dark, ...ART.light][n % 6];
 
 const SHOWCASE = [
-  { title: "Finora", slug: "finora", labels: ["Fintech", "SaaS"] },
-  { title: "The House of Karji", slug: "house-of-karji", labels: ["Commerce", "Brand"] },
-  { title: "Nexora", slug: "nexora", labels: ["SaaS", "Product"] },
-  { title: "Invitara", slug: "invitara", labels: ["Platform", "Design"] },
-  { title: "Mechaura", slug: "mechaura", labels: ["Industrial", "Web"] },
-  { title: "CertGuard", slug: "certguard", labels: ["Security", "SaaS"] },
+  { title: "Project One", labels: ["Brand", "Web"] },
+  { title: "Project Two", labels: ["Product", "Design"] },
+  { title: "Project Three", labels: ["Commerce", "Web"] },
+  { title: "Project Four", labels: ["Platform", "Design"] },
+  { title: "Project Five", labels: ["Identity", "Print"] },
+  { title: "Project Six", labels: ["Campaign", "Motion"] },
 ];
 
 export default function Home() {
@@ -63,7 +64,7 @@ export default function Home() {
           <AboutSection
             body="A portfolio that feels like a studio, not a page builder. Oversized type, considered motion and room for your work — with an editor that keeps every word yours."
             cta={{ label: "Explore the template", href: "/template" }}
-            images={[work("house-of-karji", 3), ART.pill]}
+            images={[art(0), ART.pill]}
             marquee={{ heading: "How it works", index: "/01" }}
           />
 
@@ -73,10 +74,10 @@ export default function Home() {
             index="/02"
             body="No subscriptions, no plug-ins, no fiddling — four steps from account to out there."
             items={[
-              { index: "/001", title: "Register", text: "Create an account in a minute. Your workspace stays private until you decide to publish.", image: work("finora", 2), tags: ["Free account", "Private by default"] },
-              { index: "/002", title: "Unlock", text: "A single payment unlocks the editor for good. You review the exact price in secure checkout.", image: work("nexora", 2), tags: ["One-time", "Stripe checkout"] },
-              { index: "/003", title: "Make it yours", text: "Edit your name, story, services and projects. Upload your own images and preview every change.", image: work("invitara", 3), tags: ["Live preview", "Image uploads"] },
-              { index: "/004", title: "Publish", text: "Go live at your own Forma address, unpublish whenever you like, and keep improving the draft.", image: work("carter-studio", 2), tags: ["/p/your-name", "Drafts & publishing"] },
+              { index: "/001", title: "Register", text: "Create an account in a minute. Your workspace stays private until you decide to publish.", image: art(1), tags: ["Free account", "Private by default"] },
+              { index: "/002", title: "Unlock", text: "A single payment unlocks the editor for good. You review the exact price in secure checkout.", image: art(2), tags: ["One-time", "Stripe checkout"] },
+              { index: "/003", title: "Make it yours", text: "Edit your name, story, services and projects. Upload your own images and preview every change.", image: art(3), tags: ["Live preview", "Image uploads"] },
+              { index: "/004", title: "Publish", text: "Go live at your own Forma address, unpublish whenever you like, and keep improving the draft.", image: art(4), tags: ["/p/your-name", "Drafts & publishing"] },
             ]}
           />
 
@@ -95,7 +96,7 @@ export default function Home() {
             label="(Showcase)"
             index="/04"
             heading={`Work it was\nbuilt for`}
-            projects={SHOWCASE.map((p) => ({ title: p.title, href: `/demo/projects/${p.slug}`, image: work(p.slug), alt: p.title, labels: p.labels }))}
+            projects={SHOWCASE.map((p, i) => ({ title: p.title, href: "/demo/portfolio", image: art(i), alt: p.title, labels: p.labels }))}
             cta={{ body: "See the template running a full studio site, with projects, writing and a contact inbox.", label: "Open the demo", href: "/demo" }}
           />
 
@@ -105,9 +106,9 @@ export default function Home() {
             headingOne={"One template.\nYour space."}
             headingTwo={"Everything\nincluded"}
             items={[
-              { index: "/001", title: "One-time\npurchase", text: "Pay once and the editor is yours. No recurring template subscription and no surprise tiers.", image: work("workflow-hub") },
-              { index: "/002", title: "Private\ndrafts", text: "Save as often as you like. Nothing goes public until you press publish, and you can take it down again anytime.", image: work("certguard", 2) },
-              { index: "/003", title: "Your own\naddress", text: "Your portfolio lives at its own Forma address, ready to share with clients, studios and collaborators.", image: work("mechaura", 2) },
+              { index: "/001", title: "One-time\npurchase", text: "Pay once and the editor is yours. No recurring template subscription and no surprise tiers.", image: art(5) },
+              { index: "/002", title: "Private\ndrafts", text: "Save as often as you like. Nothing goes public until you press publish, and you can take it down again anytime.", image: art(0) },
+              { index: "/003", title: "Your own\naddress", text: "Your portfolio lives at its own Forma address, ready to share with clients, studios and collaborators.", image: art(1) },
             ]}
           />
 
@@ -117,8 +118,8 @@ export default function Home() {
             heading="Make it yours"
             cta={{ label: "Create your account", href: "/register" }}
             images={[
-              { src: work("finora", 3) }, { src: work("invitara") }, { src: work("house-of-karji", 2) }, { src: work("carter-studio") },
-              { src: work("nexora", 4) }, { src: work("mechaura", 3) }, { src: work("workflow-hub", 2) },
+              { src: art(0) }, { src: art(1) }, { src: art(2) }, { src: art(3) },
+              { src: art(4) }, { src: art(5) }, { src: art(0) },
             ]}
           />
         </main>

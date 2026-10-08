@@ -13,6 +13,12 @@ const prisma = new PrismaClient();
 
 const YEARS = "(©2021 — 2026)";
 
+/** Committed placeholder artwork (see src/lib/media.ts). */
+const ART = ["/images/art/dark-1.webp", "/images/art/dark-2.webp", "/images/art/dark-3.webp", "/images/art/light-1.webp", "/images/art/light-2.webp", "/images/art/light-3.webp"];
+const art = (n: number) => ART[n % ART.length];
+const PLACEHOLDER_OVERVIEW =
+  "A one-line summary of the project goes here.\nDescribe the challenge, who it was for and what needed to change. This placeholder is replaced with real project copy from the admin.\nExplain the approach, the tools and the outcome. Add screenshots from the admin media library.";
+
 async function main() {
   // ------------------------------------------------------------------ admin
   const email = (process.env.ADMIN_EMAIL ?? "admin@example.com").toLowerCase();
@@ -95,7 +101,7 @@ async function main() {
         title: "Branding",
         description:
           "We build identities that hold up everywhere they land — not just on the pitch deck. Positioning, naming, marks, type and the rules that keep it all coherent as the company grows.",
-        image: "/images/work/finora-mockup-2.webp",
+        image: art(0),
         capabilities: JSON.stringify([
           "Brand Strategy",
           "Naming",
@@ -111,7 +117,7 @@ async function main() {
         title: "Design",
         description:
           "Interfaces and products that are pleasant to use and cheap to maintain. We design in systems, so the tenth screen costs less than the first.",
-        image: "/images/work/house-of-karji-mockup-2.webp",
+        image: art(1),
         capabilities: JSON.stringify([
           "Product Design",
           "UI/UX",
@@ -127,7 +133,7 @@ async function main() {
         title: "Engineering",
         description:
           "We ship the thing. Fast, accessible front-ends, sensible back-ends, and a content model your team can actually operate without calling us.",
-        image: "/images/work/nexora-mockup-3.webp",
+        image: art(2),
         capabilities: JSON.stringify([
           "Front-End",
           "Back-End",
@@ -143,7 +149,7 @@ async function main() {
         title: "Art Direction",
         description:
           "The connective tissue: how a brand looks in a photograph, a film, a room. We set the visual argument and then make sure every asset makes it.",
-        image: "/images/work/invitara-mockup-2.webp",
+        image: art(3),
         capabilities: JSON.stringify([
           "Creative Concept",
           "Photography Direction",
@@ -163,59 +169,53 @@ async function main() {
 
   const projects = [
     {
-      slug: "finora",
-      title: "Finora",
-      client: "Accounting & business operations",
+      slug: "project-one",
+      title: "Project One",
+      client: "Client or industry",
       year: "2026",
       services: ["design", "engineering"],
-      overview:
-        "A UAE-focused accounting platform connecting sales, purchases, inventory, banking and ledger-based business reports.\nFinora is a business accounting application designed around the daily work of UAE trading and service companies. Sales, purchases, expenses and inventory connect to a double-entry ledger. Teams can review invoices, payments, bank transactions and reports within the same organisation workspace.\nThe implementation uses Next.js, TypeScript and Prisma, with money stored in integer minor units. The source includes balanced journal posting, reversing entries, document numbering, inventory movements, UAE VAT handling and role-based access.",
+      overview: PLACEHOLDER_OVERVIEW,
       featured: true,
     },
     {
-      slug: "house-of-karji",
-      title: "The House of Karji",
-      client: "Luxury fragrance commerce platform",
+      slug: "project-two",
+      title: "Project Two",
+      client: "Client or industry",
       year: "2026",
-      services: ["branding", "art-direction", "engineering"],
-      overview:
-        "A custom luxury fragrance storefront with editorial merchandising, a fragrance finder and a full commerce admin.\nThe House of Karji is a custom-built fragrance store designed as an alternative to a theme-based storefront. It presents collections through an editorial home page, rich product pages with fragrance pyramids and size options, a scent quiz, store locations and a streamlined cart and checkout.\nBuilt with Next.js, TypeScript, Prisma, Zustand and Framer Motion. Banners, promotions, BOGO offers, advertisements, CMS pages and store locations are managed from the admin. The mockups use demonstration fragrance houses and products from the local build.",
+      services: ["branding", "art-direction"],
+      overview: PLACEHOLDER_OVERVIEW,
     },
     {
-      slug: "nexora",
-      title: "Nexora",
-      client: "Help desk & work management",
+      slug: "project-three",
+      title: "Project Three",
+      client: "Client or industry",
       year: "2026",
       services: ["design", "engineering"],
-      overview:
-        "A shared workspace for support tickets, tasks, approvals and customer service, with organisation-scoped access and activity history.\nNexora is a help desk and work management application for teams handling service requests alongside everyday tasks. Staff can assign tickets, track status, add internal notes and coordinate project work. Customers have a separate portal, while organisation-level permissions keep each workspace focused on its own records.\nBuilt with Next.js, React, TypeScript, Prisma and PostgreSQL, the application connects ticket handling with assets, knowledge articles and approvals. Its source includes authentication, workspace membership, private attachments and scoped API access.",
+      overview: PLACEHOLDER_OVERVIEW,
     },
     {
-      slug: "invitara",
-      title: "Invitara",
-      client: "Interactive invitation platform",
+      slug: "project-four",
+      title: "Project Four",
+      client: "Client or industry",
       year: "2025",
-      services: ["branding", "design", "engineering"],
-      overview:
-        "Animated digital invitations with personalisation, guest replies, account-based publishing and event-date access rules.\nInvitara is an invitation platform for weddings, engagements, birthdays, baby showers and other celebrations. Customers choose a design, personalise content and share a published guest link. The product combines animated storytelling with an editor, RSVP collection and an account dashboard.\nThe application uses Node.js, Express, SQLite and locally bundled animation libraries (GSAP, Motion, Anime.js and Three.js). The current collection contains independently designed invitations across many occasions, each built on a shared editor and content contract. Couple names and event details in the mockups are template placeholders, not commissioned client events.",
+      services: ["branding", "design"],
+      overview: PLACEHOLDER_OVERVIEW,
     },
     {
-      slug: "mechaura",
-      title: "Mechaura International",
-      client: "Industrial supplier website",
+      slug: "project-five",
+      title: "Project Five",
+      client: "Client or industry",
       year: "2025",
       services: ["design", "engineering"],
-      overview:
-        "An industrial catalogue website connecting UAE buyers with product specifications, sector information and quotation enquiries.\nMechaura International is an industrial supplier website organised around products, sectors and quotation enquiries. Its catalogue covers abrasive brushes, bearings, hydraulic hoses and pumps, filtration, cutting tools and elevator accessories. Product imagery and motion content help buyers understand the range before contacting the supplier.\nThe project uses a Vite build with generated product, sector, location and article pages, a sitemap and llms.txt workflow and optimised image assets. A companion WordPress theme packages the same design for WordPress hosting.",
+      overview: PLACEHOLDER_OVERVIEW,
     },
     {
-      slug: "certguard",
-      title: "CertGuard",
-      client: "Domain & SSL management",
+      slug: "project-six",
+      title: "Project Six",
+      client: "Client or industry",
       year: "2025",
-      services: ["design", "engineering"],
-      overview:
-        "A domain and SSL control panel that verifies expiry dates against live sources, alerts before expiry and automates certificate renewal.\nCertGuard centralises domains, SSL/TLS certificates, servers and DNS providers for teams that manage many websites. Instead of trusting manually entered dates, it checks domain registration data and inspects the certificate served by each site, then flags mismatches, upcoming expiries and errors.\nThe application uses Next.js, TypeScript, Prisma and PostgreSQL. Domain expiry comes from RDAP, certificates are inspected over a live TLS connection, and issuance follows an ACME workflow with HTTP-01 or DNS-01 validation. The mockups use the built-in demonstration data (example.com-style domains).",
+      services: ["engineering"],
+      overview: PLACEHOLDER_OVERVIEW,
     },
   ];
 
@@ -227,8 +227,8 @@ async function main() {
         client: project.client,
         year: project.year,
         overview: project.overview,
-        coverImage: `/images/work/${project.slug}-mockup-1.webp`,
-        previewImage: `/images/work/${project.slug}-mockup-1.webp`,
+        coverImage: art(i),
+        previewImage: art(i),
         viewUrl: "",
         featured: project.featured ?? false,
         published: true,
@@ -236,7 +236,7 @@ async function main() {
         services: { connect: project.services.map((s) => ({ id: byslug[s] })) },
         images: {
           create: [2, 3, 4].map((n) => ({
-            url: `/images/work/${project.slug}-mockup-${n}.webp`,
+            url: art(i + n),
             alt: `${project.title} — screen ${n}`,
             order: n - 2,
           })),
@@ -335,7 +335,7 @@ async function main() {
         title: "Senior people only",
         description:
           "The people in the pitch are the people doing the work. No handover to a junior team after you sign.",
-        image: "/images/work/carter-studio-mockup-1.webp",
+        image: art(4),
         order: 0,
       },
       {
@@ -343,7 +343,7 @@ async function main() {
         title: "Built to hand over",
         description:
           "Every project ships with a content model your team can operate and documentation written for someone who wasn't in the room.",
-        image: "/images/work/workflow-hub-mockup-1.webp",
+        image: art(5),
         order: 1,
       },
       {
@@ -351,7 +351,7 @@ async function main() {
         title: "Dates we can keep",
         description:
           "We scope narrow and commit hard. If something is going to slip you'll hear it from us first, with the options attached.",
-        image: "/images/work/certguard-mockup-2.webp",
+        image: art(6),
         order: 2,
       },
     ],
@@ -396,8 +396,8 @@ async function main() {
 
   await prisma.playgroundImage.deleteMany();
   await prisma.playgroundImage.createMany({
-    data: ["finora-mockup-3", "invitara-mockup-1", "house-of-karji-mockup-3", "carter-studio-mockup-1", "nexora-mockup-1", "mechaura-mockup-2", "workflow-hub-mockup-2"].map((name, n) => ({
-      url: `/images/work/${name}.webp`,
+    data: Array.from({ length: 7 }, (_, n) => ({
+      url: art(n),
       alt: `Project study ${n + 1}`,
       order: n,
     })),
@@ -427,7 +427,7 @@ async function main() {
         label: "(About)",
         index: "/01",
         body: "We make brands and the\nproducts they live inside.\nStrategy, design and code\nunder one roof, so nothing\ngets lost in the handoff.",
-        image: "/images/work/mechaura-mockup-1.webp",
+        image: art(7),
         ctaLabel: "More about us",
         ctaUrl: "/about",
       },
@@ -496,7 +496,7 @@ async function main() {
         label: "(About)",
         index: "/01",
         body: "Eleven people who would\nrather do six projects well\nthan twenty adequately.",
-        image: "/images/work/carter-studio-mockup-2.webp",
+        image: art(8),
         ctaLabel: "View our services",
         ctaUrl: "/services",
       },

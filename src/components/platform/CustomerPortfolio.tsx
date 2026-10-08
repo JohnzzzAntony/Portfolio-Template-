@@ -2,6 +2,7 @@ import { Footer } from "@/components/editorial/Footer";
 import { Interactions } from "@/components/editorial/Interactions";
 import { Nav } from "@/components/editorial/Nav";
 import { AboutSection, CallToAction, Hero, PortfolioSection, ServicesCarousel, SplitMission } from "@/components/editorial/sections";
+import { media } from "@/lib/media";
 import type { PortfolioContent } from "@/lib/portfolio-content";
 
 const ART = {
@@ -14,15 +15,13 @@ const ART = {
 };
 
 const pad = (n: number, width: number) => `/${String(n).padStart(width, "0")}`;
-/** Older drafts point at generated /media placeholders that aren't deployed; treat them as unset. */
-const own = (src: string) => (/^\/media\/[\w-]+\.svg$/.test(src) ? "" : src);
 
 /**
  * The template a customer publishes: one long page in the studio's editorial
  * language, driven entirely by their saved content.
  */
 export function CustomerPortfolio({ content, preview = false, banner }: { content: PortfolioContent; preview?: boolean; banner?: React.ReactNode }) {
-  const c = { ...content, heroImage: own(content.heroImage), projects: content.projects.map((p) => ({ ...p, image: own(p.image) })) };
+  const c = { ...content, heroImage: media(content.heroImage), projects: content.projects.map((p) => ({ ...p, image: media(p.image) })) };
   const year = new Date().getUTCFullYear();
   const words = c.name.trim().split(/\s+/);
   const lineOne = words.length > 1 ? words.slice(0, Math.ceil(words.length / 2)).join(" ") : c.name;
