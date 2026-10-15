@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Johns Antony — portfolio
 
 My personal portfolio and the CMS behind it. One owner, no accounts, no
@@ -51,3 +52,6 @@ afterwards.
 See [DEPLOYMENT.md](./DEPLOYMENT.md) for hosting and [AUDIT.md](./AUDIT.md) for
 verification. The Overused Grotesk font (SIL OFL 1.1) license is in
 `src/app/fonts/OverusedGrotesk-OFL.txt`.
+=======
+
+>>>>>>> ae408f29d65028c8435d71553f202f53a53e03b9
