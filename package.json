@@ -1,5 +1,5 @@
 {
-  "name": "forma-portfolio",
+  "name": "johns-antony-portfolio",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -18,10 +18,11 @@
     "check": "npm run lint && npm run typecheck && npm run build",
     "db:deploy": "prisma migrate deploy",
     "prestart": "node scripts/check-env.mjs && prisma migrate deploy",
-    "test": "node --experimental-strip-types --test scripts/platform-policy.test.mjs",
-    "test:integration": "node --experimental-strip-types scripts/platform-smoke.mjs",
+    "test": "node --experimental-strip-types --test scripts/*.test.mjs",
+    "test:smoke": "node scripts/smoke.mjs",
     "admin:create": "node scripts/create-admin.mjs",
-    "art:generate": "node scripts/generate-art.mjs"
+    "art:generate": "node scripts/generate-art.mjs",
+    "snapshot": "node scripts/snapshot-content.mjs"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
@@ -38,7 +39,6 @@
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "server-only": "^0.0.1",
-    "stripe": "^23.0.0",
     "tailwind-merge": "^2.5.5",
     "zod": "^3.24.1"
   },

@@ -58,7 +58,7 @@ export async function login(
     role: user.role,
   });
 
-  redirect(user.role === "ADMIN" ? "/admin" : "/dashboard");
+  redirect("/admin");
 }
 
 export async function logout() {

@@ -1,0 +1,20 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev"
+      ],
+      "port": 3000
+    },
+    {
+      "name": "personal",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "../johns-antony-portfolio", "run", "dev", "--", "-p", "3001"],
+      "port": 3001
+    }
+  ]
+}

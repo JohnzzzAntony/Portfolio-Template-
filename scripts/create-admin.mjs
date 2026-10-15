@@ -18,7 +18,7 @@ const passwordHash = await bcrypt.hash(password, 12);
 await prisma.user.upsert({
   where: { email },
   update: { passwordHash, role: "ADMIN" },
-  create: { email, name: "Studio Admin", role: "ADMIN", passwordHash },
+  create: { email, name: "Johns Antony", role: "ADMIN", passwordHash },
 });
 await prisma.$disconnect();
 console.log(`Operator account ready: ${email}. Remove ADMIN_PASSWORD from the environment now.`);

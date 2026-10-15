@@ -17,7 +17,7 @@ export type NavItem = { label: string; href: string };
 export function Nav({ brand, location, items, overlay: overlayProp = false, icon, base = "" }: { brand: string; location?: string; items: NavItem[]; overlay?: boolean | string[]; icon?: { href: string; label: string }; base?: string }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const current = pathname.replace(/^\/demo(?=\/|$)/, "") || "/";
+  const current = pathname || "/";
   const overlay = Array.isArray(overlayProp) ? overlayProp.includes(current) : overlayProp;
 
   useEffect(() => {

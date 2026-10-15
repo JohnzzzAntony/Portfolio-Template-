@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @import "./editorial.css";
-@import "./account.css";
 
 /* Tailwind theme for the operator CMS; public pages use editorial.css. */
 @theme {

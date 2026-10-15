@@ -16,7 +16,7 @@ export async function pageMetadata(key: PageKey): Promise<Metadata> {
   return {
     title,
     description,
-    alternates: { canonical: key === "home" ? "/demo" : `/demo/${key}` },
+    alternates: { canonical: key === "home" ? "/" : `/${key}` },
     openGraph: {
       title,
       description,

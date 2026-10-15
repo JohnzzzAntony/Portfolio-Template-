@@ -24,8 +24,6 @@ model User {
   role         Role       @default(EDITOR)
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
-  portfolio    Portfolio?
-  purchases    Purchase[]
 }
 
 // ------------------------------------------------------------- settings
@@ -34,31 +32,31 @@ model User {
 model SiteSettings {
   id Int @id @default(1)
 
-  brandName   String @default("Forma")
-  brandSuffix String @default("Studio")
-  tagline     String @default("Full-service creative studio")
+  brandName   String @default("Johns")
+  brandSuffix String @default("Antony")
+  tagline     String @default("Digital & E-commerce Specialist")
   logoLight   String @default("/brand/logo-light.svg")
   logoDark    String @default("/brand/logo-dark.svg")
   favicon     String @default("/favicon.ico")
 
-  coordinates  String @default("50.4509° N, 30.5225° E")
-  email        String @default("welcome@example.com")
-  supportEmail String @default("support@example.com")
-  phone        String @default("+1 837 652 8800")
-  address      String @default("398 11th St, San Francisco, CA, USA")
-  addressUrl   String @default("https://www.google.com/maps")
+  coordinates  String @default("25.2048° N, 55.2708° E")
+  email        String @default("johnsantonyjo@gmail.com")
+  supportEmail String @default("johnsantonyjo@gmail.com")
+  phone        String @default("+971 58 810 2728")
+  address      String @default("Dubai, UAE")
+  addressUrl   String @default("https://www.google.com/maps/place/Dubai")
 
-  footerHeadline String @default("Have a project in mind?")
-  footerCtaLabel String @default("Let's Talk")
+  footerHeadline String @default("Let's build something useful.")
+  footerCtaLabel String @default("Get in touch")
   footerCtaUrl   String @default("/contact")
-  footerImage    String @default("/media/footer-bg.svg")
+  footerImage    String @default("/images/art/footer.webp")
   badgeText      String @default("LET'S TALK · SAY HELLO · ")
 
-  credits   String @default("Designed & built in-house.")
-  copyright String @default("©2021 — 2026")
+  credits   String @default("Designed & built by Johns Antony.")
+  copyright String @default("(©2021 — 2026)")
 
-  metaTitle       String @default("Forma Studio — Creative Studio")
-  metaDescription String @default("A full-service creative studio crafting beautiful digital experiences.")
+  metaTitle       String @default("Johns Antony | Digital & E-commerce Specialist")
+  metaDescription String @default("Johns Antony is a Digital & E-commerce Specialist and Systems & IT Administrator based in Dubai, specialising in Shopify development, web delivery, payments, analytics, automation, QA and IT systems.")
   ogImage         String @default("/media/og.svg")
 
   updatedAt DateTime @updatedAt
@@ -153,7 +151,19 @@ model Project {
   title    String
   client   String @default("")
   year     String @default("")
-  overview String @default("")
+  /// Short descriptor shown in the project meta list, e.g. "Accounting & business operations".
+  category String @default("")
+  /// Primary stack label shown in the meta list, e.g. "Next.js".
+  stack    String @default("")
+  overview String @default("") // paragraphs separated by blank lines
+
+  /// Case-study copy. `features` and `steps` hold one bullet per line.
+  features    String @default("")
+  journey     String @default("") // how the workflow works
+  engineering String @default("") // design and development focus
+  scope       String @default("") // implementation and scope
+  approach    String @default("") // planning a similar project
+  steps       String @default("") // bullet list of what such a project covers
 
   coverImage   String @default("")
   previewImage String @default("")
@@ -303,38 +313,4 @@ model Media {
   createdAt DateTime @default(now())
 
   @@index([createdAt])
-}
-
-// Customer content is isolated from the platform demo CMS.
-model Portfolio {
-  id               String   @id @default(cuid())
-  ownerId          String   @unique
-  owner            User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
-  slug             String   @unique
-  content          String
-  publishedContent String?
-  published        Boolean  @default(false)
-  revision         Int      @default(0)
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
-}
-
-model Purchase {
-  id              String   @id @default(cuid())
-  userId          String
-  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  checkoutId      String?  @unique
-  paymentIntentId String?  @unique
-  priceId         String
-  status          String   @default("PENDING")
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-
-  @@index([userId, status])
-}
-
-model PaymentEvent {
-  id          String   @id
-  type        String
-  processedAt DateTime @default(now())
 }

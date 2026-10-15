@@ -15,7 +15,7 @@ const grotesk = localFont({
 
 export const metadata: Metadata = {
   metadataBase: siteUrl(),
-  title: { default: "Forma Portfolio", template: "%s" },
+  title: { default: "Johns Antony", template: "%s" },
 };
 
 // Runs before first paint so scroll-revealed elements start hidden instead of

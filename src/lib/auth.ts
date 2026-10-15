@@ -7,9 +7,9 @@ import { cache } from "react";
 
 import { prisma } from "@/lib/prisma";
 
-export const SESSION_COOKIE = "forma_session";
+export const SESSION_COOKIE = "johns_antony_session";
 const MAX_AGE_SECONDS = 60 * 60 * 24 * 7; // 7 days
-const DUMMY_PASSWORD_HASH = bcrypt.hashSync("forma-nonexistent-account", 12);
+const DUMMY_PASSWORD_HASH = bcrypt.hashSync("johns-antony-nonexistent-account", 12);
 
 export type SessionPayload = {
   sub: string;
@@ -98,7 +98,7 @@ export async function authenticate(email: string, password: string) {
   return user;
 }
 
-/** Platform CMS is never accessible to customer accounts. */
+/** The CMS is owner-only, so nothing but an ADMIN session may write content. */
 export async function requireSession() {
   const session = await requireUser();
   if (session.role !== "ADMIN") throw new Error("FORBIDDEN");

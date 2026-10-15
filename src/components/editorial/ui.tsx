@@ -1,6 +1,5 @@
 import NextLink from "next/link";
 
-import SiteLink from "@/components/layout/SiteLink";
 import { cn } from "@/lib/utils";
 
 import { ArrowDownRight, ArrowUpRight, Spark } from "./icons";
@@ -8,14 +7,14 @@ import { ArrowDownRight, ArrowUpRight, Spark } from "./icons";
 const isInternal = (href: string) => href.startsWith("/") && !href.startsWith("//");
 
 /**
- * Internal routes go through the router (scoped under /demo when browsing the
- * demo; prefix with "~" to opt out); everything else is a plain anchor.
+ * Internal routes go through the router; everything else is a plain anchor.
+ * "~/path" is the CMS's way of writing a root-relative link.
  */
 export function A({ href, children, className, external, ...rest }: { href: string; children: React.ReactNode; className?: string; external?: boolean } & Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "href">) {
-  if (href.startsWith("~/")) return <NextLink href={href.slice(1)} className={className} {...rest}>{children}</NextLink>;
-  if (isInternal(href) && !external) return <SiteLink href={href} className={className} {...rest}>{children}</SiteLink>;
-  const newTab = external ?? /^https?:/.test(href);
-  return <a href={href} className={className} {...(newTab ? { target: "_blank", rel: "noopener noreferrer" } : {})} {...rest}>{children}</a>;
+  const target = href.startsWith("~/") ? href.slice(1) : href;
+  if (isInternal(target) && !external) return <NextLink href={target} className={className} {...rest}>{children}</NextLink>;
+  const newTab = external ?? /^https?:/.test(target);
+  return <a href={target} className={className} {...(newTab ? { target: "_blank", rel: "noopener noreferrer" } : {})} {...rest}>{children}</a>;
 }
 
 /** Two stacked copies of a label; hovering slides the first out and the second in. */

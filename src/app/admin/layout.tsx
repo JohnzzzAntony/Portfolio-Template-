@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { redirect } from "next/navigation";
 
 import { getSession } from "@/lib/auth";
 import { RESOURCES } from "@/lib/admin/resources";
@@ -25,7 +24,6 @@ export default async function AdminLayout({
 
   // The login page renders inside this layout too; it has no session yet.
   if (!session) return <>{children}</>;
-  if (session.role !== "ADMIN") redirect("/dashboard");
 
   const unread = await prisma.contactSubmission.count({ where: { read: false } });
 
@@ -34,7 +32,7 @@ export default async function AdminLayout({
       <aside className="flex flex-col gap-6 bg-ink p-6 text-paper">
         <div>
           <Link href="/admin" className="text-lg font-semibold tracking-tight">
-            Studio admin
+            Site admin
           </Link>
           <p className="mt-1 text-xs opacity-60">{session.email}</p>
         </div>

@@ -1,41 +1,53 @@
-# Forma Portfolio
+# Johns Antony — portfolio
 
-A reusable portfolio platform: register, purchase once through Stripe, edit a private draft, and publish your own portfolio.
+My personal portfolio and the CMS behind it. One owner, no accounts, no
+checkout: the public site reads from the database, and I edit it at `/admin`.
 
-## Included
+## What's in here
 
-- Forma landing page and preview of the actual customer template.
-- Email/password registration and sign-in with signed httpOnly sessions.
-- One-time hosted Stripe Checkout, signed webhooks, reconciliation and refund/dispute revocation.
-- Separate customer portfolios, draft previews and public addresses (`/p/your-name`).
-- Editor for branding, biography, projects, services, contacts, social links and images. Draft, publish and unpublish controls.
-- Raster image uploads and protected unpublished assets.
-- Responsive editorial design, local font, metadata, sitemap and health check.
-- Database migration, regression tests and deployment validation.
-
-Target: **one Node.js instance** (e.g. Railway) with **PostgreSQL** (Neon) and **S3-compatible storage** for uploads. Not configured for multiple replicas.
+- Editorial home page plus `/about`, `/services`, `/portfolio`, `/blog` and `/contact`.
+- Project and article detail pages generated from the CMS.
+- Owner-only CMS at `/admin`: site settings, page sections, projects, posts, services, lists, media uploads and contact submissions.
+- Contact form with validation, a honeypot and rate limiting.
+- Local Overused Grotesk font, metadata, canonical URLs, sitemap, robots and a health check.
+- One PostgreSQL database (Neon) and S3-compatible storage for uploads.
 
 ## Local setup
 
-Use Node.js 22.18+ or 24 LTS. Copy `.env.example` to `.env`, set the PostgreSQL URLs (Neon, or `npm run db:up` for a local Docker database), generate a strong `AUTH_SECRET`, and optionally the object-storage variables.
+Use Node.js 22.18+ or 24 LTS. Copy `.env.example` to `.env`, set the PostgreSQL
+URLs, generate a strong `AUTH_SECRET`, and optionally the object-storage
+variables.
 
 ```sh
 npm ci
-npm run setup
+npm run setup        # prisma generate + migrate deploy + seed
 npm run dev
 ```
 
-Setup is for a fresh database only: it applies migrations and seeds the demo content. Create the operator with `ADMIN_EMAIL=… ADMIN_PASSWORD=… npm run admin:create`. Never reseed a live deployment. Template artwork is committed in `public/images` (`npm run art:generate` rebuilds it). Stripe settings may remain blank for preview; purchases stay disabled until configured.
+`npm run db:seed` is a fresh-install step: it replaces every content collection,
+so it refuses to run when the database already has content. Set `SEED_FORCE=1`
+only if you mean to replace it. The content it writes lives in
+`prisma/seed-data.json`, and `npx tsx scripts/verify-seed.mts` checks that the
+snapshot still matches the database.
+
+The owner account is created separately, so a fresh install never depends on a
+secret being present:
+
+```sh
+ADMIN_EMAIL=you@example.com ADMIN_PASSWORD='…' npm run admin:create
+```
+
+Then sign in at `/admin/login`. Remove `ADMIN_PASSWORD` from the environment
+afterwards.
 
 | Route | Purpose |
 | --- | --- |
-| `/`, `/template` | Product and customer template preview |
-| `/register`, `/login` | Customer authentication |
-| `/dashboard` | Purchase status and workspace |
-| `/dashboard/editor`, `/dashboard/preview` | Paid editor and private preview |
-| `/p/[slug]` | Published customer portfolio |
-| `/api/stripe/webhook`, `/api/health` | Payment events and health check |
-| `/demo`, `/admin` | Retained multi-page demonstration and operator-only CMS |
+| `/`, `/about`, `/services`, `/portfolio`, `/blog`, `/contact` | Public site (CMS-driven) |
+| `/projects/[slug]`, `/blog/[slug]` | Project and article pages |
+| `/admin`, `/admin/login` | Owner-only CMS |
+| `/files/[filename]` | Uploaded images |
+| `/api/health` | Database health check |
 
-See [DEPLOYMENT.md](./DEPLOYMENT.md) for activation and hosting and [AUDIT.md](./AUDIT.md) for verification. The Overused Grotesk font (SIL OFL 1.1) license is in `src/app/fonts/OverusedGrotesk-OFL.txt`.
-"# Johns-Profile" 
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for hosting and [AUDIT.md](./AUDIT.md) for
+verification. The Overused Grotesk font (SIL OFL 1.1) license is in
+`src/app/fonts/OverusedGrotesk-OFL.txt`.

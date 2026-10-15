@@ -1,26 +1,35 @@
-# Forma delivery audit
+# Delivery audit — Johns Antony portfolio
 
-Public branding is now Forma Portfolio. Personal branding was removed from public CMS content. Existing operator credentials were preserved. Customer accounts are explicitly EDITOR and cannot access the operator CMS.
+This is a single-owner personal portfolio. There is no registration, no purchase, no checkout and no customer accounts: one ADMIN user owns the content and the public site is CMS-driven. The owner CMS lives at `/admin`.
 
-Customer flow: registration → one-time purchase → personal editor → private preview → publication at `/p/{slug}`. The advertised template and customer renderer share a component and starter content. Customers edit branding, biography, projects, services, contacts, social links and images. The legacy multi-page CMS is a separate operator demonstration at `/demo`.
+## What changed
 
-Design: monochrome editorial system modelled on the Rydge Webflow template — Overused Grotesk, viewport-scaled display type, 3D letter-flip hero, line reveals, momentum carousels, scroll-scrubbed mission scene, grid/list portfolio, sticky benefits and draggable playground (GSAP). Applied to the landing page, the customer template, the /demo studio and the account pages. Imagery is generated monochrome placeholder artwork only; no Rydge photography or copy is reused.
+- **Selling platform removed.** `/register`, `/login`, `/dashboard`, `/template`, `/p/[slug]` and `/uploads/[owner]/[filename]`, the Stripe webhook, `lib/payments.ts`, `lib/payment-policy.ts`, `lib/accounts.ts`, `lib/portfolio-content.ts`, the platform components and their tests are gone, along with the `stripe` dependency, the `STRIPE_*` environment variables and the account stylesheet.
+- **Personal site moved to the root.** The CMS site now serves `/`, `/about`, `/services`, `/portfolio`, `/blog`, `/contact` and the detail routes instead of `/demo/*`. Canonical URLs, the sitemap, robots directives, internal links and the navigation overlay list follow the move.
+- **Database.** `Portfolio`, `Purchase` and `PaymentEvent` were dropped by migration `20261015000000_remove_purchase_platform`. All three were verified empty (0 rows) beforehand, so nothing was lost. `Role` still contains `EDITOR` — removing an enum value changes the auth schema, so it was left deliberately; nothing can create a non-admin user.
+- **Seeding.** The Forma studio demo content was replaced by a snapshot of this site's own content (`prisma/seed-data.json`) applied by `prisma/seed.ts`. Seeding now refuses to run against a populated database.
+- **Cleanup.** The leftover one-shot content script (which held a plaintext password) and the orphaned `.platform-*`/`.auth-*`/`.editor-*` stylesheet were deleted.
 
 ## Security boundaries
 
-- Every customer read/write/upload derives ownership from the verified session.
-- Paid access is checked server-side for editing and public visibility.
-- Stripe payment mode/status, customer reference, price, quantity and refund/dispute state are verified.
-- Webhook events are recorded idempotently; checkout returns use the same fulfillment logic.
-- Draft and published snapshots are separate. Revision checks reject stale concurrent saves.
-- Raster upload signature checks, size limits and protected unpublished assets.
+- Every admin read and write derives identity from the verified session cookie. `requireSession()` requires the ADMIN role and throws `FORBIDDEN` otherwise.
+- Middleware gates `/admin/*` by verifying the JWT, but it is not the authorization boundary — each page and action re-checks server-side.
+- Sessions are httpOnly, `sameSite=lax`, `secure` in production, signed HS256 with `AUTH_SECRET`, and are invalidated when the account's password changes.
+- Sign-in rate limits by client, always runs a password compare against a dummy hash so timing does not reveal which emails exist, and returns a deliberately vague error.
+- Uploads are identified by magic bytes, not the submitted filename or MIME type; SVG, scripts and truncated files are rejected, sizes are capped at 8 MB, and public filenames must match a strict pattern before storage is touched.
+- The contact form validates with zod, silently discards honeypot submissions, rate limits by client, and stores nothing when validation or storage fails.
+- Security headers (nosniff, SAMEORIGIN, referrer policy, permissions policy, HSTS) are set in `next.config.ts`; `/media/*` responses add a sandbox CSP.
 
 ## Verification
 
-Production build passed after upgrading Next.js to 16.4.0. Production dependency audit reported zero vulnerabilities. Payment tests cover valid and mismatched purchases, unpaid sessions, refunds, disputes, revoked purchases, unsafe URLs and tampered/stale Stripe signatures.
-
-Local integration tests passed for routes/branding, unpaid blocking, paid owner access, customer isolation, operator isolation, private drafts, publication, revocation and forged webhooks. Tests use temporary synthetic entitlements and remove fixture accounts.
+- `npm test` — 6 passing tests: image magic-byte sniffing (including SVG and script rejection), media fallbacks, slug/counter formatting, site URL normalisation, and a policy test that fails if the selling platform returns as routes, Prisma models, the Stripe dependency or `STRIPE_*` references.
+- `npm run lint`, `npm run typecheck` and `npm run build` pass. The production build emits only the public routes, `/admin/*`, `/files/[filename]` and `/api/health`.
+- `npx tsx scripts/verify-seed.mts` — the snapshot matches the database across all 13 collections, and replaying the seed inside a transaction that is then rolled back leaves the database unchanged.
+- `npm run db:seed` on the populated database exits non-zero and changes nothing.
+- HTTP checks over a local production server and a browser pass over the public pages and the admin sign-in.
 
 ## Acceptance limits
 
-No live payment was made. Real checkout and webhook delivery need private Stripe keys and a one-time Price ID. Public deployment, domain setup and restore testing were not performed. Password recovery and email verification are not included. Hosting requires a single persistent Node.js instance; see DEPLOYMENT.md.
+- No public deployment, custom domain or database restore was performed.
+- Unused uploads are not cleaned up automatically; that is still manual through `/admin/media`.
+- Project and service imagery still uses the committed placeholder artwork where the CMS has no image.

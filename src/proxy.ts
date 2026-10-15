@@ -1,7 +1,7 @@
 import { jwtVerify } from "jose";
 import { NextResponse, type NextRequest } from "next/server";
 
-const SESSION_COOKIE = "forma_session";
+const SESSION_COOKIE = "johns_antony_session";
 
 /**
  * Gate for /admin. A fast cookie check at the edge — every admin action
@@ -18,7 +18,7 @@ export async function proxy(request: NextRequest) {
   if (token && secret && secret.length >= 32) {
     try {
       const { payload } = await jwtVerify(token, new TextEncoder().encode(secret), { algorithms: ["HS256"] });
-      if (payload.role !== "ADMIN") return NextResponse.redirect(new URL("/dashboard", request.url));
+      if (payload.role !== "ADMIN") return NextResponse.redirect(new URL("/admin/login", request.url));
       return NextResponse.next();
     } catch {
       // fall through to redirect

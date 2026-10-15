@@ -3,7 +3,7 @@
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 
-import { submitContact, type ContactState } from "@/app/demo/contact/actions";
+import { submitContact, type ContactState } from "@/app/(site)/contact/actions";
 import { ArrowUpRight } from "@/components/editorial/icons";
 
 const initial: ContactState = { status: "idle", message: "" };
