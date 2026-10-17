@@ -22,7 +22,7 @@
     "copyright": "(©2021 — 2026)",
     "metaTitle": "Johns Antony | Digital & E-commerce Specialist",
     "metaDescription": "Johns Antony is a Digital & E-commerce Specialist and Systems & IT Administrator based in Dubai, specialising in Shopify development, web delivery, payments, analytics, automation, QA and IT systems.",
-    "ogImage": "/files/cinematic-creative-workspace-portrait-7c5980fc.png",
+    "ogImage": "/images/art/hero.webp",
     "updatedAt": "2026-10-14T20:20:40.020Z"
   },
   "navItems": [
@@ -116,7 +116,7 @@
           "heading": "",
           "subheading": "",
           "body": "I work across Shopify storefronts, payments,\ntracking, automation and IT infrastructure —\nthe practical technology that keeps a digital\nbusiness running day to day.",
-          "image": "/images/art/dark-2.webp",
+          "image": "/images/projects/carter-studio/mockup-1.webp",
           "ctaLabel": "More about me",
           "ctaUrl": "/about",
           "order": 1,
@@ -236,7 +236,7 @@
       "title": "About\nJohns Antony",
       "metaLeft": "Based in Dubai, UAE",
       "metaRight": "(©2021 — 2026)",
-      "heroImage": "",
+      "heroImage": "/images/art/page.webp",
       "heroImageMobile": "",
       "seoTitle": "About",
       "seoDescription": "",
@@ -252,7 +252,7 @@
           "heading": "",
           "subheading": "",
           "body": "Five-plus years across Shopify e-commerce,\nweb delivery, system administration,\nnetwork infrastructure and software QA.",
-          "image": "/images/art/dark-3.webp",
+          "image": "/images/art/silk-portrait.webp",
           "ctaLabel": "View services",
           "ctaUrl": "/services",
           "order": 0,
@@ -403,7 +403,7 @@
       "title": "Selected Work",
       "metaLeft": "E-commerce, automation & web",
       "metaRight": "(©2021 — 2026)",
-      "heroImage": "",
+      "heroImage": "/images/projects/finora/mockup-1.webp",
       "heroImageMobile": "",
       "seoTitle": "Selected Work",
       "seoDescription": "",
@@ -542,7 +542,7 @@
       "index": "/001",
       "title": "E-commerce & Shopify",
       "description": "Shopify storefronts end to end: theme sections and Liquid, apps and integrations, product feeds, checkout, staff access, uptime and speed checks.",
-      "image": "/images/art/dark-1.webp",
+      "image": "/images/projects/house-of-karji/screens/admin-catalog-desktop.webp",
       "capabilities": "[\"Shopify themes & sections\",\"Liquid customisation\",\"Apps & integrations\",\"Product feeds\",\"Checkout & uptime checks\"]",
       "order": 0,
       "published": true
@@ -553,7 +553,7 @@
       "index": "/002",
       "title": "Payments & POS",
       "description": "The technical layer connecting online commerce with payment and retail operations — gateways, payment links, BNPL and in-store terminals.",
-      "image": "/images/art/dark-2.webp",
+      "image": "/images/projects/finora/screens/banking-desktop.webp",
       "capabilities": "[\"Payment gateways\",\"Payment links\",\"Tabby & Tamara\",\"Network payment terminals\",\"POS support\"]",
       "order": 1,
       "published": true
@@ -564,7 +564,7 @@
       "index": "/003",
       "title": "Web Delivery",
       "description": "Figma-to-Shopify builds and corporate websites outside Shopify, plus the domain, DNS and SSL management that keeps them online.",
-      "image": "/images/art/dark-3.webp",
+      "image": "/images/projects/nexora/screens/tasks-desktop.webp",
       "capabilities": "[\"Figma-to-Shopify\",\"Corporate websites\",\"Domain, DNS & SSL\",\"Deployment support\"]",
       "order": 2,
       "published": true
@@ -575,7 +575,7 @@
       "index": "/004",
       "title": "Marketing & Tracking",
       "description": "GA4/GTM dataLayer tracking, Google Merchant product feeds, ad account management and technical SEO support across storefronts.",
-      "image": "/images/art/light-1.webp",
+      "image": "/images/projects/nexora/screens/reports-desktop.webp",
       "capabilities": "[\"Google & TikTok Ads\",\"GA4 & GTM dataLayer\",\"Merchant Center feeds\",\"Google Business Profile\",\"SEO support\"]",
       "order": 3,
       "published": true
@@ -586,7 +586,7 @@
       "index": "/005",
       "title": "QA & Testing",
       "description": "A software QA background applied to every release: manual and automated testing, regression, UAT and structured defect tracking.",
-      "image": "/images/art/light-2.webp",
+      "image": "/images/projects/certguard/screens/logs-desktop.webp",
       "capabilities": "[\"Manual & automated testing\",\"Selenium & Appium\",\"Jira & Agile\",\"Regression & UAT\"]",
       "order": 4,
       "published": true
@@ -597,7 +597,7 @@
       "index": "/006",
       "title": "IT Systems & Infrastructure",
       "description": "Networks, endpoints and security devices behind business operations — Windows and Linux, firewalls, CCTV, biometrics and PABX.",
-      "image": "/images/art/light-3.webp",
+      "image": "/images/projects/certguard/screens/servers-desktop.webp",
       "capabilities": "[\"Networks & firewalls\",\"Windows & Linux\",\"CCTV & access control\",\"PABX & biometrics\",\"Endpoint security\"]",
       "order": 5,
       "published": true
@@ -608,7 +608,7 @@
       "index": "/007",
       "title": "Automation",
       "description": "Practical automation that removes repetitive work and connects business systems — lead generation, enrichment and CRM pipelines.",
-      "image": "/images/art/dark-1.webp",
+      "image": "/images/projects/workflow-hub/screens/notifications-desktop.webp",
       "capabilities": "[\"n8n workflows\",\"Lead generation & CRM\",\"Google Sheets & APIs\",\"AI-assisted qualification\"]",
       "order": 6,
       "published": true
@@ -1611,13 +1611,50 @@
       ]
     }
   ],
-  "posts": [],
+  "posts": [
+    {
+      "id": "post-1",
+      "slug": "shopify-plus-pos-dubai-omnichannel",
+      "title": "Architecting Unified Shopify Plus & Retail POS for UAE Luxury Brands",
+      "excerpt": "How custom API middleware eliminates inventory drift between physical storefronts in Dubai Mall and high-traffic Shopify Plus stores.",
+      "content": "Scaling omnichannel commerce in the GCC demands zero-latency inventory synchronisation and resilient POS fallbacks. In this technical deep-dive, we explore how distributed event webhooks and automated tax invoice generation ensure sub-second consistency across physical POS terminals and online checkouts.",
+      "coverImage": "/images/projects/house-of-karji/screens/admin-catalog-desktop.webp",
+      "published": true,
+      "publishedAt": "2026-03-15T09:00:00.000Z",
+      "authorName": "Johns Antony",
+      "readingTime": "5 min read"
+    },
+    {
+      "id": "post-2",
+      "slug": "automated-qa-testing-fintech-systems",
+      "title": "Building Resilient Automated Test Suites for Commercial Payments & Accounting",
+      "excerpt": "End-to-end regression pipelines, idempotent ledger transactions, and automated reconciliation tests for multi-currency portals.",
+      "content": "Financial systems fail silently when rounding errors, rate spikes, or asynchronous gateway webhooks occur. Learn the architecture of our Playwright & Node automated testing framework that guarantees transaction safety across UAE VAT reconciliation routines.",
+      "coverImage": "/images/projects/finora/screens/reconciliation-desktop.webp",
+      "published": true,
+      "publishedAt": "2026-02-28T10:30:00.000Z",
+      "authorName": "Johns Antony",
+      "readingTime": "7 min read"
+    },
+    {
+      "id": "post-3",
+      "slug": "cloud-infrastructure-sla-uptime-management",
+      "title": "High-Availability Infrastructure & Zero-Downtime Migration Playbook",
+      "excerpt": "From SSL lifecycle automation to automated failovers: maintaining 99.99% uptime for multi-tenant property management platforms.",
+      "content": "When managing enterprise property platforms handling thousands of tenant leases and real-time payment entries, unannounced downtime directly hits the bottom line. Here is the operational blueprint behind our DNS clustering, automated SSL renewal daemon, and Dockerized deploy workflows.",
+      "coverImage": "/images/projects/certguard/screens/servers-desktop.webp",
+      "published": true,
+      "publishedAt": "2026-01-20T14:15:00.000Z",
+      "authorName": "Johns Antony",
+      "readingTime": "6 min read"
+    }
+  ],
   "teamMembers": [
     {
       "id": "cmv8j7p0t000vp8d8houuohy4",
       "name": "Johns Antony",
       "role": "Digital & E-commerce Specialist",
-      "photo": "/files/cinematic-creative-workspace-portrait-7c5980fc.png",
+      "photo": "/images/art/silk-portrait.webp",
       "linkedinUrl": "https://www.linkedin.com/in/johns-antony",
       "instagramUrl": "",
       "order": 0
@@ -1647,7 +1684,7 @@
       "index": "/001",
       "title": "One point of contact",
       "description": "Storefronts, payments, tracking, domains and digital accounts handled together — with one person accountable after launch.",
-      "image": "/images/art/light-2.webp",
+      "image": "/images/projects/workflow-hub/mockup-2.webp",
       "order": 0
     },
     {
@@ -1655,7 +1692,7 @@
       "index": "/002",
       "title": "Built to hand over",
       "description": "Setups, access and documentation organised so your team can run day-to-day work without waiting on me.",
-      "image": "/images/art/light-3.webp",
+      "image": "/images/projects/drec-pms/screens/reports-desktop.webp",
       "order": 1
     },
     {
@@ -1663,7 +1700,7 @@
       "index": "/003",
       "title": "A QA mindset",
       "description": "A professional testing background: releases checked for functionality, tracking and edge cases before they go live.",
-      "image": "/images/art/dark-1.webp",
+      "image": "/images/projects/certguard/screens/reports-desktop.webp",
       "order": 2
     }
   ],
@@ -1672,35 +1709,35 @@
       "id": "cmv8j7qjg0011p8d8ir32v7jv",
       "value": "5+",
       "label": "Years of experience",
-      "image": "/images/art/dark-1.webp",
+      "image": "/images/projects/finora/screens/banking-desktop.webp",
       "order": 0
     },
     {
       "id": "cmv8j7qjg0012p8d8zdmom3pb",
       "value": "9+",
       "label": "Storefronts supported",
-      "image": "/images/art/dark-2.webp",
+      "image": "/images/projects/house-of-karji/screens/admin-catalog-desktop.webp",
       "order": 1
     },
     {
       "id": "cmv8j7qjg0013p8d89foxtrl5",
       "value": "30+",
       "label": "Domains & SSL managed",
-      "image": "/images/art/dark-3.webp",
+      "image": "/images/projects/certguard/screens/reports-desktop.webp",
       "order": 2
     },
     {
       "id": "cmv8j7qjg0014p8d8dkaesps5",
       "value": "99%+",
       "label": "Infrastructure uptime",
-      "image": "/images/art/light-1.webp",
+      "image": "/images/projects/certguard/screens/servers-desktop.webp",
       "order": 3
     },
     {
       "id": "cmv8j7qjg0015p8d8j3r3qiaq",
       "value": "40%",
       "label": "QA coverage improvement",
-      "image": "/images/art/light-2.webp",
+      "image": "/images/projects/certguard/screens/logs-desktop.webp",
       "order": 4
     }
   ],
@@ -1729,46 +1766,46 @@
   ],
   "playgroundImages": [
     {
-      "id": "cmuylvrta001rp82wz2uih71c",
-      "url": "/images/art/dark-1.webp",
-      "alt": "Project study 1",
-      "order": 0
-    },
-    {
-      "id": "cmuylvrta001sp82w6v9moto3",
-      "url": "/images/art/dark-2.webp",
-      "alt": "Project study 2",
+      "id": "playground-1",
+      "url": "/images/projects/finora/mockup-1.webp",
+      "alt": "Finora Multi-currency Accounting System",
       "order": 1
     },
     {
-      "id": "cmuylvrta001tp82wgwoqqd7v",
-      "url": "/images/art/dark-3.webp",
-      "alt": "Project study 3",
+      "id": "playground-2",
+      "url": "/images/projects/nexora/mockup-2.webp",
+      "alt": "Nexora Enterprise SaaS Dashboard",
       "order": 2
     },
     {
-      "id": "cmuylvrta001up82wjywqgk0q",
-      "url": "/images/art/light-1.webp",
-      "alt": "Project study 4",
+      "id": "playground-3",
+      "url": "/images/projects/house-of-karji/mockup-1.webp",
+      "alt": "House of Karji Luxury E-commerce Architecture",
       "order": 3
     },
     {
-      "id": "cmuylvrta001vp82wumeobd8e",
-      "url": "/images/art/light-2.webp",
-      "alt": "Project study 5",
+      "id": "playground-4",
+      "url": "/images/projects/workflow-hub/mockup-3.webp",
+      "alt": "WorkFlow Hub Custom Business Automation",
       "order": 4
     },
     {
-      "id": "cmuylvrta001wp82wwnhp4ua6",
-      "url": "/images/art/light-3.webp",
-      "alt": "Project study 6",
+      "id": "playground-5",
+      "url": "/images/projects/certguard/mockup-1.webp",
+      "alt": "CertGuard Security & SSL Monitor",
       "order": 5
     },
     {
-      "id": "cmuylvrta001xp82wcobutjys",
-      "url": "/images/art/dark-1.webp",
-      "alt": "Project study 7",
+      "id": "playground-6",
+      "url": "/images/projects/drec-pms/mockup-2.webp",
+      "alt": "DREC Commercial PMS Platform",
       "order": 6
+    },
+    {
+      "id": "playground-7",
+      "url": "/images/projects/mino-suppliers/mockup-1.webp",
+      "alt": "Mino B2B Supply Portal & Logistics",
+      "order": 7
     }
   ]
 }
