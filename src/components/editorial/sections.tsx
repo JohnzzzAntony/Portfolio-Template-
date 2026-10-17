@@ -20,7 +20,7 @@ function HeroLetters({ text }: { text: string }) {
       {lines.map((line, li) => {
         const words = line ? line.split(/\s+/) : [""];
         return (
-          <span key={li} className="hero-line">
+          <span key={li} className="hero-line" style={{ display: "block", textAlign: "left", fontSize: li === 0 ? undefined : "0.85em" }}>
             {words.map((word, w) => (
               <span key={w}>
                 <span className="hero-word">{Array.from(word).map((ch, i) => <span key={i} className="hero-char">{ch}</span>)}</span>
@@ -64,8 +64,11 @@ function heroSize(title: string) {
 }
 
 export function Hero({ title, services = [], text, cta, captionLeft, image, imageMobile, scrollLabel }: { title: string; services?: string[]; text?: string; cta?: Cta; captionLeft?: string; image?: string; imageMobile?: string; scrollLabel?: string }) {
-  const size = heroSize(title.replace(/\s+/g, " ").trim());
-  const scale = size < 15.09 ? { fontSize: `${size.toFixed(3)}vw` } : undefined;
+  const stacked = title.includes("\n");
+  let size = heroSize(title.replace(/\s+/g, " ").trim());
+  // Reduce overall size slightly when using a stacked title so it feels balanced.
+  if (stacked) size = Math.max(10, size * 0.88);
+  const scale: React.CSSProperties | undefined = size < 15.09 ? { fontSize: `${size.toFixed(3)}vw`, textAlign: stacked ? "left" : undefined } : undefined;
   return (
     <section className="hero" data-hero>
       <div data-hero-shift="5">
