@@ -27,7 +27,6 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
       <Interactions>
         <Nav
           brand={settings.brandName}
-          location={settings.coordinates}
           items={nav.map((item) => ({ label: item.label, href: item.href }))}
           overlay={["/", "/portfolio"]}
           icon={{ href: settings.footerCtaUrl || "/contact", label: settings.footerCtaLabel || "Let's talk" }}

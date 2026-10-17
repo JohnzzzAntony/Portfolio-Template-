@@ -60,7 +60,7 @@ function heroSize(title: string) {
     return Math.max(em, 0.1);
   });
   const em = Math.max(...lineEms, 0.1);
-  return Math.min(15.09, 97 / em);
+  return Math.min(9, 97 / em);
 }
 
 export function Hero({ title, services = [], text, cta, captionLeft, image, imageMobile, scrollLabel }: { title: string; services?: string[]; text?: string; cta?: Cta; captionLeft?: string; image?: string; imageMobile?: string; scrollLabel?: string }) {
@@ -84,19 +84,25 @@ export function Hero({ title, services = [], text, cta, captionLeft, image, imag
                 </div>
               </div>
             </div>
+
+            {/* Services listed line-by-line directly under title */}
+            {services.length > 0 && (
+              <div className="hero-services-inline" data-ix="fade-up" data-ix-delay="0.3">
+                {services.map((service) => (
+                  <div key={service} className="hero-service-item" data-ix="chars" data-ix-delay="0.5">{service}</div>
+                ))}
+              </div>
+            )}
+
+            {/* Quote/text block under title */}
+            {text && (
+              <div className="hero-intro-inline" data-ix="fade-up" data-ix-delay="0.6">
+                <p className="paragraph-small no-indent caps">{text}</p>
+              </div>
+            )}
           </div>
         </div>
       </div>
-
-      {services.length > 0 && (
-        <div className="hero-middle" data-hero-shift="5">
-          <div className="container-fluid opacity-80">
-            <div className="hero-services" data-ix="fade-up-long" data-ix-delay="0.3">
-              {services.map((service) => <div key={service} data-ix="chars" data-ix-delay="0.5">{service}</div>)}
-            </div>
-          </div>
-        </div>
-      )}
 
       <div className="hero-bottom">
         <div className="container-fluid opacity-80">
@@ -106,7 +112,6 @@ export function Hero({ title, services = [], text, cta, captionLeft, image, imag
             </div>
             <div className="hero-text" data-hero-shift="5">
               <div data-ix="fade-up" data-ix-delay="1.45">
-                {text && <p className="paragraph-small no-indent caps mb-small">{text}</p>}
                 {cta && <Button href={cta.href} variant="white">{cta.label}</Button>}
               </div>
             </div>
