@@ -12,15 +12,25 @@ type Cta = { label: string; href: string };
 /* ------------------------------------------------------------------ hero */
 
 function HeroLetters({ text }: { text: string }) {
-  const words = text.trim().split(/\s+/);
+  // Support explicit line breaks in the title: split on "\n" and render each
+  // line separately so the surname can be placed under the given name.
+  const lines = text.split("\n").map((l) => l.trim());
   return (
     <>
-      {words.map((word, w) => (
-        <span key={w}>
-          <span className="hero-word">{Array.from(word).map((ch, i) => <span key={i} className="hero-char">{ch}</span>)}</span>
-          {w < words.length - 1 && " "}
-        </span>
-      ))}
+      {lines.map((line, li) => {
+        const words = line ? line.split(/\s+/) : [""];
+        return (
+          <span key={li} className="hero-line">
+            {words.map((word, w) => (
+              <span key={w}>
+                <span className="hero-word">{Array.from(word).map((ch, i) => <span key={i} className="hero-char">{ch}</span>)}</span>
+                {w < words.length - 1 && " "}
+              </span>
+            ))}
+            {li < lines.length - 1 && <br />}
+          </span>
+        );
+      })}
     </>
   );
 }
@@ -40,12 +50,20 @@ const GLYPH: Record<string, number> = {
 
 /** Hero size in vw: the source's 15.09vw, reduced only when the title would not fit on one line. */
 function heroSize(title: string) {
-  const chars = Array.from(title.toUpperCase());
-  const em = chars.reduce((sum, ch) => sum + (GLYPH[ch] ?? 0.62) - 0.03025, 0);
-  return Math.min(15.09, 97 / Math.max(em, 0.1));
+  // If the title contains explicit line breaks we should size against the
+  // longest line rather than the entire string; split on "\n" and compute
+  // em widths per line, then use the maximum.
+  const lines = title.toUpperCase().split("\n").map((l) => l.trim());
+  const lineEms = lines.map((line) => {
+    const chars = Array.from(line);
+    const em = chars.reduce((sum, ch) => sum + (GLYPH[ch] ?? 0.62) - 0.03025, 0);
+    return Math.max(em, 0.1);
+  });
+  const em = Math.max(...lineEms, 0.1);
+  return Math.min(15.09, 97 / em);
 }
 
-export function Hero({ title, services = [], text, cta, captionLeft, image, imageMobile, scrollLabel }: { title: string; services?: string[]; text?: string; cta?: Cta; captionLeft?: string; image: string; imageMobile?: string; scrollLabel?: string }) {
+export function Hero({ title, services = [], text, cta, captionLeft, image, imageMobile, scrollLabel }: { title: string; services?: string[]; text?: string; cta?: Cta; captionLeft?: string; image?: string; imageMobile?: string; scrollLabel?: string }) {
   const size = heroSize(title.replace(/\s+/g, " ").trim());
   const scale = size < 15.09 ? { fontSize: `${size.toFixed(3)}vw` } : undefined;
   return (
@@ -188,7 +206,7 @@ export function ServicesCarousel({ label = "(Services)", index, body, items, id 
 
 /* --------------------------------------------------- mission split scene */
 
-export function SplitMission({ label = "(Our Mission)", eyebrow, words, sup, text, index, image, circle }: { label?: string; eyebrow?: string; words: [string, string, string]; sup?: string; text: string; index?: string; image: string; circle?: { href: string; text: string; label: string } }) {
+export function SplitMission({ label = "(Our Mission)", eyebrow, words, sup, text, index, image, circle }: { label?: string; eyebrow?: string; words: [string, string, string]; sup?: string; text: string; index?: string; image?: string; circle?: { href: string; text: string; label: string } | null }) {
   return (
     <section className="split shadow" data-split>
       <div className="split-sticky">
@@ -287,14 +305,14 @@ export function BenefitsSection({ label = "(Benefits)", index, headingOne, headi
               </div>
             </div>
           </div>
-        </div>
-        <div className="benefits">
-          <div className="container-fluid">
-            {grid ? (
-              <div className="grid-12"><div className="benefits-grid" data-scrub="benefits">{items.map((item, i) => <BenefitCard key={item.index + item.title} item={item} className={i % 2 ? "two" : undefined} />)}</div></div>
-            ) : (
-              <div className="benefits-list" data-scrub="benefits">{items.map((item, i) => <BenefitCard key={item.index + item.title} item={item} className={i === 1 ? "two" : undefined} />)}</div>
-            )}
+          <div className="benefits">
+            <div className="container-fluid">
+              {grid ? (
+                <div className="grid-12"><div className="benefits-grid" data-scrub="benefits">{items.map((item, i) => <BenefitCard key={item.index + item.title} item={item} className={i % 2 ? "two" : undefined} />)}</div></div>
+              ) : (
+                <div className="benefits-list" data-scrub="benefits">{items.map((item, i) => <BenefitCard key={item.index + item.title} item={item} className={i === 1 ? "two" : undefined} />)}</div>
+              )}
+            </div>
           </div>
         </div>
       </div>
