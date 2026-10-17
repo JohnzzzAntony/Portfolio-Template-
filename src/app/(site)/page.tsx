@@ -40,7 +40,7 @@ export default async function HomePage() {
   return (
     <>
       <Hero
-        title={page.title.replace(/\s+/g, " ")}
+        title={page.title}
         services={services.map((service) => service.title)}
         text={s.intro?.body.replace(/\n/g, " ")}
         cta={{ label: s.intro?.ctaLabel || "View Our Works", href: s.intro?.ctaUrl || "/portfolio" }}

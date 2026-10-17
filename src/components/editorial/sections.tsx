@@ -53,7 +53,7 @@ function heroSize(title: string) {
   // If the title contains explicit line breaks we should size against the
   // longest line rather than the entire string; split on "\n" and compute
   // em widths per line, then use the maximum.
-  const lines = title.toUpperCase().split("\n").map((l) => l.trim());
+  const lines = title.toUpperCase().split("\n").map((l) => l.trim().replace(/\s+/g, " "));
   const lineEms = lines.map((line) => {
     const chars = Array.from(line);
     const em = chars.reduce((sum, ch) => sum + (GLYPH[ch] ?? 0.62) - 0.03025, 0);
@@ -65,7 +65,7 @@ function heroSize(title: string) {
 
 export function Hero({ title, services = [], text, cta, captionLeft, image, imageMobile, scrollLabel }: { title: string; services?: string[]; text?: string; cta?: Cta; captionLeft?: string; image?: string; imageMobile?: string; scrollLabel?: string }) {
   const stacked = title.includes("\n");
-  let size = heroSize(title.replace(/\s+/g, " ").trim());
+  let size = heroSize(title);
   // Reduce overall size slightly when using a stacked title so it feels balanced.
   if (stacked) size = Math.max(10, size * 0.88);
   const scale: React.CSSProperties | undefined = size < 15.09 ? { fontSize: `${size.toFixed(3)}vw`, textAlign: stacked ? "left" : undefined } : undefined;
