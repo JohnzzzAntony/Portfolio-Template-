@@ -44,11 +44,17 @@ export const PLAYGROUND_ART = [
 ];
 
 /**
- * Older content points at generated /media/*.svg placeholders or the retired
- * /images/work screenshots, neither of which is deployed. Treat them as unset.
+ * Resolves an image URL:
+ * - Empty, null, undefined, or old SVG placeholders (/media/*.svg) fall back.
+ * - Retired /images/work/* paths fall back.
+ * - Valid uploads from CMS (/files/*), external URLs, or local public paths (/images/*) are returned.
  */
 export function media(src: string | null | undefined, fallback = ""): string {
-  if (!src || /^\/media\/[\w-]+\.svg$/.test(src) || src.startsWith("/images/work/") || src.startsWith("/files/")) return fallback;
-  return src;
+  if (!src) return fallback;
+  const trimmed = src.trim();
+  if (!trimmed || /^\/media\/[\w-]+\.svg$/.test(trimmed) || trimmed.startsWith("/images/work/")) {
+    return fallback;
+  }
+  return trimmed;
 }
 
