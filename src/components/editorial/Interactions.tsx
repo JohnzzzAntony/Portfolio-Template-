@@ -246,7 +246,7 @@ function hero(root: HTMLElement, cleanups: Array<() => void>) {
 
   const image = section.querySelector<HTMLElement>("[data-hero-image]");
   if (image) {
-    gsap.fromTo(image.querySelectorAll("img"), { scale: 1.2085 }, { scale: 1, duration: 1.5, delay: 0.7, ease: EASE });
+    gsap.fromTo(image.querySelectorAll("img, video"), { scale: 1.2085 }, { scale: 1, duration: 1.5, delay: 0.7, ease: EASE });
     const tl = gsap.timeline({ scrollTrigger: { trigger: section, start: "top top", end: "bottom top", scrub: true } });
     tl.fromTo(image, { scale: 1 }, { scale: 1.125, ease: "none" }, 0);
     for (const el of all(section, "[data-hero-shift]")) {

@@ -37,6 +37,14 @@ export default async function HomePage() {
   const year = new Date().getUTCFullYear();
   const [l1, l2, l3, sup] = missionWords(s.mission?.heading);
 
+  const isHeroVideo = Boolean(page.heroImage && /\.(mp4|webm|mov|m4v)(\?.*)?$/i.test(page.heroImage));
+  const heroImage = media(page.heroImage, ART.hero);
+  const heroImageMobile = page.heroImageMobile
+    ? media(page.heroImageMobile, ART.heroMobile)
+    : isHeroVideo
+    ? heroImage
+    : media(page.heroImage, ART.heroMobile);
+
   return (
     <>
       <Hero
@@ -45,8 +53,8 @@ export default async function HomePage() {
         text={s.intro?.body.replace(/\n/g, " ")}
         cta={{ label: s.intro?.ctaLabel || "View Our Works", href: s.intro?.ctaUrl || "/portfolio" }}
         captionLeft={`Portfolio / ©${year}`}
-        image={media(page.heroImage, ART.hero)}
-        imageMobile={media(page.heroImageMobile, ART.heroMobile)}
+        image={heroImage}
+        imageMobile={heroImageMobile}
       />
 
       {s.about && (

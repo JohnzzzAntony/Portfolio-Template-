@@ -70,9 +70,11 @@ export function Hero({ title, services = [], text, cta, captionLeft, image, imag
   if (stacked) size = Math.max(10, size * 0.88);
   const scale: React.CSSProperties | undefined = size < 15.09 ? { fontSize: `${size.toFixed(3)}vw`, textAlign: stacked ? "left" : undefined } : undefined;
 
-  const isDesktopVideo = Boolean(image && /\.(mp4|webm|mov|m4v)(\?.*)?$/i.test(image));
-  const mobileSrc = imageMobile || image;
-  const isMobileVideo = Boolean(mobileSrc && /\.(mp4|webm|mov|m4v)(\?.*)?$/i.test(mobileSrc));
+  const isVideoUrl = (url?: string) => Boolean(url && /\.(mp4|webm|mov|m4v)(\?.*)?$/i.test(url));
+  const isDesktopVideo = isVideoUrl(image);
+  const mobileExplicit = Boolean(imageMobile && imageMobile !== image && imageMobile !== "/images/art/hero-mobile.webp");
+  const effectiveMobileSrc = mobileExplicit ? imageMobile : isDesktopVideo ? image : (imageMobile || image);
+  const isMobileVideo = isVideoUrl(effectiveMobileSrc);
 
   return (
     <section className="hero" data-hero>
@@ -122,6 +124,7 @@ export function Hero({ title, services = [], text, cta, captionLeft, image, imag
               loop
               muted
               playsInline
+              preload="auto"
               className="desktop object-cover"
             />
           ) : (
@@ -131,16 +134,17 @@ export function Hero({ title, services = [], text, cta, captionLeft, image, imag
 
           {isMobileVideo ? (
             <video
-              src={mobileSrc}
+              src={effectiveMobileSrc}
               autoPlay
               loop
               muted
               playsInline
+              preload="auto"
               className="mobile object-cover"
             />
           ) : (
             /* eslint-disable-next-line @next/next/no-img-element -- owner/CMS supplied */
-            <img src={mobileSrc} alt="" className="mobile" />
+            <img src={effectiveMobileSrc} alt="" className="mobile" />
           )}
         </div>
       </div>
