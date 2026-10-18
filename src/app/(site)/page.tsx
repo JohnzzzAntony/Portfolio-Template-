@@ -12,7 +12,7 @@ import {
 } from "@/components/editorial/sections";
 import { getBenefits, getPage, getPlayground, getPosts, getProjects, getServices, getSettings, sectionMap } from "@/lib/cms";
 import { missionWords, postItem, projectItem } from "@/lib/presenters";
-import { ART, media } from "@/lib/media";
+import { ART, BENEFIT_ART, PLAYGROUND_ART, SERVICE_ART, media } from "@/lib/media";
 
 export async function generateMetadata() {
   const { pageMetadata } = await import("@/lib/seo");
@@ -54,7 +54,7 @@ export default async function HomePage() {
           label={s.about.label}
           body={s.about.body.replace(/\n/g, " ")}
           cta={{ label: s.about.ctaLabel || "More about us", href: s.about.ctaUrl || "/about" }}
-          images={[media(s.about.image, ART.portrait), ART.pill]}
+          images={[media(s.about.image, "/images/projects/carter-studio/mockup-1.webp"), ART.pill]}
           marquee={s["story-marquee"]?.heading ? { heading: s["story-marquee"].heading, index: s["story-marquee"].index } : undefined}
         />
       )}
@@ -68,7 +68,7 @@ export default async function HomePage() {
             index: service.index || `/${String(i + 1).padStart(3, "0")}`,
             title: service.title,
             text: service.description,
-            image: media(service.image, ART.dark[i % 3]),
+            image: media(service.image, SERVICE_ART[service.title] || ART.dark[i % 3]),
             tags: service.capabilities.slice(0, 4),
           }))}
         />
@@ -103,7 +103,12 @@ export default async function HomePage() {
           index={s.benefits?.index}
           headingOne={s.benefits?.heading}
           headingTwo={s.benefits?.subheading}
-          items={benefits.map((b) => ({ index: b.index, title: b.title, text: b.description, image: media(b.image, ART.dark[0]) }))}
+          items={benefits.map((b, i) => ({
+            index: b.index,
+            title: b.title,
+            text: b.description,
+            image: media(b.image, BENEFIT_ART[b.title] || ART.dark[i % 3]),
+          }))}
         />
       )}
 
@@ -117,15 +122,17 @@ export default async function HomePage() {
         />
       )}
 
-      {playground.length > 0 && (
-        <PlaygroundSection
-          label={s.playground?.label}
-          index={s.playground?.index}
-          heading={s.playground?.heading || "Creative Lab"}
-          cta={s.playground?.ctaUrl ? { label: s.playground.ctaLabel || "View archive", href: s.playground.ctaUrl } : undefined}
-          images={playground.map((p, i) => ({ src: media(p.url, ART.dark[i % 3]), alt: p.alt }))}
-        />
-      )}
+      <PlaygroundSection
+        label={s.playground?.label || "(Lab)"}
+        index={s.playground?.index || "/06"}
+        heading={s.playground?.heading || "Creative Lab"}
+        cta={s.playground?.ctaUrl ? { label: s.playground.ctaLabel || "View archive", href: s.playground.ctaUrl } : undefined}
+        images={(playground.length > 0 ? playground : PLAYGROUND_ART).map((p, i) => ({
+          src: media(p.url, PLAYGROUND_ART[i % PLAYGROUND_ART.length]?.url || ART.dark[i % 3]),
+          alt: p.alt,
+        }))}
+      />
     </>
   );
 }
+

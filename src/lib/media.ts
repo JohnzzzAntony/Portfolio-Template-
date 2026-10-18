@@ -12,11 +12,43 @@ export const ART = {
   light: ["/images/art/light-1.webp", "/images/art/light-2.webp", "/images/art/light-3.webp"],
 };
 
+/** High-fidelity, section-matched screenshots for services across all pages */
+export const SERVICE_ART: Record<string, string> = {
+  "E-commerce & Shopify": "/images/projects/house-of-karji/screens/admin-catalog-desktop.webp",
+  "Payments & POS": "/images/projects/finora/screens/banking-desktop.webp",
+  "Web Delivery": "/images/projects/nexora/screens/tasks-desktop.webp",
+  "Marketing & Tracking": "/images/projects/nexora/screens/reports-desktop.webp",
+  "QA & Testing": "/images/projects/certguard/screens/logs-desktop.webp",
+  "IT Systems & Infrastructure": "/images/projects/certguard/screens/servers-desktop.webp",
+  "Automation": "/images/projects/workflow-hub/screens/notifications-desktop.webp",
+};
+
+/** Content-matched project showcase images for benefits */
+export const BENEFIT_ART: Record<string, string> = {
+  "One point of contact": "/images/projects/workflow-hub/mockup-2.webp",
+  "Built to hand over": "/images/projects/drec-pms/screens/reports-desktop.webp",
+  "A QA mindset": "/images/projects/certguard/screens/reports-desktop.webp",
+  "Client\nSupport": "/images/projects/certguard/screens/servers-desktop.webp",
+  "Office\nLocation": "/images/projects/carter-studio/mockup-1.webp",
+};
+
+/** Playground showcase images */
+export const PLAYGROUND_ART = [
+  { alt: "Finora Multi-currency Accounting System", url: "/images/projects/finora/mockup-1.webp" },
+  { alt: "Nexora Enterprise SaaS Dashboard", url: "/images/projects/nexora/mockup-2.webp" },
+  { alt: "House of Karji Luxury E-commerce Architecture", url: "/images/projects/house-of-karji/mockup-1.webp" },
+  { alt: "WorkFlow Hub Custom Business Automation", url: "/images/projects/workflow-hub/mockup-3.webp" },
+  { alt: "CertGuard Security & SSL Monitor", url: "/images/projects/certguard/mockup-1.webp" },
+  { alt: "DREC Commercial PMS Platform", url: "/images/projects/drec-pms/mockup-2.webp" },
+  { alt: "Mino B2B Supply Portal & Logistics", url: "/images/projects/mino-suppliers/mockup-1.webp" },
+];
+
 /**
  * Older content points at generated /media/*.svg placeholders or the retired
  * /images/work screenshots, neither of which is deployed. Treat them as unset.
  */
 export function media(src: string | null | undefined, fallback = ""): string {
-  if (!src || /^\/media\/[\w-]+\.svg$/.test(src) || src.startsWith("/images/work/")) return fallback;
+  if (!src || /^\/media\/[\w-]+\.svg$/.test(src) || src.startsWith("/images/work/") || src.startsWith("/files/")) return fallback;
   return src;
 }
+
