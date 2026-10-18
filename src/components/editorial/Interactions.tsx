@@ -43,6 +43,36 @@ export function Interactions({ children }: { children: React.ReactNode }) {
     }
   }, [pathname]);
 
+  // Intercept link clicks client-side to ensure every navigation displays the header section
+  useEffect(() => {
+    const handleDocumentClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (!target) return;
+
+      const backTop = target.closest<HTMLAnchorElement>('a[href="#top"], .back-top');
+      if (backTop) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+        return;
+      }
+
+      const anchor = target.closest<HTMLAnchorElement>("a");
+      if (anchor) {
+        const href = anchor.getAttribute("href");
+        if (href && href.startsWith("/") && !href.startsWith("//")) {
+          if (!e.defaultPrevented && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+            window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
+          }
+        }
+      }
+    };
+
+    document.addEventListener("click", handleDocumentClick, { capture: true });
+    return () => document.removeEventListener("click", handleDocumentClick, { capture: true });
+  }, []);
+
   useEffect(() => {
     const root = rootRef.current;
     const html = document.documentElement;

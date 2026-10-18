@@ -9,31 +9,12 @@ const isInternal = (href: string) => href.startsWith("/") && !href.startsWith("/
 /**
  * Internal routes go through the router; everything else is a plain anchor.
  * "~/path" is the CMS's way of writing a root-relative link.
- * Every internal click scrolls immediately to top to reveal the header section.
  */
-export function A({ href, children, className, external, onClick, ...rest }: { href: string; children: React.ReactNode; className?: string; external?: boolean } & Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "href">) {
+export function A({ href, children, className, external, ...rest }: { href: string; children: React.ReactNode; className?: string; external?: boolean } & Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "href">) {
   const target = href.startsWith("~/") ? href.slice(1) : href;
-
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (!e.defaultPrevented && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
-      if (typeof window !== "undefined") {
-        window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-        document.documentElement.scrollTop = 0;
-        document.body.scrollTop = 0;
-      }
-    }
-    onClick?.(e);
-  };
-
-  if (isInternal(target) && !external) {
-    return (
-      <NextLink href={target} scroll={true} className={className} onClick={handleClick} {...rest}>
-        {children}
-      </NextLink>
-    );
-  }
+  if (isInternal(target) && !external) return <NextLink href={target} scroll={true} className={className} {...rest}>{children}</NextLink>;
   const newTab = external ?? /^https?:/.test(target);
-  return <a href={target} className={className} onClick={handleClick} {...(newTab ? { target: "_blank", rel: "noopener noreferrer" } : {})} {...rest}>{children}</a>;
+  return <a href={target} className={className} {...(newTab ? { target: "_blank", rel: "noopener noreferrer" } : {})} {...rest}>{children}</a>;
 }
 
 /** Two stacked copies of a label; hovering slides the first out and the second in. */
