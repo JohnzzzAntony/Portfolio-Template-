@@ -201,7 +201,7 @@ function Control({
   }
 }
 
-/** URL input with a live preview, so editors can confirm the path resolves. */
+/** URL input with direct file upload and live image/video preview. */
 function ImageField({
   id,
   name,
@@ -216,27 +216,100 @@ function ImageField({
   invalid: boolean;
 }) {
   const [url, setUrl] = useState(value);
+  const [uploading, setUploading] = useState(false);
+  const [uploadError, setUploadError] = useState("");
+
+  const isVideo = /\.(mp4|webm|mov|m4v)(\?.*)?$/i.test(url);
+
+  async function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploading(true);
+    setUploadError("");
+
+    try {
+      const fd = new FormData();
+      fd.append("file", file);
+
+      const res = await fetch("/api/upload", {
+        method: "POST",
+        body: fd,
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || "Upload failed");
+      }
+
+      setUrl(data.url);
+    } catch (err) {
+      setUploadError(err instanceof Error ? err.message : "Upload failed");
+    } finally {
+      setUploading(false);
+      e.target.value = "";
+    }
+  }
 
   return (
-    <div className="flex items-start gap-3">
-      <input
-        id={id}
-        name={name}
-        type="text"
-        value={url}
-        onChange={(e) => setUrl(e.target.value)}
-        placeholder="/files/example.jpg or https://…"
-        aria-describedby={describedBy}
-        className={cn(inputBase, invalid && "border-red-500")}
-      />
-      <span className="grid size-16 shrink-0 place-items-center overflow-hidden rounded border border-neutral-200 bg-neutral-50">
-        {url ? (
-          // eslint-disable-next-line @next/next/no-img-element -- arbitrary preview URL
-          <img src={url} alt="" className="size-full object-cover" />
-        ) : (
-          <span className="text-[10px] text-neutral-400">none</span>
-        )}
-      </span>
+    <div className="flex flex-col gap-2">
+      <div className="flex items-start gap-3">
+        <div className="flex flex-1 flex-col gap-1.5">
+          <input
+            id={id}
+            name={name}
+            type="text"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            placeholder="/files/example.webp, .mp4 or https://…"
+            aria-describedby={describedBy}
+            className={cn(inputBase, invalid && "border-red-500")}
+          />
+          <div className="flex items-center gap-2">
+            <label className="inline-flex cursor-pointer items-center gap-1.5 rounded border border-neutral-300 bg-neutral-100 px-2.5 py-1 text-xs font-medium text-neutral-800 hover:bg-neutral-200">
+              <span>{uploading ? "Uploading…" : "📁 Upload Image / Video"}</span>
+              <input
+                type="file"
+                accept="image/*,video/mp4,video/webm"
+                onChange={handleFileChange}
+                disabled={uploading}
+                className="sr-only"
+              />
+            </label>
+            {url && (
+              <button
+                type="button"
+                onClick={() => setUrl("")}
+                className="text-xs text-neutral-500 hover:text-red-600"
+              >
+                Clear
+              </button>
+            )}
+          </div>
+        </div>
+
+        <span className="grid size-16 shrink-0 place-items-center overflow-hidden rounded border border-neutral-200 bg-neutral-900">
+          {url ? (
+            isVideo ? (
+              <video
+                src={url}
+                className="size-full object-cover"
+                autoPlay
+                loop
+                muted
+                playsInline
+              />
+            ) : (
+              // eslint-disable-next-line @next/next/no-img-element -- arbitrary preview URL
+              <img src={url} alt="" className="size-full object-cover" />
+            )
+          ) : (
+            <span className="text-[10px] text-neutral-400">none</span>
+          )}
+        </span>
+      </div>
+
+      {uploadError && <p className="text-xs text-red-600">{uploadError}</p>}
     </div>
   );
 }

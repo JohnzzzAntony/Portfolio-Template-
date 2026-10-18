@@ -1,4 +1,4 @@
-/** Identify supported raster formats from bytes, never the submitted MIME type. */
+/** Identify supported raster formats or videos from bytes, never the submitted MIME type. */
 export function imageType(bytes: Uint8Array): { mime: string; extension: string } | null {
   const hex = (count: number) => Buffer.from(bytes.subarray(0, count)).toString("hex");
   const text = (start: number, end: number) => Buffer.from(bytes.subarray(start, end)).toString("ascii");
@@ -8,5 +8,7 @@ export function imageType(bytes: Uint8Array): { mime: string; extension: string 
   if (["GIF87a", "GIF89a"].includes(text(0, 6))) return { mime: "image/gif", extension: "gif" };
   if (text(0, 4) === "RIFF" && text(8, 12) === "WEBP") return { mime: "image/webp", extension: "webp" };
   if (text(4, 8) === "ftyp" && ["avif", "avis"].includes(text(8, 12))) return { mime: "image/avif", extension: "avif" };
+  if (text(4, 8) === "ftyp") return { mime: "video/mp4", extension: "mp4" };
+  if (hex(4) === "1a45dfa3") return { mime: "video/webm", extension: "webm" };
   return null;
 }

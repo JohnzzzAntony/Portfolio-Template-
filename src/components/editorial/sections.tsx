@@ -69,6 +69,11 @@ export function Hero({ title, services = [], text, cta, captionLeft, image, imag
   // Reduce overall size slightly when using a stacked title so it feels balanced.
   if (stacked) size = Math.max(10, size * 0.88);
   const scale: React.CSSProperties | undefined = size < 15.09 ? { fontSize: `${size.toFixed(3)}vw`, textAlign: stacked ? "left" : undefined } : undefined;
+
+  const isDesktopVideo = Boolean(image && /\.(mp4|webm|mov|m4v)(\?.*)?$/i.test(image));
+  const mobileSrc = imageMobile || image;
+  const isMobileVideo = Boolean(mobileSrc && /\.(mp4|webm|mov|m4v)(\?.*)?$/i.test(mobileSrc));
+
   return (
     <section className="hero" data-hero>
       <div data-hero-shift="5">
@@ -84,22 +89,6 @@ export function Hero({ title, services = [], text, cta, captionLeft, image, imag
                 </div>
               </div>
             </div>
-
-            {/* Services listed line-by-line directly under title */}
-            {services.length > 0 && (
-              <div className="hero-services-inline" data-ix="fade-up" data-ix-delay="0.3">
-                {services.map((service) => (
-                  <div key={service} className="hero-service-item" data-ix="chars" data-ix-delay="0.5">{service}</div>
-                ))}
-              </div>
-            )}
-
-            {/* Quote/text block under title */}
-            {text && (
-              <div className="hero-intro-inline" data-ix="fade-up" data-ix-delay="0.6">
-                <p className="paragraph-small no-indent caps">{text}</p>
-              </div>
-            )}
           </div>
         </div>
       </div>
@@ -108,13 +97,15 @@ export function Hero({ title, services = [], text, cta, captionLeft, image, imag
         <div className="container-fluid opacity-80">
           <div className="grid-12">
             <div className="hero-caption-first" data-hero-shift="-5">
-              <div className="hero-caption" data-ix="fade-up" data-ix-delay="1.3">{captionLeft}</div>
-            </div>
-            <div className="hero-text" data-hero-shift="5">
-              <div data-ix="fade-up" data-ix-delay="1.45">
-                {cta && <Button href={cta.href} variant="white">{cta.label}</Button>}
+              <div data-ix="fade-up" data-ix-delay="1.3">
+                {cta ? (
+                  <Button href={cta.href} variant="white">{cta.label}</Button>
+                ) : captionLeft ? (
+                  <div className="hero-caption">{captionLeft}</div>
+                ) : null}
               </div>
             </div>
+            <div className="hero-text" data-hero-shift="5" />
             <div className="hero-caption-third" data-hero-shift="-5">
               <div data-ix="fade-up" data-ix-delay="1.6"><ScrollDown label={scrollLabel} /></div>
             </div>
@@ -124,10 +115,33 @@ export function Hero({ title, services = [], text, cta, captionLeft, image, imag
 
       <div className="hero-image" aria-hidden="true">
         <div className="hero-image-inner" data-hero-image>
-          {/* eslint-disable-next-line @next/next/no-img-element -- owner/CMS supplied */}
-          <img src={image} alt="" className="desktop" fetchPriority="high" />
-          {/* eslint-disable-next-line @next/next/no-img-element -- owner/CMS supplied */}
-          <img src={imageMobile || image} alt="" className="mobile" />
+          {isDesktopVideo ? (
+            <video
+              src={image}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="desktop object-cover"
+            />
+          ) : (
+            /* eslint-disable-next-line @next/next/no-img-element -- owner/CMS supplied */
+            <img src={image} alt="" className="desktop" fetchPriority="high" />
+          )}
+
+          {isMobileVideo ? (
+            <video
+              src={mobileSrc}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="mobile object-cover"
+            />
+          ) : (
+            /* eslint-disable-next-line @next/next/no-img-element -- owner/CMS supplied */
+            <img src={mobileSrc} alt="" className="mobile" />
+          )}
         </div>
       </div>
     </section>
@@ -436,11 +450,16 @@ export function PageTop({ title, pill, captions, image, small = false, children 
 }
 
 export function ParallaxImage({ src, alt = "", children }: { src: string; alt?: string; children?: React.ReactNode }) {
+  const isVideo = Boolean(src && /\.(mp4|webm|mov|m4v)(\?.*)?$/i.test(src));
   return (
     <div className="parallax-frame" data-ix="fade" data-ix-delay="0.5">
       <div className="parallax-inner" data-ix="parallax">
-        {/* eslint-disable-next-line @next/next/no-img-element -- owner/CMS supplied */}
-        <img src={src} alt={alt} loading="eager" />
+        {isVideo ? (
+          <video src={src} autoPlay loop muted playsInline className="cover" />
+        ) : (
+          /* eslint-disable-next-line @next/next/no-img-element -- owner/CMS supplied */
+          <img src={src} alt={alt} loading="eager" />
+        )}
       </div>
       {children}
     </div>

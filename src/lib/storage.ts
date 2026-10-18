@@ -11,7 +11,7 @@ import { DeleteObjectCommand, GetObjectCommand, PutObjectCommand, S3Client } fro
  * storage/media on local disk for development.
  */
 
-const KEY = /^media\/[a-z0-9-]{1,120}\.(jpg|png|webp|avif|gif)$/;
+const KEY = /^media\/[a-z0-9-]{1,120}\.(jpg|png|webp|avif|gif|mp4|webm)$/;
 
 const configured = () =>
   !!(process.env.AWS_ENDPOINT_URL_S3 && process.env.AWS_ACCESS_KEY_ID && process.env.AWS_SECRET_ACCESS_KEY);
@@ -85,6 +85,8 @@ const TYPES: Record<string, string> = {
   webp: "image/webp",
   avif: "image/avif",
   gif: "image/gif",
+  mp4: "video/mp4",
+  webm: "video/webm",
 };
 export const contentTypeFor = (filename: string) =>
   TYPES[filename.split(".").pop() ?? ""] ?? "application/octet-stream";

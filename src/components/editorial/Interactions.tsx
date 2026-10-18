@@ -31,10 +31,27 @@ export function Interactions({ children }: { children: React.ReactNode }) {
   const rootRef = useRef<HTMLDivElement>(null);
   const cursorRef = useRef<HTMLDivElement>(null);
 
+  // Force scroll to top on every route change so the header section is immediately visible
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if ("scrollRestoration" in window.history) {
+        window.history.scrollRestoration = "manual";
+      }
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    }
+  }, [pathname]);
+
   useEffect(() => {
     const root = rootRef.current;
     const html = document.documentElement;
     if (!root) return;
+
+    if (typeof window !== "undefined") {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    }
+
     if (prefersReducedMotion()) {
       html.classList.add("ix-off", "ix-ready");
       return;
@@ -46,6 +63,9 @@ export function Interactions({ children }: { children: React.ReactNode }) {
 
     document.fonts.ready.then(() => {
       if (cancelled) return;
+      if (typeof window !== "undefined") {
+        window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      }
       ctx = gsap.context(() => {
         reveals(root);
         hero(root, cleanups);
@@ -57,7 +77,12 @@ export function Interactions({ children }: { children: React.ReactNode }) {
         cursor(root, cursorRef.current, cleanups);
       }, root);
       html.classList.add("ix-ready");
-      requestAnimationFrame(() => ScrollTrigger.refresh());
+      requestAnimationFrame(() => {
+        if (typeof window !== "undefined") {
+          window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+        }
+        ScrollTrigger.refresh();
+      });
     });
 
     return () => {

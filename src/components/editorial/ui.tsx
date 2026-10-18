@@ -9,12 +9,31 @@ const isInternal = (href: string) => href.startsWith("/") && !href.startsWith("/
 /**
  * Internal routes go through the router; everything else is a plain anchor.
  * "~/path" is the CMS's way of writing a root-relative link.
+ * Every internal click scrolls immediately to top to reveal the header section.
  */
-export function A({ href, children, className, external, ...rest }: { href: string; children: React.ReactNode; className?: string; external?: boolean } & Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "href">) {
+export function A({ href, children, className, external, onClick, ...rest }: { href: string; children: React.ReactNode; className?: string; external?: boolean } & Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "href">) {
   const target = href.startsWith("~/") ? href.slice(1) : href;
-  if (isInternal(target) && !external) return <NextLink href={target} className={className} {...rest}>{children}</NextLink>;
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!e.defaultPrevented && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+      if (typeof window !== "undefined") {
+        window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      }
+    }
+    onClick?.(e);
+  };
+
+  if (isInternal(target) && !external) {
+    return (
+      <NextLink href={target} scroll={true} className={className} onClick={handleClick} {...rest}>
+        {children}
+      </NextLink>
+    );
+  }
   const newTab = external ?? /^https?:/.test(target);
-  return <a href={target} className={className} {...(newTab ? { target: "_blank", rel: "noopener noreferrer" } : {})} {...rest}>{children}</a>;
+  return <a href={target} className={className} onClick={handleClick} {...(newTab ? { target: "_blank", rel: "noopener noreferrer" } : {})} {...rest}>{children}</a>;
 }
 
 /** Two stacked copies of a label; hovering slides the first out and the second in. */
@@ -132,12 +151,17 @@ export function ArrowDisc() {
   );
 }
 
-/** Image in a clipped frame; `ratio` is height as a percentage of width. */
+/** Image or video in a clipped frame; `ratio` is height as a percentage of width. */
 export function Frame({ src, alt = "", ratio, className, imgClassName, priority, ix }: { src: string; alt?: string; ratio?: number; className?: string; imgClassName?: string; priority?: boolean; ix?: string }) {
+  const isVideo = Boolean(src && /\.(mp4|webm|mov|m4v)(\?.*)?$/i.test(src));
   return (
     <div className={cn("frame", className)} style={ratio ? { paddingTop: `${ratio}%` } : undefined} data-ix={ix}>
-      {/* eslint-disable-next-line @next/next/no-img-element -- owner/CMS supplied images, possibly remote */}
-      <img src={src} alt={alt} className={imgClassName} loading={priority ? "eager" : "lazy"} fetchPriority={priority ? "high" : undefined} draggable={false} />
+      {isVideo ? (
+        <video src={src} autoPlay loop muted playsInline className={cn("cover", imgClassName)} />
+      ) : (
+        /* eslint-disable-next-line @next/next/no-img-element -- owner/CMS supplied images, possibly remote */
+        <img src={src} alt={alt} className={imgClassName} loading={priority ? "eager" : "lazy"} fetchPriority={priority ? "high" : undefined} draggable={false} />
+      )}
     </div>
   );
 }

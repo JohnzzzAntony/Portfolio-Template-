@@ -27,8 +27,10 @@
 
 @layer base {
   *, *::before, *::after { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
-  html:has(.rx) { scroll-behavior: smooth; }
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: auto !important;
+  }
   body {
     margin: 0;
     background: #fff;
@@ -51,7 +53,6 @@
 
 
 @media (prefers-reduced-motion: reduce) {
-  html:has(.rx) { scroll-behavior: auto; }
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;

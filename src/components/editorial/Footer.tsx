@@ -60,7 +60,16 @@ export function Footer({
                 </div>
               )}
               <div className="footer-widget back">
-                <a href="#top" className="back-top">
+                <a
+                  href="#top"
+                  className="back-top"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (typeof window !== "undefined") {
+                      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+                    }
+                  }}
+                >
                   <span className="back-top-icon"><span className="back-top-icon-inner"><ArrowUp /><ArrowUp /></span></span>
                   <span className="back-top-text">Back to top</span>
                 </a>
