@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { CinematicEnhancements } from "@/components/editorial/CinematicEnhancements";
 import { Footer } from "@/components/editorial/Footer";
 import { Interactions } from "@/components/editorial/Interactions";
 import { Nav } from "@/components/editorial/Nav";
@@ -23,26 +24,34 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
 
   return (
     <div className="rx" id="top">
+      <div className="rx-ambient" aria-hidden="true">
+        <span className="rx-orb one" />
+        <span className="rx-orb two" />
+        <span className="rx-orb three" />
+        <span className="rx-grain" />
+      </div>
       <a href="#main" className="rx-skip">Skip to content</a>
       <Interactions>
-        <Nav
-          brand={settings.brandName}
-          items={nav.map((item) => ({ label: item.label, href: item.href }))}
-          overlay={["/", "/portfolio"]}
-          icon={{ href: settings.footerCtaUrl || "/contact", label: settings.footerCtaLabel || "Let's talk" }}
-        />
-        <main id="main" tabIndex={-1}>{children}</main>
-        <Footer
-          lineOne={settings.brandName}
-          lineTwo={settings.brandSuffix}
-          headline={settings.footerHeadline}
-          cta={{ label: settings.footerCtaLabel, href: settings.footerCtaUrl }}
-          socials={socials.map((s) => ({ label: s.label, href: s.url }))}
-          image={media(settings.footerImage, ART.footer)}
-          badge={{ text: settings.badgeText, href: settings.footerCtaUrl, label: settings.footerCtaLabel }}
-          credits={<><span>{settings.credits}</span><span>{settings.brandName} {settings.brandSuffix} ©{year}</span></>}
-          links={[{ label: "Home", href: "/" }, { label: "Work", href: "/portfolio" }, { label: "Contact", href: "/contact" }]}
-        />
+        <CinematicEnhancements>
+          <Nav
+            brand={settings.brandName}
+            items={nav.map((item) => ({ label: item.label, href: item.href }))}
+            overlay={["/", "/portfolio"]}
+            icon={{ href: settings.footerCtaUrl || "/contact", label: settings.footerCtaLabel || "Let's talk" }}
+          />
+          <main id="main" tabIndex={-1}>{children}</main>
+          <Footer
+            lineOne={settings.brandName}
+            lineTwo={settings.brandSuffix}
+            headline={settings.footerHeadline}
+            cta={{ label: settings.footerCtaLabel, href: settings.footerCtaUrl }}
+            socials={socials.map((s) => ({ label: s.label, href: s.url }))}
+            image={media(settings.footerImage, ART.footer)}
+            badge={{ text: settings.badgeText, href: settings.footerCtaUrl, label: settings.footerCtaLabel }}
+            credits={<><span>{settings.credits}</span><span>{settings.brandName} {settings.brandSuffix} ©{year}</span></>}
+            links={[{ label: "Home", href: "/" }, { label: "Work", href: "/portfolio" }, { label: "Contact", href: "/contact" }]}
+          />
+        </CinematicEnhancements>
       </Interactions>
     </div>
   );

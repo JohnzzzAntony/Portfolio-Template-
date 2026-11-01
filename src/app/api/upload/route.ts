@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
     }
 
     const bytes = Buffer.from(await file.arrayBuffer());
-    let detected = imageType(bytes);
+    const detected = imageType(bytes);
 
     // Fallback detection by filename extension if magic bytes fail
     let extension = detected?.extension;

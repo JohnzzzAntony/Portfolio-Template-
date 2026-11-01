@@ -8,10 +8,11 @@ import {
   PlaygroundSection,
   PortfolioSection,
   ServicesCarousel,
-  SplitMission,
 } from "@/components/editorial/sections";
+import { CinematicGallery } from "@/components/editorial/CinematicGallery";
+import { StatementSection } from "@/components/editorial/StatementSection";
 import { getBenefits, getPage, getPlayground, getPosts, getProjects, getServices, getSettings, sectionMap } from "@/lib/cms";
-import { missionWords, postItem, projectItem } from "@/lib/presenters";
+import { postItem, projectItem } from "@/lib/presenters";
 import { ART, BENEFIT_ART, PLAYGROUND_ART, SERVICE_ART, media } from "@/lib/media";
 
 export async function generateMetadata() {
@@ -27,7 +28,7 @@ export default async function HomePage() {
   const [settings, services, projects, benefits, posts, playground] = await Promise.all([
     getSettings(),
     getServices(),
-    getProjects(4),
+    getProjects(8),
     getBenefits(),
     getPosts(3),
     getPlayground(),
@@ -35,7 +36,10 @@ export default async function HomePage() {
 
   const s = sectionMap(page.sections);
   const year = new Date().getUTCFullYear();
-  const [l1, l2, l3, sup] = missionWords(s.mission?.heading);
+  const statementLines = (s.mission?.heading || "We Build\nDigital\nExperiences\nThat Last.")
+    .split("\n")
+    .map((text) => text.trim())
+    .filter(Boolean);
 
   const isHeroVideo = Boolean(page.heroImage && /\.(mp4|webm|mov|m4v)(\?.*)?$/i.test(page.heroImage));
   const heroImage = media(page.heroImage, ART.hero);
@@ -44,6 +48,19 @@ export default async function HomePage() {
     : isHeroVideo
     ? heroImage
     : media(page.heroImage, ART.heroMobile);
+
+  // The gallery showcases the first four projects; the grid below picks up from
+  // there so the same work is never presented twice in a row.
+  const gridProjects = projects.slice(4, 8);
+
+  const cinematicProjects = projects.slice(0, 4).map((project, i) => ({
+    title: project.title,
+    category: project.services?.[0]?.title ?? "Design",
+    year: String(year),
+    href: `/projects/${project.slug}`,
+    image: media(project.previewImage || project.coverImage, ART.dark[i % 3]),
+    number: `/${String(i + 1).padStart(2, "0")}`,
+  }));
 
   return (
     <>
@@ -82,31 +99,43 @@ export default async function HomePage() {
         />
       )}
 
-      {s.mission && (
-        <SplitMission
-          label={s.mission.label}
-          eyebrow={`${settings.brandName} ${settings.brandSuffix}\n/ ©${year}`}
-          words={[l1, l2, l3]}
-          sup={sup}
-          text={s.mission.body}
-          index={s.mission.index}
-          image={media(s.mission.image, ART.mission)}
-          circle={s.mission.ctaUrl ? { href: s.mission.ctaUrl, text: `${s.mission.ctaLabel || "Learn more"} · ${s.mission.ctaLabel || "Learn more"} · `, label: s.mission.ctaLabel || "Learn more" } : undefined}
+      {/* ── CINEMATIC STATEMENT ────────────────────────────────────── */}
+      <StatementSection
+        label={s.mission?.label || "(Our Approach)"}
+        lines={statementLines.map((text, index) => ({ text, accent: index === 2 }))}
+        subText={
+          s.mission?.body?.split("\n")[0] ??
+          "Crafting purposeful, human-centred digital products that perform across every touchpoint."
+        }
+        ctaLabel={s.mission?.ctaLabel || "See our process"}
+        ctaHref={s.mission?.ctaUrl || "/about"}
+      />
+
+      {/* ── 3D CINEMATIC PROJECT GALLERY ──────────────────────────── */}
+      {cinematicProjects.length > 0 && (
+        <CinematicGallery
+          projects={cinematicProjects}
+          label={s.portfolio?.label || "(Selected Work)"}
+          title={s.portfolio?.heading || "Selected\nProjects"}
+          ctaLabel={s.portfolio?.ctaLabel || "View all projects"}
+          ctaHref={s.portfolio?.ctaUrl || "/portfolio"}
         />
       )}
 
-      {projects.length > 0 && (
+      {/* Standard portfolio grid (tab/list view) */}
+      {gridProjects.length > 0 && (
         <PortfolioSection
           label={s.portfolio?.label}
           index={s.portfolio?.index}
           heading={`${s.portfolio?.heading || "Selected Work"}\n${settings.copyright.replace(/[()]/g, "")}`}
-          projects={projects.map(projectItem)}
+          projects={gridProjects.map(projectItem)}
           cta={{ body: s.portfolio?.body, label: s.portfolio?.ctaLabel || "View all projects", href: s.portfolio?.ctaUrl || "/portfolio" }}
         />
       )}
 
       {benefits.length > 0 && (
         <BenefitsSection
+          grid
           label={s.benefits?.label}
           index={s.benefits?.index}
           headingOne={s.benefits?.heading}
@@ -143,4 +172,3 @@ export default async function HomePage() {
     </>
   );
 }
-

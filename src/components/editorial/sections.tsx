@@ -48,7 +48,7 @@ const GLYPH: Record<string, number> = {
   " ": 0.199, "&": 0.655, ".": 0.219, ",": 0.219, "-": 0.398, "'": 0.211, "/": 0.449, "+": 0.567,
 };
 
-/** Hero size in vw: the source's 15.09vw, reduced only when the title would not fit on one line. */
+/** Hero size in vw: a compact display size, reduced further when the title would not fit on one line. */
 function heroSize(title: string) {
   // If the title contains explicit line breaks we should size against the
   // longest line rather than the entire string; split on "\n" and compute
@@ -60,15 +60,14 @@ function heroSize(title: string) {
     return Math.max(em, 0.1);
   });
   const em = Math.max(...lineEms, 0.1);
-  return Math.min(9, 97 / em);
+  return Math.min(6.4, 82 / em);
 }
 
 export function Hero({ title, services = [], text, cta, captionLeft, image, imageMobile, scrollLabel }: { title: string; services?: string[]; text?: string; cta?: Cta; captionLeft?: string; image?: string; imageMobile?: string; scrollLabel?: string }) {
   const stacked = title.includes("\n");
-  let size = heroSize(title);
-  // Reduce overall size slightly when using a stacked title so it feels balanced.
-  if (stacked) size = Math.max(10, size * 0.88);
-  const scale: React.CSSProperties | undefined = size < 15.09 ? { fontSize: `${size.toFixed(3)}vw`, textAlign: stacked ? "left" : undefined } : undefined;
+  const size = heroSize(title);
+  // Exposed as a custom property so the stylesheet can cap it per breakpoint.
+  const scale = { "--hero-fit": `${size.toFixed(3)}vw`, textAlign: stacked ? "left" : undefined } as React.CSSProperties;
 
   const isVideoUrl = (url?: string) => Boolean(url && /\.(mp4|webm|mov|m4v)(\?.*)?$/i.test(url));
   const isDesktopVideo = isVideoUrl(image);

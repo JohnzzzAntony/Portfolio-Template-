@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "./editorial.css";
+@import "./glass.css";
 
 /* Tailwind theme for the operator CMS; public pages use editorial.css. */
 @theme {

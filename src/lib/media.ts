@@ -14,12 +14,12 @@ export const ART = {
 
 /** High-fidelity, section-matched screenshots for services across all pages */
 export const SERVICE_ART: Record<string, string> = {
-  "E-commerce & Shopify": "/images/projects/house-of-karji/screens/admin-catalog-desktop.webp",
-  "Payments & POS": "/images/projects/finora/screens/banking-desktop.webp",
-  "Web Delivery": "/images/projects/nexora/screens/tasks-desktop.webp",
-  "Marketing & Tracking": "/images/projects/nexora/screens/reports-desktop.webp",
-  "QA & Testing": "/images/projects/certguard/screens/logs-desktop.webp",
-  "IT Systems & Infrastructure": "/images/projects/certguard/screens/servers-desktop.webp",
+  "E-commerce & Shopify": "/images/art/01-ecommerce-solutions.png",
+  "Payments & POS": "/images/art/02-pos-payment-solutions.png",
+  "Web Delivery": "/images/art/03-web-software-development.png",
+  "Marketing & Tracking": "/images/art/04-marketing-analytics.png",
+  "QA & Testing": "/images/art/05-quality-assurance-testing.png",
+  "IT Systems & Infrastructure": "/images/art/06-cloud-it-infrastructure.png",
   "Automation": "/images/projects/workflow-hub/screens/notifications-desktop.webp",
 };
 
@@ -49,7 +49,7 @@ export const PLAYGROUND_ART = [
  * - Retired /images/work/* paths fall back.
  * - Valid uploads from CMS (/files/*), external URLs, or local public paths (/images/*) are returned.
  */
-export function media(src: string | null | undefined, fallback = ""): string {
+export function media(src: string | null | undefined, fallback = "/images/art/mission.webp"): string {
   if (!src) return fallback;
   const trimmed = src.trim();
   if (!trimmed || /^\/media\/[\w-]+\.svg$/.test(trimmed) || trimmed.startsWith("/images/work/")) {
