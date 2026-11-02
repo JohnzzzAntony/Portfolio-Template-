@@ -79,7 +79,7 @@ export default async function HomePage() {
           label={s.about.label}
           body={s.about.body.replace(/\n/g, " ")}
           cta={{ label: s.about.ctaLabel || "More about us", href: s.about.ctaUrl || "/about" }}
-          images={[media(s.about.image, "/images/projects/carter-studio/mockup-1.webp"), ART.pill]}
+          images={[media(s.about.image, ART.portrait), ART.pill]}
           marquee={s["story-marquee"]?.heading ? { heading: s["story-marquee"].heading, index: s["story-marquee"].index } : undefined}
         />
       )}

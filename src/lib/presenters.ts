@@ -19,7 +19,7 @@ export function projectItem(project: ProjectRecord, i = 0): ProjectItem {
     href: `/projects/${project.slug}`,
     image: media(project.previewImage || project.coverImage, ART.dark[i % 3]),
     alt: project.title,
-    labels: project.services.map((s) => s.title),
+    labels: [...project.services.map((s) => s.title), ...(media(project.previewImage || project.coverImage, ART.dark[i % 3]).startsWith("/images/premium/") ? ["Concept visual"] : [])],
   };
 }
 

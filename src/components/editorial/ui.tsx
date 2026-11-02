@@ -2,7 +2,7 @@ import NextLink from "next/link";
 
 import { cn } from "@/lib/utils";
 
-import { ArrowDownRight, ArrowUpRight, Spark } from "./icons";
+import { ArrowDownRight, ArrowUpRight } from "./icons";
 
 const isInternal = (href: string) => href.startsWith("/") && !href.startsWith("//");
 
@@ -55,9 +55,9 @@ export function Button({ children, href, variant = "outline", size = "md", class
   const body = size === "md" ? (
     <span className="button-clip">
       <span className="button-inner">
-        <Spark className="button-icon back" />
+        <ArrowUpRight className="button-icon back" />
         {label}
-        <Spark className="button-icon" />
+        <ArrowUpRight className="button-icon" />
       </span>
     </span>
   ) : (

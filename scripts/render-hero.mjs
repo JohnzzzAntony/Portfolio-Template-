@@ -1,0 +1,10 @@
+import { bundle } from '@remotion/bundler';
+import { selectComposition, renderMedia } from '@remotion/renderer';
+import { mkdir } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
+import path from 'node:path';
+const browserExecutable = ['C:/Program Files/BraveSoftware/Brave-Browser/Application/brave.exe', 'C:/Program Files/Google/Chrome/Application/chrome.exe', 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe'].find(existsSync);
+const serveUrl = await bundle({ entryPoint: path.resolve('video/HeroFilm.tsx'), publicDir: path.resolve('public') });
+const composition = await selectComposition({ serveUrl, id: 'HeroFilm', browserExecutable });
+await mkdir('public/videos', { recursive: true });
+await renderMedia({ composition, serveUrl, codec: 'h264', outputLocation: 'public/videos/hero-film.mp4', browserExecutable, concurrency: 2, crf: 23, onProgress: ({progress}) => { if (Math.round(progress * 100) % 20 === 0) console.log(`${Math.round(progress * 100)}%`); } });

@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { ART } from "@/lib/media";
 
 import { Mail } from "./icons";
 import { CtaRow, type ProjectItem } from "./cards";
@@ -71,7 +72,7 @@ export function Hero({ title, services = [], text, cta, captionLeft, image, imag
 
   const isVideoUrl = (url?: string) => Boolean(url && /\.(mp4|webm|mov|m4v)(\?.*)?$/i.test(url));
   const isDesktopVideo = isVideoUrl(image);
-  const mobileExplicit = Boolean(imageMobile && imageMobile !== image && imageMobile !== "/images/art/hero-mobile.webp");
+  const mobileExplicit = Boolean(imageMobile && imageMobile !== image && imageMobile !== "/images/premium/hero.webp");
   const effectiveMobileSrc = mobileExplicit ? imageMobile : isDesktopVideo ? image : (imageMobile || image);
   const isMobileVideo = isVideoUrl(effectiveMobileSrc);
 
@@ -90,6 +91,8 @@ export function Hero({ title, services = [], text, cta, captionLeft, image, imag
                 </div>
               </div>
             </div>
+            {text && <p className="hero-intro-premium">{text}</p>}
+            {services.length > 0 && <p className="hero-specialties">{services.slice(0, 3).join(" / ")}</p>}
           </div>
         </div>
       </div>
@@ -312,7 +315,7 @@ export function BenefitCard({ item, className }: { item: BenefitItem; className?
   );
 }
 
-export function BenefitsSection({ label = "(Benefits)", index, headingOne, headingTwo, items, image = "/images/art/benefits.webp", grid = false, defaultPadding = false }: { label?: string; index?: string; headingOne?: string; headingTwo?: string; items: BenefitItem[]; image?: string; grid?: boolean; defaultPadding?: boolean }) {
+export function BenefitsSection({ label = "(Benefits)", index, headingOne, headingTwo, items, image = "/images/premium/studio.webp", grid = false, defaultPadding = false }: { label?: string; index?: string; headingOne?: string; headingTwo?: string; items: BenefitItem[]; image?: string; grid?: boolean; defaultPadding?: boolean }) {
   return (
     <section className="section no-p">
       <div className={cn("bg-section", defaultPadding && "default-padding")}>
@@ -512,6 +515,8 @@ export function CardsGrid({ items, parallax = false, small = false }: { items: {
     <div className="cards-grid" data-scrub={parallax ? "approach" : undefined}>
       {items.map((item, i) => (
         <div key={item.number + item.title} className={cn("card-item", i === 1 && "two", i === 2 && "three")} data-ix={parallax ? undefined : "fade-up"} data-ix-delay={parallax ? undefined : String((i % 3) * 0.15)}>
+          {/* eslint-disable-next-line @next/next/no-img-element -- local conceptual artwork */}
+          <img className="card-art" src={ART.dark[i % ART.dark.length]} alt="" loading="lazy" decoding="async" />
           <div className={cn("card-number", small && "small")}>{item.number}</div>
           {small ? <h3 className="card-title">{item.title}</h3> : <div className="mb-extra-small"><h3 className="card-title-large">{item.title}</h3></div>}
           <p className="card-text">{item.text}</p>

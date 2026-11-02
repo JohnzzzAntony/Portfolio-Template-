@@ -97,6 +97,8 @@ export default async function ProjectPage({ params }: Params) {
         image={media(project.coverImage, ART.dark[0])}
       />
 
+      {media(project.coverImage, ART.dark[0]).startsWith("/images/premium/") && <p className="concept-caption">Concept artwork illustrating the project’s domain.</p>}
+
       <section className="section no-pb">
         <div className="container-fluid">
           <div className="grid-12 sm">

@@ -235,11 +235,11 @@ html.js:not(.ix-ready) [data-ix], html.js:not(.ix-ready) [data-playground-item],
   .button.large { min-height: 5.125rem; padding: 0.25em 1.6em; font-size: 1.75rem; font-weight: 500; letter-spacing: -0.02em; }
   .button[disabled], .button[aria-disabled="true"] { opacity: 0.45; cursor: not-allowed; }
   .button-clip { overflow: hidden; display: block; }
-  .button-inner { display: flex; align-items: center; gap: 0.5rem; transition: transform 0.5s var(--ease-out-quart); }
+  .button-inner { display: flex; align-items: center; gap: 0.5rem; transition: transform 0.32s var(--ease-out-quart); }
   .button-icon { width: 1.0625rem; height: 1.0625rem; flex: none; }
   .button-icon.back { margin-left: -1.5625rem; }
   .button-label { position: relative; display: block; overflow: hidden; }
-  .button-label > span { display: block; transition: transform 0.5s var(--ease-out-quart); }
+  .button-label > span { display: block; transition: transform 0.32s var(--ease-out-quart); }
   .button-label > span + span { position: absolute; inset: 0; transform: translateY(100%); }
   .button:hover .button-inner, .button:focus-visible .button-inner { transform: translateX(1.5625rem); }
   .button:hover .button-label > span:first-child, .button:focus-visible .button-label > span:first-child { transform: translateY(-100%); }
@@ -248,7 +248,7 @@ html.js:not(.ix-ready) [data-ix], html.js:not(.ix-ready) [data-playground-item],
 
   /* text slide link (nav + footer) */
   .slide-link { position: relative; display: inline-block; overflow: hidden; vertical-align: top; }
-  .slide-link > span { display: block; transition: transform 0.5s var(--ease-out-quart), opacity 0.5s var(--ease-out-quart); }
+  .slide-link > span { display: block; transition: transform 0.32s var(--ease-out-quart), opacity 0.32s var(--ease-out-quart); }
   .slide-link > span + span { position: absolute; left: 0; top: 0; width: 100%; transform: translateY(100%); opacity: 0; }
   a:hover > .slide-link > span:first-child, a:focus-visible > .slide-link > span:first-child, .slide-link:hover > span:first-child { transform: translateY(-100%); opacity: 0; }
   a:hover > .slide-link > span + span, a:focus-visible > .slide-link > span + span, .slide-link:hover > span + span { transform: translateY(0); opacity: 1; }
@@ -283,8 +283,8 @@ html.js:not(.ix-ready) [data-ix], html.js:not(.ix-ready) [data-playground-item],
 
   /* --------------------------------------------------------- cursor */
   .cursor { position: fixed; z-index: 10000; left: 0; top: 0; width: 7.5vw; height: 7.5vw; min-width: 5.5rem; min-height: 5.5rem; pointer-events: none; opacity: 0; color: var(--r-white); }
-  .cursor-inner { position: absolute; inset: 0; border-radius: 50%; background: #000c; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transform: scale(0.25); opacity: 0; transition: transform 0.75s var(--ease-out-quart), opacity 0.5s ease; }
-  .cursor-text { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 1.0625rem; line-height: 1; letter-spacing: 0.01em; text-transform: uppercase; opacity: 0; transition: opacity 0.5s ease; }
+  .cursor-inner { position: absolute; inset: 0; border-radius: 50%; background: #000c; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transform: scale(0.25); opacity: 0; transition: transform 0.4s var(--ease-out-quart), opacity 0.3s ease; }
+  .cursor-text { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 1.0625rem; line-height: 1; letter-spacing: 0.01em; text-transform: uppercase; opacity: 0; transition: opacity 0.3s ease; }
   .cursor.is-active { opacity: 1; }
   .cursor.is-active .cursor-inner { transform: scale(1); opacity: 1; }
   .cursor.is-active .cursor-text { opacity: 1; }
@@ -431,13 +431,13 @@ html.js:not(.ix-ready) [data-ix], html.js:not(.ix-ready) [data-playground-item],
   .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--r-gutter-fixed); }
   .project-card { position: relative; display: block; width: 100%; padding-bottom: 80.64%; border-radius: var(--r-radius); overflow: hidden; transform: translate(0); background: #0d0d0d; }
   .project-card.full { padding-bottom: 51.948%; }
-  .project-card > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.57s var(--ease-out-quart); }
+  .project-card > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.38s var(--ease-out-quart); }
   .project-card::before { content: ""; position: absolute; inset: 0 0 auto; height: 38%; z-index: 1; background: linear-gradient(#0000008c, #0000); pointer-events: none; }
   .project-card:hover > img { transform: scale(1.05); }
   .project-content { position: absolute; inset: 0; z-index: 2; padding: 1.875rem; display: flex; flex-direction: column; justify-content: space-between; }
   .project-header { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
   .project-title-wrap { position: relative; overflow: hidden; margin-top: -0.2rem; }
-  .project-title { color: var(--r-white); font-size: 2rem; line-height: 1.205; font-weight: 500; letter-spacing: -0.016em; margin: 0; transition: transform 0.57s var(--ease-out-quart), opacity 0.57s var(--ease-out-quart); }
+  .project-title { color: var(--r-white); font-size: 2rem; line-height: 1.205; font-weight: 500; letter-spacing: -0.016em; margin: 0; transition: transform 0.38s var(--ease-out-quart), opacity 0.38s var(--ease-out-quart); }
   .project-title + .project-title { position: absolute; inset: 0; transform: translateY(100%); opacity: 0; }
   .project-card:hover .project-title:first-child { transform: translateY(-100%); opacity: 0; }
   .project-card:hover .project-title + .project-title { transform: none; opacity: 1; }
@@ -505,12 +505,12 @@ html.js:not(.ix-ready) [data-ix], html.js:not(.ix-ready) [data-playground-item],
   .blog-card { display: flex; flex-direction: column; width: 100%; height: 100%; border: 1px solid var(--r-line); border-radius: var(--r-radius); color: var(--r-black); }
   .blog-thumb { margin: var(--r-card-inner) var(--r-card-inner) 0; }
   .blog-thumb .frame { padding-top: 69%; border-radius: var(--r-radius-sm); }
-  .blog-thumb img { transition: transform 0.75s var(--ease-out-quart); }
+  .blog-thumb img { transition: transform 0.42s var(--ease-out-quart); }
   .blog-card:hover .blog-thumb img { transform: scale(1.1); }
   .blog-intro-wrap { display: flex; padding: var(--r-card-p); flex: 1; }
-  .blog-intro { position: relative; display: flex; flex-direction: column; width: 100%; transition: transform 0.75s var(--ease-out-quart); }
+  .blog-intro { position: relative; display: flex; flex-direction: column; width: 100%; transition: transform 0.42s var(--ease-out-quart); }
   .blog-card:hover .blog-intro { transform: translateX(0.625rem); }
-  .blog-dot { position: absolute; top: 1rem; left: 0; margin-left: -0.625rem; width: 0.25rem; height: 0.25rem; border-radius: 50%; background: var(--r-black); opacity: 0; transition: opacity 0.75s var(--ease-out-quart); }
+  .blog-dot { position: absolute; top: 1rem; left: 0; margin-left: -0.625rem; width: 0.25rem; height: 0.25rem; border-radius: 50%; background: var(--r-black); opacity: 0; transition: opacity 0.42s var(--ease-out-quart); }
   .blog-card:hover .blog-dot { opacity: 1; }
   .blog-title { font-size: var(--r-fs-card-title); line-height: 1.25; font-weight: 500; letter-spacing: -0.03025em; margin: 0 0 var(--r-m-extra-small); }
   .blog-date { margin-top: auto; font-size: var(--r-fs-caption); line-height: 1.205; letter-spacing: 0.01em; text-transform: uppercase; }

@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 
 import { gsap, prefersReducedMotion, ScrollTrigger } from "@/lib/gsap";
 import { A } from "./ui";
+import { PremiumSculpture } from "./PremiumSculpture";
 
 type StatementLine = { text: string; accent?: boolean };
 
@@ -79,6 +80,7 @@ export function StatementSection({
 
   return (
     <section ref={sectionRef} className="cs-section cinematic" aria-label="Statement">
+      <PremiumSculpture />
       {/* Grain texture */}
       <div className="cs-grain" aria-hidden="true" />
       {/* Accent bar */}

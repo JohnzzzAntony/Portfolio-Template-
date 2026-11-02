@@ -145,40 +145,40 @@ function reveals(root: HTMLElement) {
     const st = once(el);
     switch (el.dataset.ix) {
       case "fade":
-        gsap.fromTo(el, { opacity: 0 }, { opacity: 1, duration: 1, ease: EASE, delay, scrollTrigger: st });
+        gsap.fromTo(el, { opacity: 0 }, { opacity: 1, duration: 0.65, ease: EASE, delay, scrollTrigger: st });
         break;
       case "fade-up":
-        gsap.fromTo(el, { opacity: 0, y: "2rem" }, { opacity: 1, y: 0, duration: 1, ease: OUT_QUART, delay, scrollTrigger: st });
+        gsap.fromTo(el, { opacity: 0, y: "2rem" }, { opacity: 1, y: 0, duration: 0.65, ease: OUT_QUART, delay, scrollTrigger: st });
         break;
       case "fade-up-long":
-        gsap.fromTo(el, { opacity: 0, y: "6rem" }, { opacity: 1, y: 0, duration: 1.25, ease: OUT_QUART, delay, scrollTrigger: st });
+        gsap.fromTo(el, { opacity: 0, y: "6rem" }, { opacity: 1, y: 0, duration: 0.8, ease: OUT_QUART, delay, scrollTrigger: st });
         break;
       case "fade-down":
-        gsap.fromTo(el, { opacity: 0, y: "-2rem" }, { opacity: 1, y: 0, duration: 1, ease: OUT_QUART, delay, scrollTrigger: st });
+        gsap.fromTo(el, { opacity: 0, y: "-2rem" }, { opacity: 1, y: 0, duration: 0.65, ease: OUT_QUART, delay, scrollTrigger: st });
         break;
       case "fade-left":
-        gsap.fromTo(el, { opacity: 0, x: "2.8rem" }, { opacity: 1, x: 0, duration: 1.25, ease: OUT_QUART, delay, scrollTrigger: st });
+        gsap.fromTo(el, { opacity: 0, x: "2.8rem" }, { opacity: 1, x: 0, duration: 0.8, ease: OUT_QUART, delay, scrollTrigger: st });
         break;
       case "fade-scale":
-        gsap.fromTo(el, { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 1.25, ease: OUT_QUART, delay: 0.65 + delay, scrollTrigger: st });
+        gsap.fromTo(el, { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.8, ease: OUT_QUART, delay: 0.35 + delay, scrollTrigger: st });
         break;
       case "scale-in":
-        gsap.fromTo(el, { opacity: 1, scale: 0 }, { scale: 1, duration: 1, ease: OUT_QUART, delay, scrollTrigger: st });
+        gsap.fromTo(el, { opacity: 1, scale: 0 }, { scale: 1, duration: 0.65, ease: OUT_QUART, delay, scrollTrigger: st });
         break;
       case "scale-out":
-        gsap.fromTo(el, { opacity: 1, scale: 1.25 }, { scale: 1, duration: 1, ease: OUT_QUART, delay: 0.5 + delay, scrollTrigger: st });
+        gsap.fromTo(el, { opacity: 1, scale: 1.25 }, { scale: 1, duration: 0.65, ease: OUT_QUART, delay: 0.3 + delay, scrollTrigger: st });
         break;
       case "slide-up":
-        gsap.fromTo(el, { opacity: 1, yPercent: 100 }, { yPercent: 0, duration: 1, ease: OUT_QUART, delay, scrollTrigger: once(el.parentElement ?? el) });
+        gsap.fromTo(el, { opacity: 1, yPercent: 100 }, { yPercent: 0, duration: 0.65, ease: OUT_QUART, delay, scrollTrigger: once(el.parentElement ?? el) });
         break;
       case "divider":
-        gsap.fromTo(el, { scaleX: 0 }, { scaleX: 1, duration: 1.25, ease: OUT_QUART, delay, scrollTrigger: st });
+        gsap.fromTo(el, { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: OUT_QUART, delay, scrollTrigger: st });
         break;
       case "unmask": {
         const img = el.querySelector("img");
         const tl = gsap.timeline({ delay, scrollTrigger: st });
-        tl.fromTo(el, { opacity: 1, scale: 0.8, yPercent: 18 }, { scale: 1, yPercent: 0, duration: 1.5, ease: "circ.out" }, 0);
-        if (img) tl.fromTo(img, { scale: 1.25 }, { scale: 1, duration: 1.5, ease: "circ.out" }, 0);
+        tl.fromTo(el, { opacity: 1, scale: 0.8, yPercent: 18 }, { scale: 1, yPercent: 0, duration: 0.9, ease: "circ.out" }, 0);
+        if (img) tl.fromTo(img, { scale: 1.25 }, { scale: 1, duration: 0.9, ease: "circ.out" }, 0);
         break;
       }
       case "lines": {
@@ -199,7 +199,7 @@ function reveals(root: HTMLElement) {
           autoSplit: true,
           onSplit(self) {
             gsap.set(el, { visibility: "visible" });
-            return gsap.from(self.lines, { yPercent: 105, duration: 1.1, ease: OUT_QUART, stagger: 0.08, delay, scrollTrigger: once(el) });
+            return gsap.from(self.lines, { yPercent: 105, duration: 0.75, ease: OUT_QUART, stagger: 0.05, delay, scrollTrigger: once(el) });
           },
         });
         break;
@@ -211,7 +211,7 @@ function reveals(root: HTMLElement) {
           charsClass: "ix-char",
           onSplit(self) {
             gsap.set(el, { visibility: "visible" });
-            return gsap.from(self.chars, { yPercent: 110, duration: 0.9, ease: OUT_QUART, stagger: 0.018, delay, scrollTrigger: once(el) });
+            return gsap.from(self.chars, { yPercent: 110, duration: 0.65, ease: OUT_QUART, stagger: 0.012, delay, scrollTrigger: once(el) });
           },
         });
         break;
@@ -230,7 +230,7 @@ function hero(root: HTMLElement, cleanups: Array<() => void>) {
   const front = all(section, ".hero-front .hero-char");
   const back = all(section, ".hero-back .hero-char");
   if (front.length && back.length) {
-    const flip = { duration: 0.75, delay: 0.325, stagger: 0.0625, ease: "power2.out" };
+    const flip = { duration: 0.55, delay: 0.2, stagger: 0.04, ease: "power2.out" };
     gsap.set(back, { opacity: 0, yPercent: 136, rotationX: -90, transformOrigin: "50% 0%" });
     gsap.set(front, { opacity: 0, yPercent: 36 });
     ScrollTrigger.create({
@@ -246,7 +246,7 @@ function hero(root: HTMLElement, cleanups: Array<() => void>) {
 
   const image = section.querySelector<HTMLElement>("[data-hero-image]");
   if (image) {
-    gsap.fromTo(image.querySelectorAll("img, video"), { scale: 1.2085 }, { scale: 1, duration: 1.5, delay: 0.7, ease: EASE });
+    gsap.fromTo(image.querySelectorAll("img, video"), { scale: 1.2085 }, { scale: 1, duration: 0.9, delay: 0.4, ease: EASE });
     const tl = gsap.timeline({ scrollTrigger: { trigger: section, start: "top top", end: "bottom top", scrub: true } });
     tl.fromTo(image, { scale: 1 }, { scale: 1.125, ease: "none" }, 0);
     for (const el of all(section, "[data-hero-shift]")) {

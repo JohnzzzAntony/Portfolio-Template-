@@ -1,0 +1,71 @@
+/* Public portfolio art direction: ivory, graphite and champagne metal. */
+.rx {
+  --g-paper: #f1eee8; --g-ink: #22211f; --g-sage: #95754d; --g-sage-deep: #6f5330;
+  --r-black: #22211f; --r-white: #faf8f3; --r-muted: #777167; --r-accent: #b6976b;
+  --g-edge: #e2ddd3; --g-edge-soft: #e2ddd3; --g-hairline: #d9d3c9;
+  --g-glass: #f7f5f0; --g-glass-2: #f7f5f0; --g-glass-3: #faf8f3;
+  --g-shadow: 0 8px 32px -24px #332a2030; --g-shadow-lift: 0 16px 36px -22px #332a2040;
+  --g-radius: 10px; --r-radius: 8px; --r-radius-sm: 5px;
+  --r-page-x: clamp(1.2rem, 4vw, 5rem);
+  --r-section-y: clamp(3rem, 7vw, 7rem);
+  --r-fs-body: clamp(.95rem, 1.1vw, 1.1rem);
+  --r-fs-caption: .72rem; --r-fs-paragraph-large: clamp(1.2rem, 2vw, 1.9rem);
+  --r-fs-heading-small: clamp(1.3rem, 2vw, 2rem);
+  --r-fs-card-title: clamp(1.1rem, 1.4vw, 1.5rem);
+  --c-accent: #c9ad83;
+  background: var(--g-paper);
+}
+.rx .rx-ambient { background: #f1eee8; }
+.rx .rx-orb, .rx .rx-grain { display: none; }
+.rx main > section, .rx main > div > section, .rx .service-item { background: #f7f5f0; }
+.rx .nav-inner, .rx .nav.is-scrolled .nav-inner { background: #faf8f3f0; border-color: #ddd5c8; box-shadow: 0 8px 30px #15110b0a; }
+.rx .nav-logo { letter-spacing: -.04em; }
+.rx .hero { min-height: min(94svh, 1000px); padding-top: clamp(8rem, 14vw, 15rem); background: #181817; }
+.rx .hero-heading { font-size: clamp(3.5rem, 7.5vw, 8rem); letter-spacing: -.055em; text-shadow: none; }
+.rx .hero-image::after { background: linear-gradient(90deg, #14141385, transparent 75%), linear-gradient(0deg, #10100faa, transparent 45%); }
+.rx .hero-image img, .rx .hero-image video { object-position: 65% center; }
+.rx .hero-top { position: relative; z-index: 2; }
+.rx .hero-intro-premium { max-width: 29rem; margin-top: 2rem; font-size: clamp(1rem, 1.35vw, 1.35rem); line-height: 1.5; color: #e6dfd3; }
+.rx .hero-specialties { margin-top: 1.2rem; font-size: .65rem; text-transform: uppercase; letter-spacing: .14em; color: #c7ae8c; max-width: 30rem; }
+.rx .button { min-height: 2.8rem; padding: .7rem 1.3rem; border: 1px solid #b9ae9b; background: transparent; color: #28251f; box-shadow: none; font-size: .75rem; letter-spacing: .08em; transition: background .22s ease, color .22s ease, border-color .22s ease; }
+.rx .button::after, .rx .project-card::after, .rx .service-card::after, .rx .benefit-card::after, .rx .blog-card::after { display: none; }
+.rx .button:hover { background: #28251f; border-color: #28251f; color: #faf8f3; }
+.rx .button.white, .rx .hero .button, .rx .footer .button { background: #f5efe3; color: #25221d; border-color: #f5efe3; }
+.rx .button.white:hover, .rx .footer .button:hover { background: #d7c09c; border-color: #d7c09c; }
+.rx .button:focus-visible, .rx a:focus-visible { outline: 2px solid #b08c55; outline-offset: 5px; }
+.rx .service-card, .rx .benefit-card, .rx .blog-card, .rx .card-item { background: #fcfaf6; border-color: #ddd6ca; box-shadow: none; backdrop-filter: none; }
+.rx .service-card { width: clamp(300px, 35vw, 540px); }
+.rx .service-card-content { padding: 1.6rem; }
+.rx .service-card-thumb { height: clamp(220px, 23vw, 350px); padding: 0; }
+.rx .service-card-image { border-radius: 0; }
+.rx .service-symbol { display: inline-flex; width: 2.5rem; height: 2.5rem; margin-bottom: 1rem; color: #96774e; }
+.rx .service-symbol svg { width: 100%; height: 100%; }
+.rx .project-card img { transition: transform .4s var(--ease-out-quart); }
+.rx .project-card:hover { transform: translateY(-3px); }
+.rx .project-title, .rx .cg-card-title { color: #fff; }
+.rx .project-card::before { height: 100%; background: linear-gradient(#0007, transparent 45%, #0008); }
+.rx .tag-blur { background: #171614c9; color: #f8f4ed; border: 1px solid #ffffff26; }
+.rx .cs-section { background: #1c1c1b; color: #f5efe3; padding: clamp(4rem, 9vw, 9rem) var(--r-page-x); }
+.rx .cs-headline { color: #f5efe3; font-size: clamp(3rem, 6vw, 6.5rem); max-width: 70%; }
+.rx .cs-accent, .rx .cs-label { color: #c9ad83; }
+.rx .cs-sub-text { color: #d1cbc0; }
+.rx .cs-section .button { border-color: #a08a68; color: #f5efe3; }
+.rx .premium-sculpture { position: absolute; right: 2%; top: 10%; width: 32%; height: 65%; background: url('/images/premium/systems.webp') center / cover; border-radius: 50%; opacity: .8; }
+.rx .premium-sculpture canvas { width: 100%; height: 100%; }
+.rx .card-art { aspect-ratio: 3 / 2; object-fit: cover; width: 100%; border-radius: 5px; margin-bottom: 1.5rem; }
+.rx .concept-caption { padding: 1rem var(--r-page-x); font-size: .75rem; color: #777167; }
+.rx .footer { background: #171716; color: #f5efe3; }
+.rx .footer-bg { opacity: .5; }
+.rx .footer-heading, .rx .footer-widget, .rx .footer-credits { color: #f5efe3; }
+.rx .cin-progress-bar { background: #ba9a6a; }
+.rx .cursor-inner { background: #24211de8; }
+@media (max-width: 767px) {
+  .rx .hero { min-height: 90svh; padding-top: 8rem; }
+  .rx .hero-heading { font-size: clamp(3rem, 14vw, 5.2rem); }
+  .rx .hero-intro-premium { max-width: 21rem; font-size: 1rem; }
+  .rx .hero-image::after { background: linear-gradient(90deg, #111b, #1112), linear-gradient(0deg, #1119, transparent); }
+  .rx .hero-specialties { max-width: 22rem; line-height: 1.8; }
+  .rx .service-card { width: 85vw; }
+  .rx .cs-headline { max-width: 100%; }
+  .rx .premium-sculpture { display: none; }
+}
