@@ -18,7 +18,7 @@ export default async function ServicesPage() {
 
   const [settings, services, featured] = await Promise.all([getSettings(), getServices(), getFeaturedProject()]);
   const s = sectionMap(page.sections);
-  const gallery = services.map((service, i) => media(service.image, SERVICE_ART[service.title] || ART.dark[i % 3])).slice(0, 3);
+  const gallery = services.map((service, i) => SERVICE_ART[service.title] || media(service.image, ART.dark[i % 3])).slice(0, 3);
 
   return (
     <>
@@ -43,7 +43,7 @@ export default async function ServicesPage() {
             title={service.title}
             text={service.description}
             tags={service.capabilities}
-            image={media(service.image, SERVICE_ART[service.title] || ART.dark[i % 3])}
+            image={SERVICE_ART[service.title] || media(service.image, ART.dark[i % 3])}
             thumb={ART.dark[(i + 1) % 3]}
           />
         ))}

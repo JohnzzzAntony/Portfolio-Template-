@@ -85,8 +85,8 @@
       "title": "Johns\nAntony",
       "metaLeft": "",
       "metaRight": "",
-      "heroImage": "/images/art/hero.webp",
-      "heroImageMobile": "/images/art/hero-mobile.webp",
+      "heroImage": "/images/realistic/digital-commerce-specialist.webp",
+      "heroImageMobile": "/images/realistic/digital-commerce-specialist-mobile.webp",
       "seoTitle": "Johns Antony | Digital & E-commerce Specialist in Dubai",
       "seoDescription": "Johns Antony is a Digital & E-commerce Specialist and Systems & IT Administrator based in Dubai, specialising in Shopify, web delivery, payments, analytics, automation, QA and IT systems.",
       "ogImage": "",
@@ -542,7 +542,7 @@
       "index": "/001",
       "title": "E-commerce & Shopify",
       "description": "Shopify storefronts end to end: theme sections and Liquid, apps and integrations, product feeds, checkout, staff access, uptime and speed checks.",
-      "image": "/images/projects/house-of-karji/screens/admin-catalog-desktop.webp",
+      "image": "/images/realistic/ecommerce-storefront.webp",
       "capabilities": "[\"Shopify themes & sections\",\"Liquid customisation\",\"Apps & integrations\",\"Product feeds\",\"Checkout & uptime checks\"]",
       "order": 0,
       "published": true
@@ -553,7 +553,7 @@
       "index": "/002",
       "title": "Payments & POS",
       "description": "The technical layer connecting online commerce with payment and retail operations — gateways, payment links, BNPL and in-store terminals.",
-      "image": "/images/projects/finora/screens/banking-desktop.webp",
+      "image": "/images/realistic/payments-pos.webp",
       "capabilities": "[\"Payment gateways\",\"Payment links\",\"Tabby & Tamara\",\"Network payment terminals\",\"POS support\"]",
       "order": 1,
       "published": true
@@ -564,7 +564,7 @@
       "index": "/003",
       "title": "Web Delivery",
       "description": "Figma-to-Shopify builds and corporate websites outside Shopify, plus the domain, DNS and SSL management that keeps them online.",
-      "image": "/images/projects/nexora/screens/tasks-desktop.webp",
+      "image": "/images/realistic/digital-commerce-specialist.webp",
       "capabilities": "[\"Figma-to-Shopify\",\"Corporate websites\",\"Domain, DNS & SSL\",\"Deployment support\"]",
       "order": 2,
       "published": true
@@ -575,7 +575,7 @@
       "index": "/004",
       "title": "Marketing & Tracking",
       "description": "GA4/GTM dataLayer tracking, Google Merchant product feeds, ad account management and technical SEO support across storefronts.",
-      "image": "/images/projects/nexora/screens/reports-desktop.webp",
+      "image": "/images/realistic/marketing-analytics.webp",
       "capabilities": "[\"Google & TikTok Ads\",\"GA4 & GTM dataLayer\",\"Merchant Center feeds\",\"Google Business Profile\",\"SEO support\"]",
       "order": 3,
       "published": true
@@ -586,7 +586,7 @@
       "index": "/005",
       "title": "QA & Testing",
       "description": "A software QA background applied to every release: manual and automated testing, regression, UAT and structured defect tracking.",
-      "image": "/images/projects/certguard/screens/logs-desktop.webp",
+      "image": "/images/realistic/qa-testing.webp",
       "capabilities": "[\"Manual & automated testing\",\"Selenium & Appium\",\"Jira & Agile\",\"Regression & UAT\"]",
       "order": 4,
       "published": true
@@ -597,7 +597,7 @@
       "index": "/006",
       "title": "IT Systems & Infrastructure",
       "description": "Networks, endpoints and security devices behind business operations — Windows and Linux, firewalls, CCTV, biometrics and PABX.",
-      "image": "/images/projects/certguard/screens/servers-desktop.webp",
+      "image": "/images/realistic/it-infrastructure.webp",
       "capabilities": "[\"Networks & firewalls\",\"Windows & Linux\",\"CCTV & access control\",\"PABX & biometrics\",\"Endpoint security\"]",
       "order": 5,
       "published": true
@@ -608,7 +608,7 @@
       "index": "/007",
       "title": "Automation",
       "description": "Practical automation that removes repetitive work and connects business systems — lead generation, enrichment and CRM pipelines.",
-      "image": "/images/projects/workflow-hub/screens/notifications-desktop.webp",
+      "image": "/images/realistic/marketing-analytics.webp",
       "capabilities": "[\"n8n workflows\",\"Lead generation & CRM\",\"Google Sheets & APIs\",\"AI-assisted qualification\"]",
       "order": 6,
       "published": true

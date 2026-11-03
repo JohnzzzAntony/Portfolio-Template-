@@ -2,31 +2,31 @@ import replacedMedia from "./replaced-media.json";
 
 /** Committed artwork used whenever content leaves an image empty. */
 export const ART = {
-  hero: "/images/premium/hero.webp",
-  heroMobile: "/images/premium/hero.webp",
-  portrait: "/images/premium/studio.webp",
-  pill: "/images/premium/systems.webp",
-  mission: "/images/premium/systems.webp",
-  benefits: "/images/premium/studio.webp",
-  footer: "/images/premium/hero.webp",
-  page: "/images/premium/studio.webp",
-  dark: ["/images/premium/systems.webp", "/images/premium/commerce.webp", "/images/premium/security.webp"],
-  light: ["/images/premium/studio.webp", "/images/premium/analytics.webp", "/images/premium/commerce.webp"],
+  hero: "/images/realistic/digital-commerce-specialist.webp",
+  heroMobile: "/images/realistic/digital-commerce-specialist-mobile.webp",
+  portrait: "/images/realistic/digital-commerce-specialist.webp",
+  pill: "/images/realistic/ecommerce-storefront.webp",
+  mission: "/images/realistic/it-infrastructure.webp",
+  benefits: "/images/realistic/qa-testing.webp",
+  footer: "/images/realistic/digital-commerce-specialist.webp",
+  page: "/images/realistic/digital-commerce-specialist.webp",
+  dark: ["/images/realistic/it-infrastructure.webp", "/images/realistic/ecommerce-storefront.webp", "/images/realistic/qa-testing.webp"],
+  light: ["/images/realistic/digital-commerce-specialist.webp", "/images/realistic/marketing-analytics.webp", "/images/realistic/payments-pos.webp"],
 };
 
-/** High-fidelity, section-matched screenshots for services across all pages */
+/** Realistic, profession-matched imagery for service fields */
 export const SERVICE_ART: Record<string, string> = {
-  "E-commerce & Shopify": "/images/premium/commerce.webp",
-  "Payments & POS": "/images/premium/commerce.webp",
-  "Web Delivery": "/images/premium/systems.webp",
-  "Marketing & Tracking": "/images/premium/analytics.webp",
-  "QA & Testing": "/images/premium/security.webp",
-  "IT Systems & Infrastructure": "/images/premium/systems.webp",
-  "Automation": "/images/projects/workflow-hub/screens/notifications-desktop.webp",
-  "Figma to Shopify": "/images/premium/studio.webp",
-  "Corporate Websites": "/images/premium/systems.webp",
-  "Domain, DNS & SSL": "/images/premium/commerce.webp",
-  "Deployment Support": "/images/premium/security.webp"
+  "E-commerce & Shopify": "/images/realistic/ecommerce-storefront.webp",
+  "Payments & POS": "/images/realistic/payments-pos.webp",
+  "Web Delivery": "/images/realistic/digital-commerce-specialist.webp",
+  "Marketing & Tracking": "/images/realistic/marketing-analytics.webp",
+  "QA & Testing": "/images/realistic/qa-testing.webp",
+  "IT Systems & Infrastructure": "/images/realistic/it-infrastructure.webp",
+  "Automation": "/images/realistic/marketing-analytics.webp",
+  "Figma to Shopify": "/images/realistic/ecommerce-storefront.webp",
+  "Corporate Websites": "/images/realistic/digital-commerce-specialist.webp",
+  "Domain, DNS & SSL": "/images/realistic/it-infrastructure.webp",
+  "Deployment Support": "/images/realistic/qa-testing.webp"
 };
 
 /** Content-matched project showcase images for benefits */
@@ -84,14 +84,14 @@ const LEGACY_ART: Record<string, string> = {
   "/images/current-work/lead-generation-workflow.webp": "/images/premium/systems.webp",
   "/images/current-work/commerce-payment-methods.webp": "/images/premium/commerce.webp",
   "/images/current-work/finora-accounting-concept.webp": "/images/projects/finora/mockup-1.webp",
-  "/images/art/hero.webp": "/images/premium/hero.webp",
-  "/images/art/hero-mobile.webp": "/images/premium/hero.webp",
-  "/images/art/silk-portrait.webp": "/images/premium/studio.webp",
-  "/images/art/silk-pill.webp": "/images/premium/systems.webp",
-  "/images/art/mission.webp": "/images/premium/systems.webp",
-  "/images/art/benefits.webp": "/images/premium/studio.webp",
-  "/images/art/footer.webp": "/images/premium/hero.webp",
-  "/images/art/page.webp": "/images/premium/studio.webp",
+  "/images/art/hero.webp": "/images/realistic/digital-commerce-specialist.webp",
+  "/images/art/hero-mobile.webp": "/images/realistic/digital-commerce-specialist-mobile.webp",
+  "/images/art/silk-portrait.webp": "/images/realistic/digital-commerce-specialist.webp",
+  "/images/art/silk-pill.webp": "/images/realistic/ecommerce-storefront.webp",
+  "/images/art/mission.webp": "/images/realistic/it-infrastructure.webp",
+  "/images/art/benefits.webp": "/images/realistic/qa-testing.webp",
+  "/images/art/footer.webp": "/images/realistic/digital-commerce-specialist.webp",
+  "/images/art/page.webp": "/images/realistic/digital-commerce-specialist.webp",
   "/images/art/dark-1.webp": "/images/premium/systems.webp",
   "/images/art/dark-2.webp": "/images/premium/commerce.webp",
   "/images/art/dark-3.webp": "/images/premium/security.webp",

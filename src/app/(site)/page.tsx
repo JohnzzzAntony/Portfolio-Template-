@@ -93,7 +93,7 @@ export default async function HomePage() {
             index: service.index || `/${String(i + 1).padStart(3, "0")}`,
             title: service.title,
             text: service.description,
-            image: media(service.image, SERVICE_ART[service.title] || ART.dark[i % 3]),
+            image: SERVICE_ART[service.title] || media(service.image, ART.dark[i % 3]),
             tags: service.capabilities.slice(0, 4),
           }))}
         />
