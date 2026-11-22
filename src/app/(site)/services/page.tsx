@@ -3,9 +3,9 @@ import { notFound } from "next/navigation";
 
 import { PageTop, ProjectCard, ServicesGalleryHero, ServiceStackItem } from "@/components/editorial/sections";
 import { Button, SectionHead } from "@/components/editorial/ui";
-import { getFeaturedProject, getPage, getServices, getSettings, sectionMap } from "@/lib/cms";
-import { projectItem } from "@/lib/presenters";
-import { ART, SERVICE_ART, media } from "@/lib/media";
+import { getPage, getServices, getSettings, sectionMap } from "@/lib/cms";
+import { liveProjects, liveProjectItem } from "@/lib/live-projects";
+import { ART, serviceArt, media } from "@/lib/media";
 import { pageMetadata } from "@/lib/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -16,9 +16,10 @@ export default async function ServicesPage() {
   const page = await getPage("services");
   if (!page) notFound();
 
-  const [settings, services, featured] = await Promise.all([getSettings(), getServices(), getFeaturedProject()]);
+  const [settings, services] = await Promise.all([getSettings(), getServices()]);
+  const featured = liveProjects[0];
   const s = sectionMap(page.sections);
-  const gallery = services.map((service, i) => SERVICE_ART[service.title] || media(service.image, ART.dark[i % 3])).slice(0, 3);
+  const gallery = services.map((service, i) => serviceArt(service.title, service.image, ART.dark[i % 3])).slice(0, 3);
 
   return (
     <>
@@ -36,6 +37,14 @@ export default async function ServicesPage() {
         </div>
       </section>
 
+      <figure className="service-film container-fluid">
+        <video controls playsInline preload="none" width="800" height="600"
+          poster="/images/portfolio-art/fields/figma.svg" aria-label="A storefront build from design through launch">
+          <source src="/videos/storefront-to-launch.mp4" type="video/mp4" />
+        </video>
+        <figcaption>From design to launch · A storefront build in seven steps</figcaption>
+      </figure>
+
       <div>
         {services.map((service, i) => (
           <ServiceStackItem
@@ -43,8 +52,7 @@ export default async function ServicesPage() {
             title={service.title}
             text={service.description}
             tags={service.capabilities}
-            image={SERVICE_ART[service.title] || media(service.image, ART.dark[i % 3])}
-            thumb={ART.dark[(i + 1) % 3]}
+            image={serviceArt(service.title, service.image, ART.dark[i % 3])}
           />
         ))}
       </div>
@@ -53,7 +61,7 @@ export default async function ServicesPage() {
         <section className="section shadow no-pb">
           <div className="container-fluid">
             <div className="mb-small"><SectionHead label={s.featured?.label} index={s.featured?.index} /></div>
-            <div className="mb-medium"><ProjectCard project={projectItem(featured)} full /></div>
+            <div className="mb-medium"><ProjectCard project={liveProjectItem(featured)} full /></div>
             <div className="align-center" data-ix="fade-up">
               <Button href={s.featured?.ctaUrl || "/portfolio"}>{s.featured?.ctaLabel || "View all Projects"}</Button>
             </div>

@@ -4,9 +4,8 @@ import { notFound } from "next/navigation";
 import { CallToAction, PortfolioSection } from "@/components/editorial/sections";
 import { Marquee, ScrollDown } from "@/components/editorial/ui";
 import { WorkSlides } from "@/components/editorial/WorkSlides";
-import { getPage, getProjects, getSettings, sectionMap } from "@/lib/cms";
-import { projectItem } from "@/lib/presenters";
-import { ART, media } from "@/lib/media";
+import { getPage, getSettings, sectionMap } from "@/lib/cms";
+import { liveProjects, liveProjectItem } from "@/lib/live-projects";
 import { pageMetadata } from "@/lib/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -17,9 +16,9 @@ export default async function PortfolioPage() {
   const page = await getPage("portfolio");
   if (!page) notFound();
 
-  const [settings, projects] = await Promise.all([getSettings(), getProjects()]);
+  const settings = await getSettings();
   const s = sectionMap(page.sections);
-  const covers = projects.slice(0, 3).map((p, i) => media(p.coverImage, ART.dark[i % 3]));
+  const covers = liveProjects.flatMap(project => project.image ? [project.image] : []).slice(0, 3);
 
   return (
     <>
@@ -43,14 +42,14 @@ export default async function PortfolioPage() {
             </div>
           </div>
         </div>
-        <WorkSlides images={covers.length ? covers : [ART.hero]} />
+        {covers.length > 0 && <WorkSlides images={covers} />}
       </section>
 
       <PortfolioSection
         label={s.portfolio?.label}
         index={s.portfolio?.index}
         heading={s.portfolio?.heading || "Selected Work"}
-        projects={projects.map(projectItem)}
+        projects={liveProjects.map(liveProjectItem)}
       />
 
       <CallToAction

@@ -5,7 +5,9 @@ import { CtaRow, PageTop, ProjectCard } from "@/components/editorial/sections";
 import { Button, Marquee, SectionHead } from "@/components/editorial/ui";
 import { getProject, getProjects, getRelatedProjects } from "@/lib/cms";
 import { projectItem } from "@/lib/presenters";
-import { ART, media } from "@/lib/media";
+import { cmsProjectImage, liveProjectImage } from "@/lib/live-projects";
+
+const LIVE_CAPTURE = /^\/images\/projects\/[\w-]+\/(banner|devices|desktop|tablet|mobile|screens\/0\d)\.webp$/;
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -65,7 +67,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     title,
     description,
     alternates: { canonical: `/projects/${encodeURIComponent(project.slug)}` },
-    openGraph: { title, description, type: "article", images: [media(project.coverImage, ART.hero)] },
+    openGraph: { title, description, type: "article", images: cmsProjectImage(project) ? [cmsProjectImage(project)!] : [] },
   };
 }
 
@@ -86,18 +88,20 @@ export default async function ProjectPage({ params }: Params) {
     ["Stack", project.stack],
     ["Services", services.join(", ")],
   ].filter(([, value]) => value);
-  const mockups = project.images.filter((image) => !image.url.includes("/screens/"));
-  const screens = project.images.filter((image) => image.url.includes("/screens/"));
+  const verifiedImage = cmsProjectImage(project);
+  // Media made by scripts/build-project-media.mjs is captured from the live site, so it is verified too.
+  const captured = (url: string) => LIVE_CAPTURE.test(url);
+  const cover = captured(project.coverImage) ? project.coverImage : verifiedImage;
+  const mockups = project.images.filter((image) => (image.url === verifiedImage && liveProjectImage(project.slug)) || (captured(image.url) && !image.url.includes("/screens/")));
+  const screens = project.images.filter((image) => captured(image.url) && image.url.includes("/screens/"));
 
   return (
     <article>
       <PageTop
         title={project.title}
         captions={[services.join(" / "), project.year ? `(${project.year})` : undefined]}
-        image={media(project.coverImage, ART.dark[0])}
+        image={cover}
       />
-
-      {media(project.coverImage, ART.dark[0]).startsWith("/images/premium/") && <p className="concept-caption">Concept artwork illustrating the project’s domain.</p>}
 
       <section className="section no-pb">
         <div className="container-fluid">
@@ -133,7 +137,7 @@ export default async function ProjectPage({ params }: Params) {
             <video
               className="project-film"
               src={project.videoUrl}
-              poster={media(project.previewImage || project.coverImage, ART.dark[1])}
+              poster={captured(project.previewImage) ? project.previewImage : cover}
               autoPlay muted loop playsInline preload="metadata"
               aria-label={`${project.title} walkthrough film`}
               style={{ width: "100%", aspectRatio: "16 / 9", objectFit: "cover", borderRadius: "var(--r-radius)", display: "block" }}
@@ -158,7 +162,7 @@ export default async function ProjectPage({ params }: Params) {
             <div className="project-gallery">
               {mockups.map((image) => (
                 // eslint-disable-next-line @next/next/no-img-element -- CMS supplied
-                <img key={image.id} src={media(image.url, ART.dark[1])} alt={image.alt} loading="lazy" data-ix="fade-up" />
+                <img key={image.id} src={image.url} alt={image.alt} loading="lazy" data-ix="fade-up" />
               ))}
             </div>
           </div>
@@ -183,7 +187,7 @@ export default async function ProjectPage({ params }: Params) {
             <div className="project-gallery">
               {screens.map((image) => (
                 // eslint-disable-next-line @next/next/no-img-element -- CMS supplied
-                <img key={image.id} src={media(image.url, ART.dark[1])} alt={image.alt} loading="lazy" data-ix="fade-up" />
+                <img key={image.id} src={image.url} alt={image.alt} loading="lazy" data-ix="fade-up" />
               ))}
             </div>
           </div>
@@ -199,7 +203,7 @@ export default async function ProjectPage({ params }: Params) {
               </SectionHead>
             </div>
             <div className="mb-large">
-              <div className="projects-grid">{related.map((p, i) => <ProjectCard key={p.id} project={projectItem(p, i)} />)}</div>
+              <div className="projects-grid">{related.map((p) => <ProjectCard key={p.id} project={projectItem(p)} />)}</div>
             </div>
             <CtaRow cta={{ body: "Discover how creativity turns ideas into products people actually use.", label: "View all projects", href: "/portfolio" }} />
           </div>

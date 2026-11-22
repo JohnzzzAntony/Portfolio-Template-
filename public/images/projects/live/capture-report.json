@@ -1,0 +1,205 @@
+{
+  "capturedAt": "2026-11-22T19:33:47.201Z",
+  "projects": [
+    {
+      "slug": "karji-store",
+      "title": "Karji Store",
+      "url": "https://karjistore.com/",
+      "checkedAt": "2026-11-22T19:33:47.202Z",
+      "captures": {},
+      "httpStatus": null,
+      "status": "network-policy-blocked",
+      "error": "Cloud proxy denied destination (CONNECT 403)."
+    },
+    {
+      "slug": "daima",
+      "title": "Daima",
+      "url": "https://daima.ae/",
+      "checkedAt": "2026-11-22T19:33:47.243Z",
+      "captures": {},
+      "httpStatus": null,
+      "status": "network-policy-blocked",
+      "error": "Cloud proxy denied destination (CONNECT 403)."
+    },
+    {
+      "slug": "flower-district",
+      "title": "Flower District",
+      "url": "https://flowerdistrict.ae/",
+      "checkedAt": "2026-11-22T19:33:47.257Z",
+      "captures": {},
+      "httpStatus": null,
+      "status": "network-policy-blocked",
+      "error": "Cloud proxy denied destination (CONNECT 403)."
+    },
+    {
+      "slug": "touch-of-oud",
+      "title": "Touch of Oud",
+      "url": "https://touchofoud.com/",
+      "checkedAt": "2026-11-22T19:33:47.270Z",
+      "captures": {},
+      "httpStatus": null,
+      "status": "network-policy-blocked",
+      "error": "Cloud proxy denied destination (CONNECT 403)."
+    },
+    {
+      "slug": "atelier-perfumery",
+      "title": "Atelier Perfumery",
+      "url": "https://atelierperfumery.com/",
+      "checkedAt": "2026-11-22T19:33:47.281Z",
+      "captures": {},
+      "httpStatus": null,
+      "status": "network-policy-blocked",
+      "error": "Cloud proxy denied destination (CONNECT 403)."
+    },
+    {
+      "slug": "juvenis-paris",
+      "title": "Juvenis Paris",
+      "url": "https://juvenisparis.com/",
+      "checkedAt": "2026-11-22T19:33:47.292Z",
+      "captures": {},
+      "httpStatus": null,
+      "status": "network-policy-blocked",
+      "error": "Cloud proxy denied destination (CONNECT 403)."
+    },
+    {
+      "slug": "the-exceptional-parfums",
+      "title": "The Exceptional Parfums",
+      "url": "https://theexceptionalparfums.com/",
+      "checkedAt": "2026-11-22T19:33:47.303Z",
+      "captures": {},
+      "httpStatus": null,
+      "status": "network-policy-blocked",
+      "error": "Cloud proxy denied destination (CONNECT 403)."
+    },
+    {
+      "slug": "saleel-parfums",
+      "title": "Saleel Parfums",
+      "url": "https://saleelparfums.com/",
+      "checkedAt": "2026-11-22T19:33:47.314Z",
+      "captures": {},
+      "httpStatus": null,
+      "status": "network-policy-blocked",
+      "error": "Cloud proxy denied destination (CONNECT 403)."
+    },
+    {
+      "slug": "nexpixels",
+      "title": "Nexpixels",
+      "url": "https://nexpixels.com/",
+      "checkedAt": "2026-11-22T19:33:47.325Z",
+      "captures": {},
+      "httpStatus": null,
+      "status": "network-policy-blocked",
+      "error": "Cloud proxy denied destination (CONNECT 403)."
+    },
+    {
+      "slug": "new-fashion",
+      "title": "New Fashion",
+      "url": "https://new-fashion-production.up.railway.app/",
+      "checkedAt": "2026-11-22T19:33:47.339Z",
+      "captures": {},
+      "httpStatus": null,
+      "status": "network-policy-blocked",
+      "error": "Cloud proxy denied destination (CONNECT 403)."
+    },
+    {
+      "slug": "elmoretto",
+      "title": "Elmoretto",
+      "url": "https://elmoretto-production.up.railway.app/",
+      "checkedAt": "2026-11-22T19:33:47.349Z",
+      "captures": {},
+      "httpStatus": null,
+      "status": "network-policy-blocked",
+      "error": "Cloud proxy denied destination (CONNECT 403)."
+    },
+    {
+      "slug": "torque",
+      "title": "Torque",
+      "url": "https://torque-production-51b4.up.railway.app/",
+      "checkedAt": "2026-11-22T19:33:47.359Z",
+      "captures": {},
+      "httpStatus": null,
+      "status": "network-policy-blocked",
+      "error": "Cloud proxy denied destination (CONNECT 403)."
+    },
+    {
+      "slug": "db",
+      "title": "DB",
+      "url": "https://db-production-8accfce3.up.railway.app/",
+      "checkedAt": "2026-11-22T19:33:47.370Z",
+      "captures": {},
+      "httpStatus": null,
+      "status": "network-policy-blocked",
+      "error": "Cloud proxy denied destination (CONNECT 403)."
+    },
+    {
+      "slug": "ecommerce",
+      "title": "Ecommerce",
+      "url": "https://ecommerce-production-f437.up.railway.app/",
+      "checkedAt": "2026-11-22T19:33:47.380Z",
+      "captures": {},
+      "httpStatus": null,
+      "status": "network-policy-blocked",
+      "error": "Cloud proxy denied destination (CONNECT 403)."
+    },
+    {
+      "slug": "assetmanager",
+      "title": "Asset Manager",
+      "url": "https://assetmanager-production-59c3.up.railway.app/",
+      "checkedAt": "2026-11-22T19:33:47.391Z",
+      "captures": {},
+      "httpStatus": null,
+      "status": "network-policy-blocked",
+      "error": "Cloud proxy denied destination (CONNECT 403)."
+    },
+    {
+      "slug": "domssl",
+      "title": "DomSSL",
+      "url": "https://domssl-production.up.railway.app/",
+      "checkedAt": "2026-11-22T19:33:47.401Z",
+      "captures": {},
+      "httpStatus": null,
+      "status": "network-policy-blocked",
+      "error": "Cloud proxy denied destination (CONNECT 403)."
+    },
+    {
+      "slug": "nexora-ticketing",
+      "title": "Nexora Ticketing",
+      "url": "https://nexora-ticketing-1a23.up.railway.app/",
+      "checkedAt": "2026-11-22T19:33:47.411Z",
+      "captures": {},
+      "httpStatus": null,
+      "status": "network-policy-blocked",
+      "error": "Cloud proxy denied destination (CONNECT 403)."
+    },
+    {
+      "slug": "books",
+      "title": "Books",
+      "url": "https://books-production-9f40.up.railway.app/",
+      "checkedAt": "2026-11-22T19:33:47.421Z",
+      "captures": {},
+      "httpStatus": null,
+      "status": "network-policy-blocked",
+      "error": "Cloud proxy denied destination (CONNECT 403)."
+    },
+    {
+      "slug": "work-manager",
+      "title": "Work Manager",
+      "url": "https://work-manager-production-1c98.up.railway.app/",
+      "checkedAt": "2026-11-22T19:33:47.432Z",
+      "captures": {},
+      "httpStatus": null,
+      "status": "network-policy-blocked",
+      "error": "Cloud proxy denied destination (CONNECT 403)."
+    },
+    {
+      "slug": "invitara",
+      "title": "Invitara",
+      "url": "https://invitara-production.up.railway.app/",
+      "checkedAt": "2026-11-22T19:33:47.442Z",
+      "captures": {},
+      "httpStatus": null,
+      "status": "network-policy-blocked",
+      "error": "Cloud proxy denied destination (CONNECT 403)."
+    }
+  ]
+}

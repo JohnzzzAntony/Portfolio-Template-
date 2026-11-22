@@ -11,9 +11,11 @@ import {
 } from "@/components/editorial/sections";
 import { CinematicGallery } from "@/components/editorial/CinematicGallery";
 import { StatementSection } from "@/components/editorial/StatementSection";
-import { getBenefits, getPage, getPlayground, getPosts, getProjects, getServices, getSettings, sectionMap } from "@/lib/cms";
-import { postItem, projectItem } from "@/lib/presenters";
-import { ART, BENEFIT_ART, PLAYGROUND_ART, SERVICE_ART, media } from "@/lib/media";
+import { PortfolioMotion } from "@/components/editorial/PortfolioMotion";
+import { getBenefits, getPage, getPosts, getServices, getSettings, sectionMap } from "@/lib/cms";
+import { postItem } from "@/lib/presenters";
+import { liveProjects, liveProjectItem } from "@/lib/live-projects";
+import { ART, BENEFIT_ART, serviceArt, media } from "@/lib/media";
 
 export async function generateMetadata() {
   const { pageMetadata } = await import("@/lib/seo");
@@ -25,13 +27,11 @@ export default async function HomePage() {
   const page = await getPage("home");
   if (!page) notFound();
 
-  const [settings, services, projects, benefits, posts, playground] = await Promise.all([
+  const [settings, services, benefits, posts] = await Promise.all([
     getSettings(),
     getServices(),
-    getProjects(8),
     getBenefits(),
     getPosts(3),
-    getPlayground(),
   ]);
 
   const s = sectionMap(page.sections);
@@ -51,14 +51,16 @@ export default async function HomePage() {
 
   // The gallery showcases the first four projects; the grid below picks up from
   // there so the same work is never presented twice in a row.
-  const gridProjects = projects.slice(4, 8);
+  const capturedProjects = liveProjects.filter(project => project.image);
+  const cinematicSelection = capturedProjects.slice(0, 4);
+  const gridProjects = liveProjects.filter(project => !cinematicSelection.includes(project)).slice(0, 8);
 
-  const cinematicProjects = projects.slice(0, 4).map((project, i) => ({
+  const cinematicProjects = cinematicSelection.map((project, i) => ({
     title: project.title,
-    category: project.services?.[0]?.title ?? "Design",
-    year: String(year),
-    href: `/projects/${project.slug}`,
-    image: media(project.previewImage || project.coverImage, ART.dark[i % 3]),
+    category: new URL(project.url).hostname,
+    year: "",
+    href: project.url,
+    image: project.image,
     number: `/${String(i + 1).padStart(2, "0")}`,
   }));
 
@@ -93,7 +95,7 @@ export default async function HomePage() {
             index: service.index || `/${String(i + 1).padStart(3, "0")}`,
             title: service.title,
             text: service.description,
-            image: SERVICE_ART[service.title] || media(service.image, ART.dark[i % 3]),
+            image: serviceArt(service.title, service.image, ART.dark[i % 3]),
             tags: service.capabilities.slice(0, 4),
           }))}
         />
@@ -110,6 +112,8 @@ export default async function HomePage() {
         ctaLabel={s.mission?.ctaLabel || "See our process"}
         ctaHref={s.mission?.ctaUrl || "/about"}
       />
+
+      <PortfolioMotion />
 
       {/* ── 3D CINEMATIC PROJECT GALLERY ──────────────────────────── */}
       {cinematicProjects.length > 0 && (
@@ -128,7 +132,7 @@ export default async function HomePage() {
           label={s.portfolio?.label}
           index={s.portfolio?.index}
           heading={`${s.portfolio?.heading || "Selected Work"}\n${settings.copyright.replace(/[()]/g, "")}`}
-          projects={gridProjects.map(projectItem)}
+          projects={gridProjects.map(liveProjectItem)}
           cta={{ body: s.portfolio?.body, label: s.portfolio?.ctaLabel || "View all projects", href: s.portfolio?.ctaUrl || "/portfolio" }}
         />
       )}
@@ -164,10 +168,11 @@ export default async function HomePage() {
         index={s.playground?.index || "/06"}
         heading={s.playground?.heading || "Creative Lab"}
         cta={s.playground?.ctaUrl ? { label: s.playground.ctaLabel || "View archive", href: s.playground.ctaUrl } : undefined}
-        images={(playground.length > 0 ? playground : PLAYGROUND_ART).map((p, i) => ({
-          src: media(p.url, PLAYGROUND_ART[i % PLAYGROUND_ART.length]?.url || ART.dark[i % 3]),
-          alt: p.alt,
-        }))}
+        images={[
+          { src: "/images/portfolio-art/orbital-systems.png", alt: "Original chrome orbital sculpture — personal brand motion study" },
+          { src: "/images/portfolio-art/orbit-mark.svg", alt: "Original dimensional orbital vector" },
+          { src: "/images/portfolio-art/commerce-flow.svg", alt: "Original connected commerce diagram" },
+        ]}
       />
     </>
   );
