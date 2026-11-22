@@ -155,7 +155,7 @@ Domain and SSL purchase and renewal, DNS, cPanel hosting, business email setup a
 
 ![Atelier Perfumery on desktop, tablet and mobile](/images/projects/atelier-perfumery/devices.webp)
 
-📄 [Case study](/projects/atelier-perfumery) · 🌐 [Live site](https://atelierperfumery.com/)
+🎬 [Project film](/videos/projects/atelier-perfumery.mp4) · 📄 [Case study](/projects/atelier-perfumery) · 🌐 [Live site](https://atelierperfumery.com/)
 <!-- /media:atelier-perfumery -->
 
 **The challenge:** A large catalogue with slow hero loading, misaligned product grids, placeholder product content and no proper tracking or feeds.
@@ -187,7 +187,7 @@ Domain and SSL purchase and renewal, DNS, cPanel hosting, business email setup a
 
 ![Flower District on desktop, tablet and mobile](/images/projects/flower-district-delivery/devices.webp)
 
-📄 [Case study](/projects/flower-district-delivery) · 🌐 [Live site](https://flowerdistrict.ae/)
+🎬 [Project film](/videos/projects/flower-district-delivery.mp4) · 📄 [Case study](/projects/flower-district-delivery) · 🌐 [Live site](https://flowerdistrict.ae/)
 <!-- /media:flower-district-delivery -->
 
 **The challenge:** Same-day and next-day flower delivery across seven emirates, with time slots, zone pricing and physical shops that needed local search traffic.
@@ -246,7 +246,7 @@ Domain and SSL purchase and renewal, DNS, cPanel hosting, business email setup a
 
 ![Juvenis Paris on desktop, tablet and mobile](/images/projects/juvenis-paris/devices.webp)
 
-📄 [Case study](/projects/juvenis-paris) · 🌐 [Live site](https://juvenisparis.com/)
+🎬 [Project film](/videos/projects/juvenis-paris.mp4) · 📄 [Case study](/projects/juvenis-paris) · 🌐 [Live site](https://juvenisparis.com/)
 <!-- /media:juvenis-paris -->
 
 **What I delivered:**
@@ -273,7 +273,7 @@ Domain and SSL purchase and renewal, DNS, cPanel hosting, business email setup a
 
 ![Touch of Oud on desktop, tablet and mobile](/images/projects/touch-of-oud/devices.webp)
 
-📄 [Case study](/projects/touch-of-oud) · 🌐 [Live site](https://touchofoud.com/)
+🎬 [Project film](/videos/projects/touch-of-oud.mp4) · 📄 [Case study](/projects/touch-of-oud) · 🌐 [Live site](https://touchofoud.com/)
 <!-- /media:touch-of-oud -->
 
 - Audited the live theme and menus, then built **dropdown navigation** for Perfume, Oud Tradition, Home Fragrance and Body Scent through the Shopify Admin GraphQL API, with no theme code changes needed
@@ -295,7 +295,7 @@ Domain and SSL purchase and renewal, DNS, cPanel hosting, business email setup a
 
 ![Saleel · Exceptional · Jouri on desktop, tablet and mobile](/images/projects/fragrance-brand-care/devices.webp)
 
-📄 [Case study](/projects/fragrance-brand-care) · 🌐 [Live site](https://saleelparfums.com/)
+🎬 [Project film](/videos/projects/fragrance-brand-care.mp4) · 📄 [Case study](/projects/fragrance-brand-care) · 🌐 [Live site](https://saleelparfums.com/)
 <!-- /media:fragrance-brand-care -->
 - **Saleel Parfums (saleelparfums.com):** homepage slideshow customisation on a preview-safe duplicate theme
 - **The Exceptional Parfums:** ongoing Shopify store management, feeds and support
@@ -325,7 +325,7 @@ Tools I built to run several Shopify brands at once:
 
 ![Mechaura International on desktop, tablet and mobile](/images/projects/mechaura/devices.webp)
 
-📄 [Case study](/projects/mechaura) · 🌐 [Live site](https://mechaurainternational.com/)
+🎬 [Project film](/videos/projects/mechaura.mp4) · 📄 [Case study](/projects/mechaura) · 🌐 [Live site](https://mechaurainternational.com/)
 <!-- /media:mechaura -->
 
 - **Built with Next.js, React, Express and Prisma:** a server-rendered product catalogue organised by category, with technical spec-sheet tables and SEO structured data (Organization, Product, BreadcrumbList, FAQPage)
@@ -358,7 +358,7 @@ Tools I built to run several Shopify brands at once:
 
 ![Maylaa IT Assets Manager on desktop, tablet and mobile](/images/projects/maylaa-assets/devices.webp)
 
-📄 [Case study](/projects/maylaa-assets) · 🌐 [Live site](https://assetmanager-production-59c3.up.railway.app/)
+🎬 [Project film](/videos/projects/maylaa-assets.mp4) · 📄 [Case study](/projects/maylaa-assets) · 🌐 [Live site](https://assetmanager-production-59c3.up.railway.app/)
 <!-- /media:maylaa-assets -->
 
 <!-- media:finora -->
@@ -370,7 +370,7 @@ Tools I built to run several Shopify brands at once:
 
 ![Finora on desktop, tablet and mobile](/images/projects/finora/devices.webp)
 
-📄 [Case study](/projects/finora) · 🌐 [Live site](https://books-production-9f40.up.railway.app/)
+🎬 [Project film](/videos/projects/finora.mp4) · 📄 [Case study](/projects/finora) · 🌐 [Live site](https://books-production-9f40.up.railway.app/)
 <!-- /media:finora -->
 
 <!-- media:certguard -->
@@ -382,7 +382,7 @@ Tools I built to run several Shopify brands at once:
 
 ![CertGuard on desktop, tablet and mobile](/images/projects/certguard/devices.webp)
 
-📄 [Case study](/projects/certguard) · 🌐 [Live site](https://domssl-production.up.railway.app/)
+🎬 [Project film](/videos/projects/certguard.mp4) · 📄 [Case study](/projects/certguard) · 🌐 [Live site](https://domssl-production.up.railway.app/)
 <!-- /media:certguard -->
 Custom-built tools used daily by the business:
 - **IT Assets Manager:** tracks company hardware, software and assignments
@@ -404,7 +404,7 @@ Custom-built tools used daily by the business:
 
 ![NexEcoms on desktop, tablet and mobile](/images/projects/nexecoms/devices.webp)
 
-📄 [Case study](/projects/nexecoms) · 🌐 [Live site](https://ecommerce-production-f437.up.railway.app/)
+🎬 [Project film](/videos/projects/nexecoms.mp4) · 📄 [Case study](/projects/nexecoms) · 🌐 [Live site](https://ecommerce-production-f437.up.railway.app/)
 <!-- /media:nexecoms -->
 A **multi-tenant e-commerce platform** where each client site connects its own Figma file. Chosen Figma frames are mapped to **editable section templates** in the backend, so designs become editable, reusable sections and not just static code.
 
@@ -423,7 +423,7 @@ A **multi-tenant e-commerce platform** where each client site connects its own F
 
 ![Invitara on desktop, tablet and mobile](/images/projects/invitara/devices.webp)
 
-📄 [Case study](/projects/invitara) · 🌐 [Live site](https://invitara-production.up.railway.app/)
+🎬 [Project film](/videos/projects/invitara.mp4) · 📄 [Case study](/projects/invitara) · 🌐 [Live site](https://invitara-production.up.railway.app/)
 <!-- /media:invitara -->
 A premium **digital invitation platform** with cinematic guest experiences: **wax-seal breaking, storybook opening, scratch-to-reveal dates and gallery reveals**. Built for weddings and events, with regional needs such as Arabic RTL, Hijri dates and QR guest passes planned on the roadmap.
 
@@ -438,7 +438,7 @@ A premium **digital invitation platform** with cinematic guest experiences: **wa
 
 ![NexPixels on desktop, tablet and mobile](/images/projects/nexpixels-automation/devices.webp)
 
-📄 [Case study](/projects/nexpixels-automation) · 🌐 [Live site](https://nexpixels.com/)
+🎬 [Project film](/videos/projects/nexpixels-automation.mp4) · 📄 [Case study](/projects/nexpixels-automation) · 🌐 [Live site](https://nexpixels.com/)
 <!-- /media:nexpixels-automation -->
 
 ### Torque Moulds Factory | Corporate website *(in progress)*
@@ -452,7 +452,7 @@ A premium **digital invitation platform** with cinematic guest experiences: **wa
 
 ![Torque Moulds Factory on desktop, tablet and mobile](/images/projects/torque-moulds/devices.webp)
 
-📄 [Case study](/projects/torque-moulds) · 🌐 [Live site](https://torque-production-51b4.up.railway.app/)
+🎬 [Project film](/videos/projects/torque-moulds.mp4) · 📄 [Case study](/projects/torque-moulds) · 🌐 [Live site](https://torque-production-51b4.up.railway.app/)
 <!-- /media:torque-moulds -->
 Site plan, competitor review, section structure, design direction and high-fidelity wireframes for a Dubai (Al Quoz) tooling and mould supplier.
 
@@ -480,7 +480,7 @@ Tickets, tasks, SLAs and assets in one workspace: a modern help desk and operati
 
 ![Nexora on desktop, tablet and mobile](/images/projects/nexora/devices.webp)
 
-📄 [Case study](/projects/nexora) · 🌐 [Live site](https://nexora-ticketing-1a23.up.railway.app/)
+🎬 [Project film](/videos/projects/nexora.mp4) · 📄 [Case study](/projects/nexora) · 🌐 [Live site](https://nexora-ticketing-1a23.up.railway.app/)
 <!-- /media:nexora -->
 
 ### WorkFlow Hub | Work assignment & follow-up tracker
@@ -495,7 +495,7 @@ Turns emails into assignable, trackable tasks with AI-drafted replies, real-time
 
 ![WorkFlow Hub on desktop, tablet and mobile](/images/projects/workflow-hub/devices.webp)
 
-📄 [Case study](/projects/workflow-hub) · 🌐 [Live site](https://work-manager-production-1c98.up.railway.app/)
+🎬 [Project film](/videos/projects/workflow-hub.mp4) · 📄 [Case study](/projects/workflow-hub) · 🌐 [Live site](https://work-manager-production-1c98.up.railway.app/)
 <!-- /media:workflow-hub -->
 
 ### HALE | Fashion e-commerce website
@@ -510,7 +510,7 @@ Design-led fashion storefront concept with editorial imagery and a mobile-first 
 
 ![HALE on desktop, tablet and mobile](/images/projects/hale-fashion/devices.webp)
 
-📄 [Case study](/projects/hale-fashion) · 🌐 [Live site](https://new-fashion-production.up.railway.app/)
+🎬 [Project film](/videos/projects/hale-fashion.mp4) · 📄 [Case study](/projects/hale-fashion) · 🌐 [Live site](https://new-fashion-production.up.railway.app/)
 <!-- /media:hale-fashion -->
 
 ### El Moretto | Coffee brand storytelling website
@@ -525,7 +525,7 @@ Scroll-driven storytelling website for Dublin coffee brand El Moretto, from high
 
 ![El Moretto on desktop, tablet and mobile](/images/projects/el-moretto/devices.webp)
 
-📄 [Case study](/projects/el-moretto) · 🌐 [Live site](https://elmoretto-production.up.railway.app/)
+🎬 [Project film](/videos/projects/el-moretto.mp4) · 📄 [Case study](/projects/el-moretto) · 🌐 [Live site](https://elmoretto-production.up.railway.app/)
 <!-- /media:el-moretto -->
 
 ### Koshys Nursing Study | AI study platform for nursing students
@@ -540,7 +540,7 @@ Source-grounded study materials, previous-year question analysis and an AI tutor
 
 ![Koshys Nursing Study on desktop, tablet and mobile](/images/projects/koshys-nursing-study/devices.webp)
 
-📄 [Case study](/projects/koshys-nursing-study) · 🌐 [Live site](https://db-production-8accfce3.up.railway.app/)
+🎬 [Project film](/videos/projects/koshys-nursing-study.mp4) · 📄 [Case study](/projects/koshys-nursing-study) · 🌐 [Live site](https://db-production-8accfce3.up.railway.app/)
 <!-- /media:koshys-nursing-study -->
 <!-- /more-live-projects -->
 
