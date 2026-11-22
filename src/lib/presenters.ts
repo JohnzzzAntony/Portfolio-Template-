@@ -1,6 +1,7 @@
 import type { PostItem, ProjectItem } from "@/components/editorial/sections";
 import { ART, media } from "@/lib/media";
 import { formatDate } from "@/lib/utils";
+import { cmsProjectImage } from "@/lib/live-projects";
 
 /** "Design®\nWith\npurpose" → three lines, with a trailing ® or ™ lifted into a superscript. */
 export function missionWords(heading?: string | null): [string, string, string, string | undefined] {
@@ -11,15 +12,15 @@ export function missionWords(heading?: string | null): [string, string, string, 
   return [match ? match[1] : lines[0], lines[1], rest, match?.[2]];
 }
 
-type ProjectRecord = { slug: string; title: string; coverImage: string; previewImage: string; services: { title: string }[] };
+type ProjectRecord = { slug: string; title: string; coverImage: string; previewImage: string; viewUrl?: string; services: { title: string }[] };
 
-export function projectItem(project: ProjectRecord, i = 0): ProjectItem {
+export function projectItem(project: ProjectRecord): ProjectItem {
   return {
     title: project.title,
     href: `/projects/${project.slug}`,
-    image: media(project.previewImage || project.coverImage, ART.dark[i % 3]),
+    image: cmsProjectImage(project),
     alt: project.title,
-    labels: [...project.services.map((s) => s.title), ...(media(project.previewImage || project.coverImage, ART.dark[i % 3]).startsWith("/images/premium/") ? ["Concept visual"] : [])],
+    labels: project.services.map((s) => s.title),
   };
 }
 

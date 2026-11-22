@@ -19,6 +19,7 @@ export function ProjectCard({ project, full = false, ix = "fade-up-long" }: { pr
           </div>
           {project.href && <ArrowDisc />}
         </div>
+        {project.description && <p className="project-summary">{project.description}</p>}
         {project.labels.length > 0 && (
           <div className="project-labels">{project.labels.map((label) => <div key={label} className="project-label">{label}</div>)}</div>
         )}
@@ -26,8 +27,8 @@ export function ProjectCard({ project, full = false, ix = "fade-up-long" }: { pr
     </>
   );
   return project.href
-    ? <A href={project.href} className={cn("project-card", full && "full")} data-ix={ix}>{body}</A>
-    : <div className={cn("project-card", full && "full")} data-ix={ix}>{body}</div>;
+    ? <A href={project.href} className={cn("project-card", !project.image && "project-card--type", full && "full")} data-ix={ix}>{body}</A>
+    : <div className={cn("project-card", !project.image && "project-card--type", full && "full")} data-ix={ix}>{body}</div>;
 }
 
 export function CtaRow({ cta, center = false }: { cta: Cta & { body?: string }; center?: boolean }) {

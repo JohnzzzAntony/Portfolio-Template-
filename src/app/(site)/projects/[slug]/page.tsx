@@ -5,7 +5,7 @@ import { CtaRow, PageTop, ProjectCard } from "@/components/editorial/sections";
 import { Button, Marquee, SectionHead } from "@/components/editorial/ui";
 import { getProject, getProjects, getRelatedProjects } from "@/lib/cms";
 import { projectItem } from "@/lib/presenters";
-import { ART, media } from "@/lib/media";
+import { cmsProjectImage, liveProjectImage } from "@/lib/live-projects";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -65,7 +65,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     title,
     description,
     alternates: { canonical: `/projects/${encodeURIComponent(project.slug)}` },
-    openGraph: { title, description, type: "article", images: [media(project.coverImage, ART.hero)] },
+    openGraph: { title, description, type: "article", images: cmsProjectImage(project) ? [cmsProjectImage(project)!] : [] },
   };
 }
 
@@ -86,18 +86,16 @@ export default async function ProjectPage({ params }: Params) {
     ["Stack", project.stack],
     ["Services", services.join(", ")],
   ].filter(([, value]) => value);
-  const mockups = project.images.filter((image) => !image.url.includes("/screens/"));
-  const screens = project.images.filter((image) => image.url.includes("/screens/"));
+  const verifiedImage = cmsProjectImage(project);
+  const mockups = project.images.filter((image) => image.url === verifiedImage && liveProjectImage(project.slug));
 
   return (
     <article>
       <PageTop
         title={project.title}
         captions={[services.join(" / "), project.year ? `(${project.year})` : undefined]}
-        image={media(project.coverImage, ART.dark[0])}
+        image={verifiedImage}
       />
-
-      {media(project.coverImage, ART.dark[0]).startsWith("/images/premium/") && <p className="concept-caption">Concept artwork illustrating the project’s domain.</p>}
 
       <section className="section no-pb">
         <div className="container-fluid">
@@ -143,32 +141,7 @@ export default async function ProjectPage({ params }: Params) {
             <div className="project-gallery">
               {mockups.map((image) => (
                 // eslint-disable-next-line @next/next/no-img-element -- CMS supplied
-                <img key={image.id} src={media(image.url, ART.dark[1])} alt={image.alt} loading="lazy" data-ix="fade-up" />
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {screens.length > 0 && (
-        <section className="section no-pb">
-          <div className="container-fluid">
-            <div className="mb-large">
-              <div className="grid-12 sm">
-                <div className="span-l6">
-                  <div className="heading-medium" data-ix="fade-up">Screens</div>
-                </div>
-                <div className="span-r7s">
-                  <p className="paragraph-small" style={bodyStyle} data-ix="lines">
-                    Pages captured from a local build of {project.title}. The device mockups above are composed from these screens.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="project-gallery">
-              {screens.map((image) => (
-                // eslint-disable-next-line @next/next/no-img-element -- CMS supplied
-                <img key={image.id} src={media(image.url, ART.dark[1])} alt={image.alt} loading="lazy" data-ix="fade-up" />
+                <img key={image.id} src={image.url} alt={image.alt} loading="lazy" data-ix="fade-up" />
               ))}
             </div>
           </div>
@@ -184,7 +157,7 @@ export default async function ProjectPage({ params }: Params) {
               </SectionHead>
             </div>
             <div className="mb-large">
-              <div className="projects-grid">{related.map((p, i) => <ProjectCard key={p.id} project={projectItem(p, i)} />)}</div>
+              <div className="projects-grid">{related.map((p) => <ProjectCard key={p.id} project={projectItem(p)} />)}</div>
             </div>
             <CtaRow cta={{ body: "Discover how creativity turns ideas into products people actually use.", label: "View all projects", href: "/portfolio" }} />
           </div>

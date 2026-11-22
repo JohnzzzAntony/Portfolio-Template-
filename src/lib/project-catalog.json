@@ -1,0 +1,113 @@
+[
+  {
+    "slug": "karji-store",
+    "title": "Karji Store",
+    "url": "https://karjistore.com/",
+    "summary": "I translated the Figma redesign into a mobile-first Shopify theme with editable brand pages, a mega menu and gift-with-purchase rules."
+  },
+  {
+    "slug": "daima",
+    "title": "Daima",
+    "url": "https://daima.ae/",
+    "summary": "I repaired a nested product form so Google Pay, Tabby and Tamara sit alongside the primary purchase action."
+  },
+  {
+    "slug": "flower-district",
+    "title": "Flower District",
+    "url": "https://flowerdistrict.ae/",
+    "summary": "I configured emirate-based delivery rates and delivery slots, then built individual store pages for local search."
+  },
+  {
+    "slug": "touch-of-oud",
+    "title": "Touch of Oud",
+    "url": "https://touchofoud.com/",
+    "summary": "I rebuilt the fragrance navigation around canonical collection URLs so customers can browse oud, perfume, home fragrance and body scents."
+  },
+  {
+    "slug": "atelier-perfumery",
+    "title": "Atelier Perfumery",
+    "url": "https://atelierperfumery.com/",
+    "summary": "I worked on hero loading and product grids for a catalogue of about 1,500 products, and built an A–Z directory for more than 130 fragrance brands."
+  },
+  {
+    "slug": "juvenis-paris",
+    "title": "Juvenis Paris",
+    "url": "https://juvenisparis.com/",
+    "summary": "I rebuilt the mobile swipe interaction, added responsive banner controls and positioned instalment options beneath the buy buttons."
+  },
+  {
+    "slug": "the-exceptional-parfums",
+    "title": "The Exceptional Parfums",
+    "url": "https://theexceptionalparfums.com/",
+    "summary": "I manage the Shopify storefront and maintain the product feeds that support shopping campaigns."
+  },
+  {
+    "slug": "saleel-parfums",
+    "title": "Saleel Parfums",
+    "url": "https://saleelparfums.com/",
+    "summary": "I customised the homepage slideshow on a duplicate Shopify theme so the team could preview changes before publishing."
+  },
+  {
+    "slug": "nexpixels",
+    "title": "Nexpixels",
+    "url": "https://nexpixels.com/",
+    "summary": "I built a coming-soon page with an interactive Three.js pixel field, a countdown and a notification form, with reduced-motion and no-WebGL fallbacks."
+  },
+  {
+    "slug": "new-fashion",
+    "title": "New Fashion",
+    "url": "https://new-fashion-production.up.railway.app/"
+  },
+  {
+    "slug": "elmoretto",
+    "title": "Elmoretto",
+    "url": "https://elmoretto-production.up.railway.app/"
+  },
+  {
+    "slug": "torque",
+    "title": "Torque",
+    "url": "https://torque-production-51b4.up.railway.app/",
+    "summary": "For this mould supplier in Dubai, I developed the site structure, visual direction and high-fidelity wireframes for the corporate website."
+  },
+  {
+    "slug": "db",
+    "title": "DB",
+    "url": "https://db-production-8accfce3.up.railway.app/"
+  },
+  {
+    "slug": "ecommerce",
+    "title": "Ecommerce",
+    "url": "https://ecommerce-production-f437.up.railway.app/"
+  },
+  {
+    "slug": "assetmanager",
+    "title": "Asset Manager",
+    "url": "https://assetmanager-production-59c3.up.railway.app/"
+  },
+  {
+    "slug": "domssl",
+    "title": "DomSSL",
+    "url": "https://domssl-production.up.railway.app/"
+  },
+  {
+    "slug": "nexora-ticketing",
+    "title": "Nexora Ticketing",
+    "url": "https://nexora-ticketing-1a23.up.railway.app/"
+  },
+  {
+    "slug": "books",
+    "title": "Books",
+    "url": "https://books-production-9f40.up.railway.app/"
+  },
+  {
+    "slug": "work-manager",
+    "title": "Work Manager",
+    "url": "https://work-manager-production-1c98.up.railway.app/"
+  },
+  {
+    "slug": "invitara",
+    "title": "Invitara",
+    "url": "https://invitara-production.up.railway.app/",
+    "summary": "Invitara turns a digital invitation into an interactive reveal with a wax seal, a storybook opening and a scratch-to-reveal date."
+  }
+]

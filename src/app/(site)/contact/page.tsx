@@ -5,8 +5,8 @@ import { ContactForm } from "@/components/forms/ContactForm";
 import { Mail, Phone, Pin } from "@/components/editorial/icons";
 import { BenefitsSection, ContactLines, PageTop, ProjectCard, StoryMarquee } from "@/components/editorial/sections";
 import { Button, SectionHead } from "@/components/editorial/ui";
-import { getFeaturedProject, getPage, getSettings, sectionMap } from "@/lib/cms";
-import { projectItem } from "@/lib/presenters";
+import { getPage, getSettings, sectionMap } from "@/lib/cms";
+import { liveProjects, liveProjectItem } from "@/lib/live-projects";
 import { ART, media } from "@/lib/media";
 import { pageMetadata } from "@/lib/seo";
 
@@ -18,7 +18,8 @@ export default async function ContactPage() {
   const page = await getPage("contact");
   if (!page) notFound();
 
-  const [settings, featured] = await Promise.all([getSettings(), getFeaturedProject()]);
+  const settings = await getSettings();
+  const featured = liveProjects[0];
   const s = sectionMap(page.sections);
   const tel = settings.phone.replace(/[^\d+]/g, "");
 
@@ -71,7 +72,7 @@ export default async function ContactPage() {
         <section className="section shadow">
           <div className="container-fluid">
             <div className="mb-small"><SectionHead label={s.featured?.label || "(Featured Project)"} index={s.featured?.index || "/04"} /></div>
-            <div className="mb-medium"><ProjectCard project={projectItem(featured)} full /></div>
+            <div className="mb-medium"><ProjectCard project={liveProjectItem(featured)} full /></div>
             <div className="align-center" data-ix="fade-up"><Button href="/portfolio">View all Projects</Button></div>
           </div>
         </section>

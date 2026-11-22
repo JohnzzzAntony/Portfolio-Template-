@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 
 import { siteUrl } from "@/lib/site-url";
 import "./globals.css";
+import "./portfolio-assets.css";
 
 // Overused Grotesk (SIL OFL 1.1, see fonts/OverusedGrotesk-OFL.txt), bundled so
 // builds never depend on a font CDN.

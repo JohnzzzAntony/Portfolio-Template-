@@ -14,20 +14,25 @@ export const ART = {
   light: ["/images/premium/studio.webp", "/images/premium/analytics.webp", "/images/premium/commerce.webp"],
 };
 
-/** High-fidelity, section-matched screenshots for services across all pages */
+/** Original service illustrations replace the seeded project screenshots. */
 export const SERVICE_ART: Record<string, string> = {
-  "E-commerce & Shopify": "/images/premium/commerce.webp",
-  "Payments & POS": "/images/premium/commerce.webp",
-  "Web Delivery": "/images/premium/systems.webp",
-  "Marketing & Tracking": "/images/premium/analytics.webp",
-  "QA & Testing": "/images/premium/security.webp",
-  "IT Systems & Infrastructure": "/images/premium/systems.webp",
-  "Automation": "/images/projects/workflow-hub/screens/notifications-desktop.webp",
-  "Figma to Shopify": "/images/premium/studio.webp",
-  "Corporate Websites": "/images/premium/systems.webp",
-  "Domain, DNS & SSL": "/images/premium/commerce.webp",
-  "Deployment Support": "/images/premium/security.webp"
+  "E-commerce & Shopify": "/images/portfolio-art/fields/storefront.svg",
+  "Payments & POS": "/images/portfolio-art/fields/payments.svg",
+  "Web Delivery": "/images/portfolio-art/fields/web.svg",
+  "Marketing & Tracking": "/images/portfolio-art/fields/analytics.svg",
+  "QA & Testing": "/images/portfolio-art/fields/qa.svg",
+  "IT Systems & Infrastructure": "/images/portfolio-art/fields/infra.svg",
+  "Automation": "/images/portfolio-art/fields/automation.svg",
+  "Figma to Shopify": "/images/portfolio-art/fields/figma.svg",
+  "Corporate Websites": "/images/portfolio-art/fields/web.svg",
+  "Domain, DNS & SSL": "/images/portfolio-art/fields/infra.svg",
+  "Deployment Support": "/images/portfolio-art/fields/launch.svg"
 };
+
+export function serviceArt(title: string, image: string, fallback: string) {
+  const illustration = SERVICE_ART[title] || fallback;
+  return image.startsWith("/images/projects/") ? illustration : media(image, illustration);
+}
 
 /** Content-matched project showcase images for benefits */
 export const BENEFIT_ART: Record<string, string> = {
