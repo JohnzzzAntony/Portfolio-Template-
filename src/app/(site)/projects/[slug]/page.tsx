@@ -127,6 +127,21 @@ export default async function ProjectPage({ params }: Params) {
         </div>
       </section>
 
+      {project.videoUrl && (
+        <section className="section no-pb">
+          <div className="container-fluid">
+            <video
+              className="project-film"
+              src={project.videoUrl}
+              poster={media(project.previewImage || project.coverImage, ART.dark[1])}
+              autoPlay muted loop playsInline preload="metadata"
+              aria-label={`${project.title} walkthrough film`}
+              style={{ width: "100%", aspectRatio: "16 / 9", objectFit: "cover", borderRadius: "var(--r-radius)", display: "block" }}
+            />
+          </div>
+        </section>
+      )}
+
       <section className="section no-pb">
         <div className="container-fluid">
           <Block heading="Key features"><Rows items={features} /></Block>
@@ -160,7 +175,7 @@ export default async function ProjectPage({ params }: Params) {
                 </div>
                 <div className="span-r7s">
                   <p className="paragraph-small" style={bodyStyle} data-ix="lines">
-                    Pages captured from a local build of {project.title}. The device mockups above are composed from these screens.
+                    Sections of {project.title} as captured from the site. The device mockups above are composed from these screens.
                   </p>
                 </div>
               </div>

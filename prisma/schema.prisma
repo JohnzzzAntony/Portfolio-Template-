@@ -168,6 +168,8 @@ model Project {
   coverImage   String @default("")
   previewImage String @default("")
   viewUrl      String @default("")
+  /// Silent MP4 shown on the project page, e.g. /videos/projects/<slug>.mp4.
+  videoUrl     String @default("")
 
   order       Int      @default(0)
   featured    Boolean  @default(false)

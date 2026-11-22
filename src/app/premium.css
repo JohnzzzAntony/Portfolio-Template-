@@ -69,3 +69,8 @@
   .rx .cs-headline { max-width: 100%; }
   .rx .premium-sculpture { display: none; }
 }
+
+/* Project banners carry their title on the left; on narrow screens keep the device side in frame. */
+@media (max-width: 991px) {
+  .parallax-frame img[src*="/banner.webp"] { object-position: 80% 50%; }
+}

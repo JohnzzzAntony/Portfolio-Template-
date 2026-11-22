@@ -1,0 +1,86 @@
+{
+  "daima": {
+    "accent": "#548080",
+    "pageHeight": 3359
+  },
+  "atelier-perfumery": {
+    "accent": "#888888",
+    "pageHeight": 7606
+  },
+  "flower-district-delivery": {
+    "accent": "#888888",
+    "pageHeight": 4191
+  },
+  "juvenis-paris": {
+    "accent": "#778080",
+    "pageHeight": 4343
+  },
+  "touch-of-oud": {
+    "accent": "#888888",
+    "pageHeight": 5503
+  },
+  "house-of-karji": {
+    "accent": "#888888",
+    "pageHeight": 6907
+  },
+  "fragrance-brand-care": {
+    "accent": "#484838",
+    "pageHeight": 4879
+  },
+  "the-exceptional-parfums": {
+    "accent": "#777777",
+    "pageHeight": 3050
+  },
+  "mechaura": {
+    "accent": "#888888",
+    "pageHeight": 7825
+  },
+  "maylaa-assets": {
+    "accent": "#888888",
+    "pageHeight": 2311
+  },
+  "finora": {
+    "accent": "#888888",
+    "pageHeight": 810
+  },
+  "certguard": {
+    "accent": "#888888",
+    "pageHeight": 810
+  },
+  "nexecoms": {
+    "accent": "#808080",
+    "pageHeight": 813
+  },
+  "invitara": {
+    "accent": "#888888",
+    "pageHeight": 4820
+  },
+  "nexpixels-automation": {
+    "accent": "#888888",
+    "pageHeight": 9049
+  },
+  "torque-moulds": {
+    "accent": "#888888",
+    "pageHeight": 5466
+  },
+  "nexora": {
+    "accent": "#888888",
+    "pageHeight": 6452
+  },
+  "workflow-hub": {
+    "accent": "#888888",
+    "pageHeight": 810
+  },
+  "hale-fashion": {
+    "accent": "#808080",
+    "pageHeight": 14000
+  },
+  "el-moretto": {
+    "accent": "#585835",
+    "pageHeight": 16000
+  },
+  "koshys-nursing-study": {
+    "accent": "#888888",
+    "pageHeight": 810
+  }
+}

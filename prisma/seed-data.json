@@ -4,9 +4,9 @@
     "brandName": "Johns",
     "brandSuffix": "Antony",
     "tagline": "Digital & E-commerce Specialist",
-    "logoLight": "/brand/logo-light.svg",
-    "logoDark": "/brand/logo-dark.svg",
-    "favicon": "/favicon.ico",
+    "logoLight": "/files/1000355488-086d39c8.png",
+    "logoDark": "/files/1000355488-95421f26.png",
+    "favicon": "/files/1000355487-eb0c41be.png",
     "coordinates": "25.2048° N, 55.2708° E",
     "email": "johnsantonyjo@gmail.com",
     "supportEmail": "johnsantonyjo@gmail.com",
@@ -16,14 +16,14 @@
     "footerHeadline": "Let's build something useful.",
     "footerCtaLabel": "Get in touch",
     "footerCtaUrl": "/contact",
-    "footerImage": "/images/art/footer.webp",
+    "footerImage": "/files/whatsapp-image-2026-11-01-at-75624-am-e1d2291c.jpg",
     "badgeText": "LET'S TALK · SAY HELLO ·",
     "credits": "Designed & built by Johns Antony.",
     "copyright": "(©2021 — 2026)",
     "metaTitle": "Johns Antony | Digital & E-commerce Specialist",
     "metaDescription": "Johns Antony is a Digital & E-commerce Specialist and Systems & IT Administrator based in Dubai, specialising in Shopify development, web delivery, payments, analytics, automation, QA and IT systems.",
-    "ogImage": "/images/art/hero.webp",
-    "updatedAt": "2026-10-14T20:20:40.020Z"
+    "ogImage": "/images/current-work/shopify-store-collection.webp",
+    "updatedAt": "2026-11-09T19:55:13.348Z"
   },
   "navItems": [
     {
@@ -79,18 +79,95 @@
   ],
   "pages": [
     {
+      "id": "cmuylvt80002gp82wtapqx36l",
+      "key": "services",
+      "name": "Services",
+      "title": "Services &\r\ncapabilities",
+      "metaLeft": "5+ years across e-commerce & IT",
+      "metaRight": "(©2021 — 2026)",
+      "heroImage": "/files/whatsapp-image-2026-11-01-at-75719-am-25a97724.jpg",
+      "heroImageMobile": "/files/whatsapp-image-2026-11-01-at-75624-am-e2acf002.jpg",
+      "seoTitle": "Services",
+      "seoDescription": "",
+      "ogImage": "/images/current-work/tools-technologies.webp",
+      "updatedAt": "2026-11-01T07:07:30.634Z",
+      "sections": [
+        {
+          "id": "cmuylvt80002hp82w7qfw0h0l",
+          "pageId": "cmuylvt80002gp82wtapqx36l",
+          "key": "expertise",
+          "label": "(Expertise)",
+          "index": "/01",
+          "heading": "",
+          "subheading": "",
+          "body": "Seven practice areas, one specialist.\r\nMost engagements use three of them.",
+          "image": "",
+          "ctaLabel": "",
+          "ctaUrl": "",
+          "order": 0,
+          "visible": true
+        },
+        {
+          "id": "cmuylvt80002ip82w22tz9jpt",
+          "pageId": "cmuylvt80002gp82wtapqx36l",
+          "key": "featured",
+          "label": "(Featured Project)",
+          "index": "/02",
+          "heading": "",
+          "subheading": "",
+          "body": "",
+          "image": "",
+          "ctaLabel": "View all Projects",
+          "ctaUrl": "/portfolio",
+          "order": 1,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "cmuylvtnf002jp82w6aa3mopr",
+      "key": "portfolio",
+      "name": "Portfolio",
+      "title": "Selected Work",
+      "metaLeft": "E-commerce, automation & web",
+      "metaRight": "",
+      "heroImage": "/images/current-work/shopify-store-collection.webp",
+      "heroImageMobile": "/images/current-work/shopify-store-collection.webp",
+      "seoTitle": "Selected Work",
+      "seoDescription": "",
+      "ogImage": "/images/current-work/shopify-store-collection.webp",
+      "updatedAt": "2026-10-17T16:10:33.960Z",
+      "sections": [
+        {
+          "id": "cmuylvtnf002kp82w1j3k4hlf",
+          "pageId": "cmuylvtnf002jp82w6aa3mopr",
+          "key": "portfolio",
+          "label": "(Portfolio)",
+          "index": "/01",
+          "heading": "Work I can talk about.\r\nAsk me about the rest.",
+          "subheading": "",
+          "body": "",
+          "image": "",
+          "ctaLabel": "",
+          "ctaUrl": "",
+          "order": 0,
+          "visible": true
+        }
+      ]
+    },
+    {
       "id": "cmuylvs87001yp82wxlosw56a",
       "key": "home",
       "name": "Home",
-      "title": "Johns\nAntony",
+      "title": "Johns\r\nAntony",
       "metaLeft": "",
       "metaRight": "",
-      "heroImage": "/images/realistic/digital-commerce-specialist.webp",
-      "heroImageMobile": "/images/realistic/digital-commerce-specialist-mobile.webp",
+      "heroImage": "/files/architectbuildingdigitalsyste20261018175623-432891a6.mp4",
+      "heroImageMobile": "/files/architectbuildingdigitalsyste20261018175623-dd3c8a1d.mp4",
       "seoTitle": "Johns Antony | Digital & E-commerce Specialist in Dubai",
       "seoDescription": "Johns Antony is a Digital & E-commerce Specialist and Systems & IT Administrator based in Dubai, specialising in Shopify, web delivery, payments, analytics, automation, QA and IT systems.",
-      "ogImage": "",
-      "updatedAt": "2026-10-14T19:57:27.891Z",
+      "ogImage": "/files/cinematicneonhaloportraitpng2k20261018005649-6060693a.jpg",
+      "updatedAt": "2026-11-01T08:27:41.394Z",
       "sections": [
         {
           "id": "cmuylvs87001zp82wnx9gkknx",
@@ -100,8 +177,8 @@
           "index": "",
           "heading": "",
           "subheading": "",
-          "body": "Digital & E-commerce Specialist and Systems & IT\nAdministrator based in Dubai. I build, run and\nimprove the systems behind digital commerce.",
-          "image": "",
+          "body": "Digital & E-commerce Specialist and Systems & IT\r\nAdministrator based in Dubai. I build, run and\r\nimprove the systems behind digital commerce.",
+          "image": "/files/cinematicneonhaloportraitpng2k20261018005649-3773e572.jpg",
           "ctaLabel": "View my work",
           "ctaUrl": "/portfolio",
           "order": 0,
@@ -113,10 +190,10 @@
           "key": "about",
           "label": "(About)",
           "index": "/01",
-          "heading": "",
+          "heading": "About",
           "subheading": "",
-          "body": "I work across Shopify storefronts, payments,\ntracking, automation and IT infrastructure —\nthe practical technology that keeps a digital\nbusiness running day to day.",
-          "image": "/images/projects/carter-studio/mockup-1.webp",
+          "body": "I work across Shopify storefronts, payments,\r\ntracking, automation and IT infrastructure —\r\nthe practical technology that keeps a digital\r\nbusiness running day to day.I work across Shopify storefronts, payments,\r\ntracking, automation and IT infrastructure —\r\nthe practical technology that keeps a digital\r\nbusiness running day to day.",
+          "image": "/files/cinematicneonhaloportraitpng2k20261018005649-9a079cc6.jpg",
           "ctaLabel": "More about me",
           "ctaUrl": "/about",
           "order": 1,
@@ -131,11 +208,11 @@
           "heading": "My Story",
           "subheading": "",
           "body": "",
-          "image": "",
+          "image": "/files/14623ab2-d92f-4008-8e93-a9908ae2367c-435b6eb5.jpg",
           "ctaLabel": "",
           "ctaUrl": "",
           "order": 2,
-          "visible": true
+          "visible": false
         },
         {
           "id": "cmuylvs870022p82wpgbz3zgw",
@@ -145,8 +222,8 @@
           "index": "/02",
           "heading": "",
           "subheading": "",
-          "body": "Shopify and e-commerce, payments, tracking,\nQA and IT systems — one specialist\nacross the whole stack.",
-          "image": "",
+          "body": "Shopify and e-commerce, payments, tracking,\r\nQA and IT systems — one specialist\r\nacross the whole stack.",
+          "image": "/files/01-ecommerce-solutions-7d6edfe3.png",
           "ctaLabel": "",
           "ctaUrl": "",
           "order": 3,
@@ -156,12 +233,12 @@
           "id": "cmuylvs870023p82wfek64rzx",
           "pageId": "cmuylvs87001yp82wxlosw56a",
           "key": "mission",
-          "label": "(Our Mission)",
+          "label": "(My approach)",
           "index": "/03",
-          "heading": "Systems®\nThat\nWork",
+          "heading": "Systems®\r\nThat\r\nWork",
           "subheading": "",
           "body": "A digital product can look perfect and still fail operationally. My approach considers the complete system — design, development, functionality, tracking, payments, infrastructure, testing and operations — so I can work comfortably between business teams, designers, developers, finance teams, retail teams and IT operations.",
-          "image": "/images/art/mission.webp",
+          "image": "/files/whatsapp-image-2026-11-01-at-75624-am-91409bae.jpg",
           "ctaLabel": "View my services",
           "ctaUrl": "/services",
           "order": 4,
@@ -173,10 +250,10 @@
           "key": "portfolio",
           "label": "(Portfolio)",
           "index": "/04",
-          "heading": "Selected Work",
+          "heading": "Current Work",
           "subheading": "",
-          "body": "Projects across e-commerce, automation and web delivery — from storefront experience to lead-generation pipelines.",
-          "image": "",
+          "body": "Shopify storefronts, international markets, delivery experiences and connected workflows — alongside my web application projects.",
+          "image": "/files/img103-c69bf823.png",
           "ctaLabel": "View all projects",
           "ctaUrl": "/portfolio",
           "order": 5,
@@ -189,13 +266,13 @@
           "label": "(Benefits)",
           "index": "/05",
           "heading": "What I Bring",
-          "subheading": "The Impact I Deliver",
+          "subheading": "The  Impact  I  Deliver",
           "body": "",
-          "image": "",
+          "image": "/files/img501-cbedae80.png",
           "ctaLabel": "",
           "ctaUrl": "",
           "order": 6,
-          "visible": true
+          "visible": false
         },
         {
           "id": "cmuylvs880026p82w4iist1t9",
@@ -205,7 +282,7 @@
           "index": "/06",
           "heading": "",
           "subheading": "Practical writing on storefronts, tracking, automation and IT operations.",
-          "body": "Notes on e-commerce, systems\nand the parts of operations\nthat usually go undocumented.",
+          "body": "Notes on e-commerce, systems\r\nand the parts of operations\r\nthat usually go undocumented.",
           "image": "",
           "ctaLabel": "View notes",
           "ctaUrl": "/blog",
@@ -216,13 +293,13 @@
           "id": "cmuylvs880027p82w7h9lpmz1",
           "pageId": "cmuylvs87001yp82wxlosw56a",
           "key": "playground",
-          "label": "(Playground)",
+          "label": "(Current work)",
           "index": "/07",
-          "heading": "Creative Lab",
+          "heading": "Work in Focus",
           "subheading": "",
           "body": "",
-          "image": "",
-          "ctaLabel": "View archive",
+          "image": "/files/1000348482-76578dcd.png",
+          "ctaLabel": "Explore the work",
           "ctaUrl": "/portfolio",
           "order": 8,
           "visible": true
@@ -233,15 +310,15 @@
       "id": "cmuylvssb0028p82w30si328w",
       "key": "about",
       "name": "About",
-      "title": "About\nJohns Antony",
+      "title": "About\r\nJohns Antony",
       "metaLeft": "Based in Dubai, UAE",
-      "metaRight": "(©2021 — 2026)",
-      "heroImage": "/images/art/page.webp",
-      "heroImageMobile": "",
+      "metaRight": "2021 — 2026",
+      "heroImage": "/files/1000355487-8cbab603.png",
+      "heroImageMobile": "/files/1000355487-50b629c3.png",
       "seoTitle": "About",
       "seoDescription": "",
-      "ogImage": "",
-      "updatedAt": "2026-10-14T19:57:31.082Z",
+      "ogImage": "/images/current-work/developer-at-work.webp",
+      "updatedAt": "2026-11-09T19:56:24.390Z",
       "sections": [
         {
           "id": "cmuylvssb0029p82w2x8jf51f",
@@ -251,8 +328,8 @@
           "index": "/01",
           "heading": "",
           "subheading": "",
-          "body": "Five-plus years across Shopify e-commerce,\nweb delivery, system administration,\nnetwork infrastructure and software QA.",
-          "image": "/images/art/silk-portrait.webp",
+          "body": "Five-plus years across Shopify e-commerce,\r\nweb delivery, system administration,\r\nnetwork infrastructure and software QA.",
+          "image": "/images/current-work/full-stack-development.webp",
           "ctaLabel": "View services",
           "ctaUrl": "/services",
           "order": 0,
@@ -281,7 +358,7 @@
           "index": "/02",
           "heading": "",
           "subheading": "",
-          "body": "Business requirement first, then the simplest\ntechnical solution that actually fits it.",
+          "body": "Business requirement first, then the simplest\r\ntechnical solution that actually fits it.",
           "image": "",
           "ctaLabel": "",
           "ctaUrl": "",
@@ -292,12 +369,12 @@
           "id": "cmuylvssb002cp82wgsgqqk2k",
           "pageId": "cmuylvssb0028p82w30si328w",
           "key": "mission",
-          "label": "(Our Mission)",
+          "label": "(My approach)",
           "index": "/03",
-          "heading": "Systems®\nThat\nWork",
+          "heading": "Systems®\r\nThat\r\nWork",
           "subheading": "",
           "body": "I'm most useful where the technical decision and the business decision are the same decision — e-commerce builds, payment setups, tracking, infrastructure and automation that have to work every day, not just at launch.",
-          "image": "/images/art/mission.webp",
+          "image": "/images/current-work/tools-technologies.webp",
           "ctaLabel": "View my work",
           "ctaUrl": "/portfolio",
           "order": 3,
@@ -341,88 +418,11 @@
           "index": "/06",
           "heading": "",
           "subheading": "",
-          "body": "The person behind the work —\nand the one you'll actually be talking to.",
+          "body": "The person behind the work —\r\nand the one you'll actually be talking to.",
           "image": "",
           "ctaLabel": "",
           "ctaUrl": "",
           "order": 6,
-          "visible": true
-        }
-      ]
-    },
-    {
-      "id": "cmuylvt80002gp82wtapqx36l",
-      "key": "services",
-      "name": "Services",
-      "title": "Services &\ncapabilities",
-      "metaLeft": "5+ years across e-commerce & IT",
-      "metaRight": "(©2021 — 2026)",
-      "heroImage": "/images/art/page.webp",
-      "heroImageMobile": "",
-      "seoTitle": "Services",
-      "seoDescription": "",
-      "ogImage": "",
-      "updatedAt": "2026-10-14T19:57:33.209Z",
-      "sections": [
-        {
-          "id": "cmuylvt80002hp82w7qfw0h0l",
-          "pageId": "cmuylvt80002gp82wtapqx36l",
-          "key": "expertise",
-          "label": "(Expertise)",
-          "index": "/01",
-          "heading": "",
-          "subheading": "",
-          "body": "Seven practice areas, one specialist.\nMost engagements use three of them.",
-          "image": "",
-          "ctaLabel": "",
-          "ctaUrl": "",
-          "order": 0,
-          "visible": true
-        },
-        {
-          "id": "cmuylvt80002ip82w22tz9jpt",
-          "pageId": "cmuylvt80002gp82wtapqx36l",
-          "key": "featured",
-          "label": "(Featured Project)",
-          "index": "/02",
-          "heading": "",
-          "subheading": "",
-          "body": "",
-          "image": "",
-          "ctaLabel": "View all Projects",
-          "ctaUrl": "/portfolio",
-          "order": 1,
-          "visible": true
-        }
-      ]
-    },
-    {
-      "id": "cmuylvtnf002jp82w6aa3mopr",
-      "key": "portfolio",
-      "name": "Portfolio",
-      "title": "Selected Work",
-      "metaLeft": "E-commerce, automation & web",
-      "metaRight": "(©2021 — 2026)",
-      "heroImage": "/images/projects/finora/mockup-1.webp",
-      "heroImageMobile": "",
-      "seoTitle": "Selected Work",
-      "seoDescription": "",
-      "ogImage": "",
-      "updatedAt": "2026-10-14T19:57:33.749Z",
-      "sections": [
-        {
-          "id": "cmuylvtnf002kp82w1j3k4hlf",
-          "pageId": "cmuylvtnf002jp82w6aa3mopr",
-          "key": "portfolio",
-          "label": "(Portfolio)",
-          "index": "/01",
-          "heading": "Work I can talk about.\nAsk me about the rest.",
-          "subheading": "",
-          "body": "",
-          "image": "",
-          "ctaLabel": "",
-          "ctaUrl": "",
-          "order": 0,
           "visible": true
         }
       ]
@@ -434,12 +434,12 @@
       "title": "Notes\n& Field work",
       "metaLeft": "On the work",
       "metaRight": "(©2021 — 2026)",
-      "heroImage": "",
-      "heroImageMobile": "",
+      "heroImage": "/images/current-work/development-workspace.webp",
+      "heroImageMobile": "/images/current-work/development-workspace.webp",
       "seoTitle": "Notes",
       "seoDescription": "",
-      "ogImage": "",
-      "updatedAt": "2026-10-14T19:57:34.196Z",
+      "ogImage": "/images/current-work/development-workspace.webp",
+      "updatedAt": "2026-10-15T21:00:58.861Z",
       "sections": [
         {
           "id": "cmuylvu27002mp82waqi8hp4x",
@@ -465,12 +465,12 @@
       "title": "Let's Work\nTogether",
       "metaLeft": "Based in Dubai, UAE",
       "metaRight": "(©2021 — 2026)",
-      "heroImage": "/images/art/page.webp",
-      "heroImageMobile": "",
+      "heroImage": "/images/current-work/build-together.webp",
+      "heroImageMobile": "/images/current-work/build-together.webp",
       "seoTitle": "Contact",
       "seoDescription": "",
-      "ogImage": "",
-      "updatedAt": "2026-10-14T19:57:34.569Z",
+      "ogImage": "/images/current-work/build-together.webp",
+      "updatedAt": "2026-10-15T21:00:58.976Z",
       "sections": [
         {
           "id": "cmuylvueo002op82wg0jf6vk4",
@@ -541,9 +541,9 @@
       "slug": "e-commerce-shopify",
       "index": "/001",
       "title": "E-commerce & Shopify",
-      "description": "Shopify storefronts end to end: theme sections and Liquid, apps and integrations, product feeds, checkout, staff access, uptime and speed checks.",
-      "image": "/images/realistic/ecommerce-storefront.webp",
-      "capabilities": "[\"Shopify themes & sections\",\"Liquid customisation\",\"Apps & integrations\",\"Product feeds\",\"Checkout & uptime checks\"]",
+      "description": "",
+      "image": "/files/01-ecommerce-solutions-aeb1dba9.png",
+      "capabilities": "[\"Shopify storefronts end to end\",\"Theme sections and Liquid\",\"Apps and integrations\",\"Shopify themes & sections\",\"Liquid customisation\",\"Apps & integrations\",\"Product feeds\",\"Checkout & uptime checks\",\"product feeds\",\"checkout, staff access, uptime and speed checks\"]",
       "order": 0,
       "published": true
     },
@@ -553,7 +553,7 @@
       "index": "/002",
       "title": "Payments & POS",
       "description": "The technical layer connecting online commerce with payment and retail operations — gateways, payment links, BNPL and in-store terminals.",
-      "image": "/images/realistic/payments-pos.webp",
+      "image": "/files/02-pos-payment-solutions-6f18ab3a.png",
       "capabilities": "[\"Payment gateways\",\"Payment links\",\"Tabby & Tamara\",\"Network payment terminals\",\"POS support\"]",
       "order": 1,
       "published": true
@@ -564,7 +564,7 @@
       "index": "/003",
       "title": "Web Delivery",
       "description": "Figma-to-Shopify builds and corporate websites outside Shopify, plus the domain, DNS and SSL management that keeps them online.",
-      "image": "/images/realistic/digital-commerce-specialist.webp",
+      "image": "/files/03-web-software-development-69ff2f70.png",
       "capabilities": "[\"Figma-to-Shopify\",\"Corporate websites\",\"Domain, DNS & SSL\",\"Deployment support\"]",
       "order": 2,
       "published": true
@@ -575,7 +575,7 @@
       "index": "/004",
       "title": "Marketing & Tracking",
       "description": "GA4/GTM dataLayer tracking, Google Merchant product feeds, ad account management and technical SEO support across storefronts.",
-      "image": "/images/realistic/marketing-analytics.webp",
+      "image": "/files/04-marketing-analytics-bd13a284.png",
       "capabilities": "[\"Google & TikTok Ads\",\"GA4 & GTM dataLayer\",\"Merchant Center feeds\",\"Google Business Profile\",\"SEO support\"]",
       "order": 3,
       "published": true
@@ -586,7 +586,7 @@
       "index": "/005",
       "title": "QA & Testing",
       "description": "A software QA background applied to every release: manual and automated testing, regression, UAT and structured defect tracking.",
-      "image": "/images/realistic/qa-testing.webp",
+      "image": "/files/05-quality-assurance-testing-303ee344.png",
       "capabilities": "[\"Manual & automated testing\",\"Selenium & Appium\",\"Jira & Agile\",\"Regression & UAT\"]",
       "order": 4,
       "published": true
@@ -597,7 +597,7 @@
       "index": "/006",
       "title": "IT Systems & Infrastructure",
       "description": "Networks, endpoints and security devices behind business operations — Windows and Linux, firewalls, CCTV, biometrics and PABX.",
-      "image": "/images/realistic/it-infrastructure.webp",
+      "image": "/files/06-cloud-it-infrastructure-b28ec0f9.png",
       "capabilities": "[\"Networks & firewalls\",\"Windows & Linux\",\"CCTV & access control\",\"PABX & biometrics\",\"Endpoint security\"]",
       "order": 5,
       "published": true
@@ -608,13 +608,364 @@
       "index": "/007",
       "title": "Automation",
       "description": "Practical automation that removes repetitive work and connects business systems — lead generation, enrichment and CRM pipelines.",
-      "image": "/images/realistic/marketing-analytics.webp",
+      "image": "/images/current-work/technical-integrations.webp",
       "capabilities": "[\"n8n workflows\",\"Lead generation & CRM\",\"Google Sheets & APIs\",\"AI-assisted qualification\"]",
       "order": 6,
-      "published": true
+      "published": false
     }
   ],
   "projects": [
+    {
+      "id": "cmv9yixf2001kp8y8iae526jv",
+      "slug": "shopify-store-operations",
+      "title": "Shopify Store Operations",
+      "client": "",
+      "year": "",
+      "category": "Multi-brand e-commerce",
+      "stack": "Shopify · Liquid",
+      "overview": "Ongoing development and operational support across Shopify storefronts for fragrance, luxury gifting and flowers. The work spans Karji, Daima, Touch of Oud, Flower District, Atelier Perfumery, Saleel Parfums, The Exceptional Parfums and Juvenis Paris.\r\nThe gallery uses original campaign and product images published on the brands’ live storefronts. Open each card to visit its official store or product listing.",
+      "features": "Custom Liquid sections and editable theme blocks\r\nProduct catalogues, collections and product information\r\nCart, checkout and payment options\r\nProduct feeds and structured product data\r\nResponsive layouts and release checks",
+      "journey": "The work connects the storefront experience with the operational details behind it: product content, inventory visibility, payments and marketing feeds.",
+      "engineering": "Reusable theme sections, responsive interfaces and structured product information keep the storefront maintainable as catalogues and campaigns change.",
+      "scope": "Current work covering storefront development, configuration, integrations and ongoing support. Store imagery is sourced from the official public storefronts and is shown for portfolio reference.",
+      "approach": "",
+      "steps": "",
+      "coverImage": "/files/ecom-e3ce390c.png",
+      "previewImage": "/files/ecom-4a7b1f28.png",
+      "viewUrl": "",
+      "order": -5,
+      "featured": false,
+      "published": true,
+      "publishedAt": "2026-10-15T19:54:08.175Z",
+      "seoTitle": "Shopify Store Operations",
+      "seoDescription": "Ongoing development and operational support across Shopify storefronts for fragrance, luxury gifting and flowers. The work spans Karji, Daima, Touch of Oud, Flower District, Atelier Perfumery, Saleel Parfums, The Exceptional Parfums and Juvenis Paris.",
+      "createdAt": "2026-10-15T19:54:08.175Z",
+      "updatedAt": "2026-10-18T11:55:41.541Z",
+      "images": [
+        {
+          "id": "work-shopify-store-operations-shopify-brand-ecosystem",
+          "projectId": "cmv9yixf2001kp8y8iae526jv",
+          "url": "/images/current-work/shopify-brand-ecosystem.webp",
+          "alt": "Shopify Store Operations — shopify brand ecosystem (project illustration)",
+          "order": 0
+        },
+        {
+          "id": "work-shopify-store-operations-shopify-theme-customization",
+          "projectId": "cmv9yixf2001kp8y8iae526jv",
+          "url": "/images/current-work/shopify-theme-customization.webp",
+          "alt": "Shopify Store Operations — shopify theme customization (project illustration)",
+          "order": 1
+        },
+        {
+          "id": "work-shopify-store-operations-commerce-checkout",
+          "projectId": "cmv9yixf2001kp8y8iae526jv",
+          "url": "/images/current-work/commerce-checkout.webp",
+          "alt": "Shopify Store Operations — commerce checkout (project illustration)",
+          "order": 2
+        },
+        {
+          "id": "work-shopify-store-operations-seo-product-feeds",
+          "projectId": "cmv9yixf2001kp8y8iae526jv",
+          "url": "/images/current-work/seo-product-feeds.webp",
+          "alt": "Shopify Store Operations — seo product feeds (project illustration)",
+          "order": 3
+        },
+        {
+          "id": "work-shopify-store-operations-store-brand-directory",
+          "projectId": "cmv9yixf2001kp8y8iae526jv",
+          "url": "/images/current-work/store-brand-directory.webp",
+          "alt": "Shopify Store Operations — store brand directory (project illustration)",
+          "order": 4
+        },
+        {
+          "id": "work-shopify-store-operations-store-karji",
+          "projectId": "cmv9yixf2001kp8y8iae526jv",
+          "url": "/images/storefronts/karji.webp",
+          "alt": "Karji live storefront campaign banner",
+          "order": 10
+        },
+        {
+          "id": "work-shopify-store-operations-store-daima",
+          "projectId": "cmv9yixf2001kp8y8iae526jv",
+          "url": "/images/storefronts/daima.webp",
+          "alt": "Daima official storefront homepage banner",
+          "order": 11
+        },
+        {
+          "id": "work-shopify-store-operations-store-saleel-parfums",
+          "projectId": "cmv9yixf2001kp8y8iae526jv",
+          "url": "/images/storefronts/saleel-parfums.webp",
+          "alt": "Saleel Parfums official storefront collection campaign",
+          "order": 12
+        },
+        {
+          "id": "work-shopify-store-operations-store-touch-of-oud",
+          "projectId": "cmv9yixf2001kp8y8iae526jv",
+          "url": "/images/storefronts/touch-of-oud.webp",
+          "alt": "Touch Of Oud official storefront fragrance campaign",
+          "order": 13
+        },
+        {
+          "id": "work-shopify-store-operations-store-flower-district",
+          "projectId": "cmv9yixf2001kp8y8iae526jv",
+          "url": "/images/storefronts/flower-district.webp",
+          "alt": "Flower District official storefront floral collection",
+          "order": 14
+        },
+        {
+          "id": "work-shopify-store-operations-store-the-exceptional",
+          "projectId": "cmv9yixf2001kp8y8iae526jv",
+          "url": "/images/storefronts/the-exceptional.webp",
+          "alt": "The Exceptional Greedy Heart EDP — official product image on Karji",
+          "order": 15
+        },
+        {
+          "id": "work-shopify-store-operations-store-atelier-perfumery",
+          "projectId": "cmv9yixf2001kp8y8iae526jv",
+          "url": "/images/storefronts/atelier-perfumery.webp",
+          "alt": "Atelier Perfumery official storefront homepage banner",
+          "order": 16
+        },
+        {
+          "id": "work-shopify-store-operations-store-juvenis-paris",
+          "projectId": "cmv9yixf2001kp8y8iae526jv",
+          "url": "/images/storefronts/juvenis-paris.webp",
+          "alt": "Juvenis Paris official storefront Just Arrived banner",
+          "order": 17
+        }
+      ],
+      "serviceIds": [
+        "cmv8j7ist0000p8d8856hzr55",
+        "cmv8j7j640003p8d8go7kqaut",
+        "cmv8j7ja80004p8d88vlkgjz5"
+      ]
+    },
+    {
+      "id": "cmv9yiyk1001lp8y8ggyxhl2c",
+      "slug": "daima-usa-expansion",
+      "title": "Daima · USA Expansion",
+      "client": "Daima",
+      "year": "",
+      "category": "International e-commerce",
+      "stack": "Shopify Markets",
+      "overview": "Supporting one Shopify store across the UAE and US markets. This work brings market-specific browsing, domain routing, discoverability and shipping configuration into a connected storefront experience.\r\nThe supplied project artwork illustrates the UAE-to-US expansion and the systems involved.",
+      "features": "UAE and USA market configuration\r\nMarket-aware domain routing\r\nSEO and product visibility\r\nShipping and carrier configuration\r\nCross-device storefront checks",
+      "journey": "Customers reach the relevant market experience, browse the catalogue and proceed through the delivery and checkout options configured for that market.",
+      "engineering": "Keep routing, market settings, product visibility and delivery rules consistent across the same store, with checks for navigation and checkout edge cases.",
+      "scope": "Shopify market expansion and the supporting storefront configuration. No sales uplift or commercial results are claimed here.",
+      "approach": "",
+      "steps": "",
+      "coverImage": "/files/img105-139ed3ac.png",
+      "previewImage": "/files/img105-8e583a10.png",
+      "viewUrl": "",
+      "order": -4,
+      "featured": false,
+      "published": false,
+      "publishedAt": "2026-10-15T19:54:09.649Z",
+      "seoTitle": "Daima · USA Expansion",
+      "seoDescription": "Supporting one Shopify store across the UAE and US markets. This work brings market-specific browsing, domain routing, discoverability and shipping configuration into a connected storefront experience.",
+      "createdAt": "2026-10-15T19:54:09.649Z",
+      "updatedAt": "2026-11-22T21:58:27.785Z",
+      "images": [
+        {
+          "id": "work-daima-usa-expansion-daima-global-expansion",
+          "projectId": "cmv9yiyk1001lp8y8ggyxhl2c",
+          "url": "/images/current-work/daima-global-expansion.webp",
+          "alt": "Daima · USA Expansion — daima global expansion (project illustration)",
+          "order": 0
+        },
+        {
+          "id": "work-daima-usa-expansion-daima-uae-usa",
+          "projectId": "cmv9yiyk1001lp8y8ggyxhl2c",
+          "url": "/images/current-work/daima-uae-usa.webp",
+          "alt": "Daima · USA Expansion — daima uae usa (project illustration)",
+          "order": 1
+        },
+        {
+          "id": "work-daima-usa-expansion-daima-market-expansion",
+          "projectId": "cmv9yiyk1001lp8y8ggyxhl2c",
+          "url": "/images/current-work/daima-market-expansion.webp",
+          "alt": "Daima · USA Expansion — daima market expansion (project illustration)",
+          "order": 2
+        }
+      ],
+      "serviceIds": [
+        "cmv8j7ist0000p8d8856hzr55",
+        "cmv8j7j640003p8d8go7kqaut",
+        "cmv8j7j2x0002p8d828uvagae"
+      ]
+    },
+    {
+      "id": "cmv9yiz4e001mp8y85psywh41",
+      "slug": "flower-district-delivery",
+      "title": "Flower District",
+      "client": "Flower District",
+      "year": "",
+      "category": "Local delivery & store discovery",
+      "stack": "Shopify",
+      "overview": "Storefront work for a flower business where delivery details are part of the shopping experience. The scope connects product browsing with delivery zones, time slots, express options and physical store information.\r\nThe supplied visuals show the delivery and store-discovery capabilities represented in this work.",
+      "features": "Delivery zones and fees\r\nDelivery time-slot selection\r\nSame-day and express delivery options\r\nStore location pages\r\nGift extras and product information",
+      "journey": "A shopper chooses flowers, reviews available delivery options and selects the details appropriate to the order. Store pages help customers find a physical location.",
+      "engineering": "Delivery rules, location content and checkout behaviour need to agree. Responsive testing covers the path from product selection to delivery details.",
+      "scope": "Storefront delivery configuration and location content. Delivery availability remains dependent on the store’s operating rules.",
+      "approach": "",
+      "steps": "",
+      "coverImage": "/files/flower-56808c17.png",
+      "previewImage": "/files/flower-3a932c68.png",
+      "viewUrl": "",
+      "order": -3,
+      "featured": false,
+      "published": true,
+      "publishedAt": "2026-10-15T19:54:10.382Z",
+      "seoTitle": "Flower District",
+      "seoDescription": "Storefront work for a flower business where delivery details are part of the shopping experience. The scope connects product browsing with delivery zones, time slots, express options and physical store information.",
+      "createdAt": "2026-10-15T19:54:10.382Z",
+      "updatedAt": "2026-10-18T12:13:07.145Z",
+      "images": [
+        {
+          "id": "work-flower-district-delivery-flower-district-storefront",
+          "projectId": "cmv9yiz4e001mp8y85psywh41",
+          "url": "/images/current-work/flower-district-storefront.webp",
+          "alt": "Flower District — flower district storefront (project illustration)",
+          "order": 0
+        },
+        {
+          "id": "work-flower-district-delivery-flower-district-delivery-options",
+          "projectId": "cmv9yiz4e001mp8y85psywh41",
+          "url": "/images/current-work/flower-district-delivery-options.webp",
+          "alt": "Flower District — flower district delivery options (project illustration)",
+          "order": 1
+        },
+        {
+          "id": "work-flower-district-delivery-flower-district-store-locations",
+          "projectId": "cmv9yiz4e001mp8y85psywh41",
+          "url": "/images/current-work/flower-district-store-locations.webp",
+          "alt": "Flower District — flower district store locations (project illustration)",
+          "order": 2
+        }
+      ],
+      "serviceIds": [
+        "cmv8j7ist0000p8d8856hzr55",
+        "cmv8j7j640003p8d8go7kqaut",
+        "cmv8j7ja80004p8d88vlkgjz5"
+      ]
+    },
+    {
+      "id": "cmv9yizxp001np8y8q27u9sxy",
+      "slug": "nexpixels-automation",
+      "title": "NexPixels · Automation",
+      "client": "",
+      "year": "",
+      "category": "Workflow automation",
+      "stack": "n8n · Ollama · Google Sheets",
+      "overview": "Practical automation work connecting content workflows, lead research and business data. The supplied visuals cover n8n workflows, local AI tools, Google Sheets and API integrations.\r\nThese are workflow illustrations, not measured campaign results or production execution logs.",
+      "features": "n8n workflow design\r\nGoogle Sheets and API connections\r\nAI-assisted content workflows with Ollama\r\nLead research and qualification workflows\r\nLocal workflow testing and setup",
+      "journey": "A workflow takes a defined input, passes it through connected services and records the result in a destination such as Google Sheets. Review steps keep the output useful to the person running it.",
+      "engineering": "Clear inputs, explicit field mapping, credential management and test runs make automations easier to inspect and maintain.",
+      "scope": "Workflow development and integration work represented by the supplied NexPixels artwork.",
+      "approach": "",
+      "steps": "",
+      "coverImage": "/files/whatsapp-image-2026-10-13-at-115334-pm-df448432.jpg",
+      "previewImage": "/files/nexpixels-digital-innovation-showcase-0d59c1ee.png",
+      "viewUrl": "",
+      "order": -2,
+      "featured": false,
+      "published": true,
+      "publishedAt": "2026-10-15T19:54:11.437Z",
+      "seoTitle": "NexPixels · Automation",
+      "seoDescription": "Practical automation work connecting content workflows, lead research and business data. The supplied visuals cover n8n workflows, local AI tools, Google Sheets and API integrations.",
+      "createdAt": "2026-10-15T19:54:11.437Z",
+      "updatedAt": "2026-10-18T12:13:30.758Z",
+      "images": [
+        {
+          "id": "work-nexpixels-automation-nexpixels-workflows",
+          "projectId": "cmv9yizxp001np8y8q27u9sxy",
+          "url": "/images/current-work/nexpixels-workflows.webp",
+          "alt": "NexPixels · Automation — nexpixels workflows (project illustration)",
+          "order": 0
+        },
+        {
+          "id": "work-nexpixels-automation-lead-generation-workflow",
+          "projectId": "cmv9yizxp001np8y8q27u9sxy",
+          "url": "/images/current-work/lead-generation-workflow.webp",
+          "alt": "NexPixels · Automation — lead generation workflow (project illustration)",
+          "order": 1
+        },
+        {
+          "id": "work-nexpixels-automation-nexpixels-ai-workflows",
+          "projectId": "cmv9yizxp001np8y8q27u9sxy",
+          "url": "/images/current-work/nexpixels-ai-workflows.webp",
+          "alt": "NexPixels · Automation — nexpixels ai workflows (project illustration)",
+          "order": 2
+        },
+        {
+          "id": "work-nexpixels-automation-nexpixels-portfolio",
+          "projectId": "cmv9yizxp001np8y8q27u9sxy",
+          "url": "/images/current-work/nexpixels-portfolio.webp",
+          "alt": "NexPixels · Automation — nexpixels portfolio (project illustration)",
+          "order": 3
+        }
+      ],
+      "serviceIds": [
+        "cmv8j7j2x0002p8d828uvagae",
+        "cmv8j7ji10006p8d8t5ni4ejt"
+      ]
+    },
+    {
+      "id": "cmv9yj0yo001op8y8p9j7ueyw",
+      "slug": "commerce-payments-integrations",
+      "title": "Commerce Payments & POS",
+      "client": "",
+      "year": "",
+      "category": "Payments & retail integrations",
+      "stack": "Shopify · Payment gateways · POS",
+      "overview": "Technical support for the payment layer across online storefronts and retail operations. The supplied work includes payment gateways, buy-now-pay-later options, payment links and in-store terminals.",
+      "features": "Payment gateway configuration\r\nTabby and Tamara payment options\r\nCard and wallet payment support\r\nNetwork terminal and POS support\r\nCheckout and transaction-flow checks",
+      "journey": "Online shoppers choose an enabled payment method at checkout, while retail teams use the configured terminal or POS flow. Each integration needs its own setup and verification.",
+      "engineering": "Check provider configuration, checkout behaviour and operational handover together. Availability depends on the merchant account and provider.",
+      "scope": "Technical configuration, integration and support; the illustrations identify the payment ecosystem without asserting provider partnerships.",
+      "approach": "",
+      "steps": "",
+      "coverImage": "/files/img204-1e8e99ff.png",
+      "previewImage": "/files/img204-0b94d6d9.png",
+      "viewUrl": "",
+      "order": -1,
+      "featured": false,
+      "published": true,
+      "publishedAt": "2026-10-15T19:54:12.768Z",
+      "seoTitle": "Commerce Payments & POS",
+      "seoDescription": "Technical support for the payment layer across online storefronts and retail operations. The supplied work includes payment gateways, buy-now-pay-later options, payment links and in-store terminals.",
+      "createdAt": "2026-10-15T19:54:12.768Z",
+      "updatedAt": "2026-10-18T12:13:59.328Z",
+      "images": [
+        {
+          "id": "work-commerce-payments-integrations-payment-provider-overview",
+          "projectId": "cmv9yj0yo001op8y8p9j7ueyw",
+          "url": "/images/current-work/payment-provider-overview.webp",
+          "alt": "Commerce Payments & POS — payment provider overview (project illustration)",
+          "order": 0
+        },
+        {
+          "id": "work-commerce-payments-integrations-commerce-payment-methods",
+          "projectId": "cmv9yj0yo001op8y8p9j7ueyw",
+          "url": "/images/current-work/commerce-payment-methods.webp",
+          "alt": "Commerce Payments & POS — commerce payment methods (project illustration)",
+          "order": 1
+        },
+        {
+          "id": "work-commerce-payments-integrations-payments-finance",
+          "projectId": "cmv9yj0yo001op8y8p9j7ueyw",
+          "url": "/images/current-work/payments-finance.webp",
+          "alt": "Commerce Payments & POS — payments finance (project illustration)",
+          "order": 2
+        }
+      ],
+      "serviceIds": [
+        "cmv8j7ist0000p8d8856hzr55",
+        "cmv8j7ja80004p8d88vlkgjz5",
+        "cmv8j7izf0001p8d8gly7w5lr"
+      ]
+    },
     {
       "id": "cmv8pbadv0000p86khhsh1h76",
       "slug": "finora",
@@ -704,6 +1055,20 @@
           "url": "/images/projects/finora/screens/taxes-desktop.webp",
           "alt": "Finora Taxes screen",
           "order": 8
+        },
+        {
+          "id": "work-finora-finora-concept",
+          "projectId": "cmv8pbadv0000p86khhsh1h76",
+          "url": "/images/current-work/finora-concept.webp",
+          "alt": "Finora accounting concept illustration supplied by Johns Antony",
+          "order": 20
+        },
+        {
+          "id": "work-finora-finora-accounting-concept",
+          "projectId": "cmv8pbadv0000p86khhsh1h76",
+          "url": "/images/current-work/finora-accounting-concept.webp",
+          "alt": "Finora accounting concept illustration supplied by Johns Antony",
+          "order": 21
         }
       ],
       "serviceIds": [
@@ -1382,24 +1747,24 @@
       "year": "",
       "category": "Luxury fragrance commerce platform",
       "stack": "Next.js",
-      "overview": "The House of Karji is a custom-built fragrance store designed as an alternative to a theme-based storefront. It presents collections through an editorial home page, rich product pages with fragrance pyramids and size options, a scent quiz, store locations and a streamlined cart and checkout.\n\nBuilt with Next.js, TypeScript, Prisma, Zustand and Framer Motion. Banners, promotions, BOGO offers, advertisements, CMS pages and store locations are managed from the admin. The mockups use demonstration fragrance houses and products from the local build.\n\nShoppers move from campaign banners and curated collections to a product page, choose a size and add it to the cart, or use the fragrance finder when unsure. The team manages products, campaigns and orders from the admin panel.\n\nStorefront sections read from the same catalogue and campaign tables the admin edits, so merchandising changes do not need code. Cart, wishlist and recently viewed items persist in the browser for a smooth return visit.\n\nDeveloped application captured locally; the live Karji store operates on Shopify. Payment providers such as Tabby, Tamara and card gateways require live credentials.",
-      "features": "Editorial home page with hero carousel and curated sections\nShop filters by family, brand, availability and price\nProduct pages with notes, sizes and reviews\nFragrance finder quiz, wishlist and recently viewed\nPromotions, BOGO offers and banner management\nAdmin for catalogue, sales, customers and CMS",
+      "overview": "The House of Karji is a custom-built fragrance store designed as an alternative to a theme-based storefront. It presents collections through an editorial home page, rich product pages with fragrance pyramids and size options, a scent quiz, store locations and a streamlined cart and checkout.\r\n\r\nBuilt with Next.js, TypeScript, Prisma, Zustand and Framer Motion. Banners, promotions, BOGO offers, advertisements, CMS pages and store locations are managed from the admin. The mockups use demonstration fragrance houses and products from the local build.\r\n\r\nShoppers move from campaign banners and curated collections to a product page, choose a size and add it to the cart, or use the fragrance finder when unsure. The team manages products, campaigns and orders from the admin panel.\r\n\r\nStorefront sections read from the same catalogue and campaign tables the admin edits, so merchandising changes do not need code. Cart, wishlist and recently viewed items persist in the browser for a smooth return visit.\r\n\r\nDeveloped application captured locally; the live Karji store operates on Shopify. Payment providers such as Tabby, Tamara and card gateways require live credentials.",
+      "features": "Editorial home page with hero carousel and curated sections\r\nShop filters by family, brand, availability and price\r\nProduct pages with notes, sizes and reviews\r\nFragrance finder quiz, wishlist and recently viewed\r\nPromotions, BOGO offers and banner management\r\nAdmin for catalogue, sales, customers and CMS",
       "journey": "Shoppers move from campaign banners and curated collections to a product page, choose a size and add it to the cart, or use the fragrance finder when unsure. The team manages products, campaigns and orders from the admin panel.",
       "engineering": "Storefront sections read from the same catalogue and campaign tables the admin edits, so merchandising changes do not need code. Cart, wishlist and recently viewed items persist in the browser for a smooth return visit.",
       "scope": "Developed application captured locally; the live Karji store operates on Shopify. Payment providers such as Tabby, Tamara and card gateways require live credentials.",
       "approach": "This build explores how a fragrance retailer could own its storefront experience end to end. A similar project weighs custom flexibility against the operational convenience of a hosted commerce platform.",
-      "steps": "Present collections with an editorial, brand-led layout.\nHelp shoppers choose through notes, filters and a fragrance finder.\nKeep cart and checkout short across screen sizes.\nRun campaigns and orders from a dedicated admin panel.",
+      "steps": "Present collections with an editorial, brand-led layout.\r\nHelp shoppers choose through notes, filters and a fragrance finder.\r\nKeep cart and checkout short across screen sizes.\r\nRun campaigns and orders from a dedicated admin panel.",
       "coverImage": "/images/projects/house-of-karji/mockup-1.webp",
       "previewImage": "/images/projects/house-of-karji/mockup-1.webp",
       "viewUrl": "",
       "order": 9,
       "featured": false,
-      "published": true,
+      "published": false,
       "publishedAt": "2026-10-14T22:48:35.589Z",
       "seoTitle": "The House of Karji",
       "seoDescription": "A custom luxury fragrance storefront with editorial merchandising, a fragrance finder and a full commerce admin.",
       "createdAt": "2026-10-14T22:48:35.589Z",
-      "updatedAt": "2026-10-14T23:06:24.012Z",
+      "updatedAt": "2026-10-15T14:46:50.389Z",
       "images": [
         {
           "id": "cmv8pbfgl001ap86kenqf5b0g",
@@ -1449,24 +1814,24 @@
       "year": "",
       "category": "Studio website & content CMS",
       "stack": "Next.js",
-      "overview": "Carter Studio is a complete studio website template: services with detail pages, a filterable portfolio with case studies, transparent pricing, a blog, testimonials and a contact brief form. Every section is driven by content managed in an admin panel.\n\nBuilt with Next.js, TypeScript, Prisma, GSAP and Three.js. The admin manages projects, services, pricing plans, testimonials, skills, FAQs, blog posts, contact submissions and newsletter subscribers. The studio name and persona are fictional; the mockups were captured from the local build.\n\nVisitors move from the hero to services and relevant case studies, compare packages on the pricing page and send a project brief. The owner updates content and reviews enquiries from the admin dashboard.\n\nContent collections are stored in the database and rendered by shared section components, so new services or case studies appear without code changes. Sitemaps and metadata are generated from the same records.\n\nDeveloped website template captured locally. Hosting, domain and email delivery are configured per deployment.",
-      "features": "Animated hero and services sections\nService detail pages with packages\nFilterable portfolio and case studies\nPricing, FAQs and testimonials\nBlog with search and newsletter signup\nAdmin CMS with dashboard and exports",
+      "overview": "Carter Studio is a complete studio website template: services with detail pages, a filterable portfolio with case studies, transparent pricing, a blog, testimonials and a contact brief form. Every section is driven by content managed in an admin panel.\r\n\r\nBuilt with Next.js, TypeScript, Prisma, GSAP and Three.js. The admin manages projects, services, pricing plans, testimonials, skills, FAQs, blog posts, contact submissions and newsletter subscribers. The studio name and persona are fictional; the mockups were captured from the local build.\r\n\r\nVisitors move from the hero to services and relevant case studies, compare packages on the pricing page and send a project brief. The owner updates content and reviews enquiries from the admin dashboard.\r\n\r\nContent collections are stored in the database and rendered by shared section components, so new services or case studies appear without code changes. Sitemaps and metadata are generated from the same records.\r\n\r\nDeveloped website template captured locally. Hosting, domain and email delivery are configured per deployment.",
+      "features": "Animated hero and services sections\r\nService detail pages with packages\r\nFilterable portfolio and case studies\r\nPricing, FAQs and testimonials\r\nBlog with search and newsletter signup\r\nAdmin CMS with dashboard and exports",
       "journey": "Visitors move from the hero to services and relevant case studies, compare packages on the pricing page and send a project brief. The owner updates content and reviews enquiries from the admin dashboard.",
       "engineering": "Content collections are stored in the database and rendered by shared section components, so new services or case studies appear without code changes. Sitemaps and metadata are generated from the same records.",
       "scope": "Developed website template captured locally. Hosting, domain and email delivery are configured per deployment.",
       "approach": "Carter Studio shows how a small studio can present services, proof and pricing in one coherent journey. A similar site starts with the services offered, the strongest case studies and the enquiry details needed to quote.",
-      "steps": "Position the studio clearly in the first screen.\nLink each service to relevant case studies.\nMake pricing and process easy to understand.\nManage all content and enquiries from the admin.",
+      "steps": "Position the studio clearly in the first screen.\r\nLink each service to relevant case studies.\r\nMake pricing and process easy to understand.\r\nManage all content and enquiries from the admin.",
       "coverImage": "/images/projects/carter-studio/mockup-1.webp",
       "previewImage": "/images/projects/carter-studio/mockup-1.webp",
       "viewUrl": "",
       "order": 10,
       "featured": false,
-      "published": true,
+      "published": false,
       "publishedAt": "2026-10-14T22:48:36.327Z",
       "seoTitle": "Carter Studio",
       "seoDescription": "A dark, motion-led website for a freelance web studio with services, portfolio, pricing, blog and an admin CMS.",
       "createdAt": "2026-10-14T22:48:36.327Z",
-      "updatedAt": "2026-10-14T23:06:24.518Z",
+      "updatedAt": "2026-10-15T14:47:36.566Z",
       "images": [
         {
           "id": "cmv8pbg13001ep86k16gutb9f",
@@ -1537,24 +1902,24 @@
       "year": "",
       "category": "Portfolio website with full CMS",
       "stack": "Next.js",
-      "overview": "Rydge Studio is a portfolio site for a creative studio with a home page, portfolio, project pages, services, about, blog and contact. Its visual language uses viewport-scaled typography, a strict black-and-white palette and motion such as marquees and text reveals.\n\nBuilt with Next.js, TypeScript, Tailwind, Prisma and SQLite, with GSAP and Lenis for motion. The design language references a commercial Webflow template and was rebuilt with original placeholder imagery and copy; the engineering work is the CMS that makes every public section editable.\n\nVisitors scroll through the studio story, browse work and open project pages before getting in touch. The studio edits pages, sections, collections and media from the admin without touching templates.\n\nPublic templates read all content from the database rather than hard-coded copy. A signed admin session protects editing, and a seed script creates a complete demonstration site in one command.\n\nDeveloped website captured locally from its seeded demonstration content.",
-      "features": "Viewport-scaled editorial typography\nPortfolio grid and list views with project pages\nServices, team, awards and approach sections\nBlog and contact form with submissions inbox\nAdmin editing for every page, section and collection\nMedia library and site settings",
+      "overview": "Rydge Studio is a portfolio site for a creative studio with a home page, portfolio, project pages, services, about, blog and contact. Its visual language uses viewport-scaled typography, a strict black-and-white palette and motion such as marquees and text reveals.\r\n\r\nBuilt with Next.js, TypeScript, Tailwind, Prisma and SQLite, with GSAP and Lenis for motion. The design language references a commercial Webflow template and was rebuilt with original placeholder imagery and copy; the engineering work is the CMS that makes every public section editable.\r\n\r\nVisitors scroll through the studio story, browse work and open project pages before getting in touch. The studio edits pages, sections, collections and media from the admin without touching templates.\r\n\r\nPublic templates read all content from the database rather than hard-coded copy. A signed admin session protects editing, and a seed script creates a complete demonstration site in one command.\r\n\r\nDeveloped website captured locally from its seeded demonstration content.",
+      "features": "Viewport-scaled editorial typography\r\nPortfolio grid and list views with project pages\r\nServices, team, awards and approach sections\r\nBlog and contact form with submissions inbox\r\nAdmin editing for every page, section and collection\r\nMedia library and site settings",
       "journey": "Visitors scroll through the studio story, browse work and open project pages before getting in touch. The studio edits pages, sections, collections and media from the admin without touching templates.",
       "engineering": "Public templates read all content from the database rather than hard-coded copy. A signed admin session protects editing, and a seed script creates a complete demonstration site in one command.",
       "scope": "Developed website captured locally from its seeded demonstration content.",
       "approach": "Rydge Studio demonstrates a fully content-managed portfolio. A similar project starts with the content types the studio needs to update most often.",
-      "steps": "Introduce the studio with bold, editorial typography.\nPresent work in grid and list views with detailed project pages.\nCollect enquiries and manage submissions.\nEdit every page and collection from the admin.",
+      "steps": "Introduce the studio with bold, editorial typography.\r\nPresent work in grid and list views with detailed project pages.\r\nCollect enquiries and manage submissions.\r\nEdit every page and collection from the admin.",
       "coverImage": "/images/projects/rydge-studio/mockup-1.webp",
       "previewImage": "/images/projects/rydge-studio/mockup-1.webp",
       "viewUrl": "",
       "order": 11,
       "featured": false,
-      "published": true,
+      "published": false,
       "publishedAt": "2026-10-14T22:48:36.957Z",
       "seoTitle": "Rydge Studio",
       "seoDescription": "An editorial creative-studio portfolio where every word, image and section is editable from an admin backend.",
       "createdAt": "2026-10-14T22:48:36.957Z",
-      "updatedAt": "2026-10-14T23:06:25.231Z",
+      "updatedAt": "2026-10-15T14:47:05.248Z",
       "images": [
         {
           "id": "cmv8pbgil001jp86kqjy6txei",
@@ -1611,50 +1976,13 @@
       ]
     }
   ],
-  "posts": [
-    {
-      "id": "post-1",
-      "slug": "shopify-plus-pos-dubai-omnichannel",
-      "title": "Architecting Unified Shopify Plus & Retail POS for UAE Luxury Brands",
-      "excerpt": "How custom API middleware eliminates inventory drift between physical storefronts in Dubai Mall and high-traffic Shopify Plus stores.",
-      "content": "Scaling omnichannel commerce in the GCC demands zero-latency inventory synchronisation and resilient POS fallbacks. In this technical deep-dive, we explore how distributed event webhooks and automated tax invoice generation ensure sub-second consistency across physical POS terminals and online checkouts.",
-      "coverImage": "/images/projects/house-of-karji/screens/admin-catalog-desktop.webp",
-      "published": true,
-      "publishedAt": "2026-03-15T09:00:00.000Z",
-      "authorName": "Johns Antony",
-      "readingTime": "5 min read"
-    },
-    {
-      "id": "post-2",
-      "slug": "automated-qa-testing-fintech-systems",
-      "title": "Building Resilient Automated Test Suites for Commercial Payments & Accounting",
-      "excerpt": "End-to-end regression pipelines, idempotent ledger transactions, and automated reconciliation tests for multi-currency portals.",
-      "content": "Financial systems fail silently when rounding errors, rate spikes, or asynchronous gateway webhooks occur. Learn the architecture of our Playwright & Node automated testing framework that guarantees transaction safety across UAE VAT reconciliation routines.",
-      "coverImage": "/images/projects/finora/screens/reconciliation-desktop.webp",
-      "published": true,
-      "publishedAt": "2026-02-28T10:30:00.000Z",
-      "authorName": "Johns Antony",
-      "readingTime": "7 min read"
-    },
-    {
-      "id": "post-3",
-      "slug": "cloud-infrastructure-sla-uptime-management",
-      "title": "High-Availability Infrastructure & Zero-Downtime Migration Playbook",
-      "excerpt": "From SSL lifecycle automation to automated failovers: maintaining 99.99% uptime for multi-tenant property management platforms.",
-      "content": "When managing enterprise property platforms handling thousands of tenant leases and real-time payment entries, unannounced downtime directly hits the bottom line. Here is the operational blueprint behind our DNS clustering, automated SSL renewal daemon, and Dockerized deploy workflows.",
-      "coverImage": "/images/projects/certguard/screens/servers-desktop.webp",
-      "published": true,
-      "publishedAt": "2026-01-20T14:15:00.000Z",
-      "authorName": "Johns Antony",
-      "readingTime": "6 min read"
-    }
-  ],
+  "posts": [],
   "teamMembers": [
     {
       "id": "cmv8j7p0t000vp8d8houuohy4",
       "name": "Johns Antony",
       "role": "Digital & E-commerce Specialist",
-      "photo": "/images/art/silk-portrait.webp",
+      "photo": "/files/cinematic-creative-workspace-portrait-7c5980fc.png",
       "linkedinUrl": "https://www.linkedin.com/in/johns-antony",
       "instagramUrl": "",
       "order": 0
@@ -1678,66 +2006,41 @@
       "order": 1
     }
   ],
-  "benefits": [
-    {
-      "id": "cmv8j7pzh000yp8d81z5tvyuj",
-      "index": "/001",
-      "title": "One point of contact",
-      "description": "Storefronts, payments, tracking, domains and digital accounts handled together — with one person accountable after launch.",
-      "image": "/images/projects/workflow-hub/mockup-2.webp",
-      "order": 0
-    },
-    {
-      "id": "cmv8j7pzh000zp8d8a5ub9179",
-      "index": "/002",
-      "title": "Built to hand over",
-      "description": "Setups, access and documentation organised so your team can run day-to-day work without waiting on me.",
-      "image": "/images/projects/drec-pms/screens/reports-desktop.webp",
-      "order": 1
-    },
-    {
-      "id": "cmv8j7pzh0010p8d8ykhf2qln",
-      "index": "/003",
-      "title": "A QA mindset",
-      "description": "A professional testing background: releases checked for functionality, tracking and edge cases before they go live.",
-      "image": "/images/projects/certguard/screens/reports-desktop.webp",
-      "order": 2
-    }
-  ],
+  "benefits": [],
   "achievements": [
     {
       "id": "cmv8j7qjg0011p8d8ir32v7jv",
       "value": "5+",
       "label": "Years of experience",
-      "image": "/images/projects/finora/screens/banking-desktop.webp",
+      "image": "/images/current-work/tools-technologies.webp",
       "order": 0
     },
     {
       "id": "cmv8j7qjg0012p8d8zdmom3pb",
       "value": "9+",
       "label": "Storefronts supported",
-      "image": "/images/projects/house-of-karji/screens/admin-catalog-desktop.webp",
+      "image": "/images/current-work/store-brand-directory.webp",
       "order": 1
     },
     {
       "id": "cmv8j7qjg0013p8d89foxtrl5",
       "value": "30+",
       "label": "Domains & SSL managed",
-      "image": "/images/projects/certguard/screens/reports-desktop.webp",
+      "image": "/images/current-work/domains-business-accounts.webp",
       "order": 2
     },
     {
       "id": "cmv8j7qjg0014p8d8dkaesps5",
       "value": "99%+",
       "label": "Infrastructure uptime",
-      "image": "/images/projects/certguard/screens/servers-desktop.webp",
+      "image": "/images/current-work/it-operations.webp",
       "order": 3
     },
     {
       "id": "cmv8j7qjg0015p8d8j3r3qiaq",
       "value": "40%",
       "label": "QA coverage improvement",
-      "image": "/images/projects/certguard/screens/logs-desktop.webp",
+      "image": "/images/current-work/analytics-quality-assurance.webp",
       "order": 4
     }
   ],
@@ -1766,46 +2069,46 @@
   ],
   "playgroundImages": [
     {
-      "id": "playground-1",
-      "url": "/images/projects/finora/mockup-1.webp",
-      "alt": "Finora Multi-currency Accounting System",
+      "id": "cmuylvrta001rp82wz2uih71c",
+      "url": "/images/current-work/shopify-theme-customization.webp",
+      "alt": "shopify theme customization — supplied work illustration",
+      "order": 0
+    },
+    {
+      "id": "cmuylvrta001sp82w6v9moto3",
+      "url": "/images/current-work/seo-product-feeds.webp",
+      "alt": "seo product feeds — supplied work illustration",
       "order": 1
     },
     {
-      "id": "playground-2",
-      "url": "/images/projects/nexora/mockup-2.webp",
-      "alt": "Nexora Enterprise SaaS Dashboard",
+      "id": "cmuylvrta001tp82wgwoqqd7v",
+      "url": "/images/current-work/flower-district-store-locations.webp",
+      "alt": "flower district store locations — supplied work illustration",
       "order": 2
     },
     {
-      "id": "playground-3",
-      "url": "/images/projects/house-of-karji/mockup-1.webp",
-      "alt": "House of Karji Luxury E-commerce Architecture",
+      "id": "cmuylvrta001up82wjywqgk0q",
+      "url": "/images/current-work/daima-market-expansion.webp",
+      "alt": "daima market expansion — supplied work illustration",
       "order": 3
     },
     {
-      "id": "playground-4",
-      "url": "/images/projects/workflow-hub/mockup-3.webp",
-      "alt": "WorkFlow Hub Custom Business Automation",
+      "id": "cmuylvrta001vp82wumeobd8e",
+      "url": "/images/current-work/lead-generation-workflow.webp",
+      "alt": "lead generation workflow — supplied work illustration",
       "order": 4
     },
     {
-      "id": "playground-5",
-      "url": "/images/projects/certguard/mockup-1.webp",
-      "alt": "CertGuard Security & SSL Monitor",
+      "id": "cmuylvrta001wp82wwnhp4ua6",
+      "url": "/images/current-work/commerce-payment-methods.webp",
+      "alt": "commerce payment methods — supplied work illustration",
       "order": 5
     },
     {
-      "id": "playground-6",
-      "url": "/images/projects/drec-pms/mockup-2.webp",
-      "alt": "DREC Commercial PMS Platform",
+      "id": "cmuylvrta001xp82wcobutjys",
+      "url": "/images/current-work/finora-accounting-concept.webp",
+      "alt": "finora accounting concept — supplied work illustration",
       "order": 6
-    },
-    {
-      "id": "playground-7",
-      "url": "/images/projects/mino-suppliers/mockup-1.webp",
-      "alt": "Mino B2B Supply Portal & Logistics",
-      "order": 7
     }
   ]
 }

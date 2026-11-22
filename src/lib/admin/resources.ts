@@ -87,6 +87,7 @@ export const RESOURCES = {
       { name: "coverImage", label: "Cover image", type: "image", help: "Used on the project page hero." },
       { name: "previewImage", label: "Preview image", type: "image", help: "Used on cards and list rows." },
       { name: "viewUrl", label: "Live URL", type: "url" },
+      { name: "videoUrl", label: "Project film", type: "text", help: "Path or URL of a silent MP4, e.g. /videos/projects/slug.mp4." },
       { name: "featured", label: "Featured", type: "boolean", help: "Shown in the Featured Project slot." },
       { name: "published", label: "Published", type: "boolean" },
       { name: "order", label: "Order", type: "number" },
