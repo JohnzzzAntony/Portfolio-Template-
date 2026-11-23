@@ -19,7 +19,7 @@ export default async function PortfolioPage() {
 
   const [settings, projects] = await Promise.all([getSettings(), getProjects()]);
   const s = sectionMap(page.sections);
-  const covers = projects.map((project) => project.coverImage).filter(isLiveCapture).slice(0, 3);
+  const covers = projects.map((project) => project.previewImage).filter(isLiveCapture).slice(0, 4);
 
   return (
     <>

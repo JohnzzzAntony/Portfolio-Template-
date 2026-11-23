@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { StackCards, type StackItem } from "./StackCards";
 import { ART } from "@/lib/media";
 
 import { Mail } from "./icons";
@@ -274,7 +275,7 @@ export function SplitMission({ label = "(Our Mission)", eyebrow, words, sup, tex
 
 /* ------------------------------------------------------------- portfolio */
 
-export function PortfolioSection({ label = "(Portfolio)", index, heading, projects, cta, id = "work" }: { label?: string; index?: string; heading: string; projects: ProjectItem[]; cta?: Cta & { body?: string }; id?: string }) {
+export function PortfolioSection({ label = "(Portfolio)", index, heading, projects, cta, id = "work", stack }: { label?: string; index?: string; heading: string; projects: ProjectItem[]; cta?: Cta & { body?: string }; id?: string; stack?: StackItem[] }) {
   return (
     <section className="section shadow" id={id}>
       <div className="container-fluid">
@@ -285,7 +286,7 @@ export function PortfolioSection({ label = "(Portfolio)", index, heading, projec
               : <h3 className="heading-medium" data-ix="lines" style={{ whiteSpace: "pre-line" }}>{heading}</h3>}
           </SectionHead>
         </div>
-        <PortfolioTabs projects={projects} cta={cta} />
+        {stack ? <><StackCards items={stack} />{cta && <CtaRow cta={cta} />}</> : <PortfolioTabs projects={projects} cta={cta} />}
       </div>
     </section>
   );

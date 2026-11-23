@@ -51,6 +51,10 @@ export default async function HomePage() {
 
   const cards = projects.map((project) => ({ project, item: projectItem(project) })).filter(({ item }) => item.image);
   const gridProjects = cards.slice(0, 8).map(({ item }) => item);
+  const stack = cards.slice(0, 8).map(({ project, item }) => ({
+    title: project.title, href: item.href!, image: item.image!, alt: item.alt ?? project.title,
+    category: project.category, tags: item.labels,
+  }));
 
   return (
     <>
@@ -114,6 +118,7 @@ export default async function HomePage() {
           index={s.portfolio?.index}
           heading={`${s.portfolio?.heading || "Selected Work"}\n${settings.copyright.replace(/[()]/g, "")}`}
           projects={gridProjects}
+          stack={stack}
           cta={{ body: s.portfolio?.body, label: s.portfolio?.ctaLabel || "View all projects", href: s.portfolio?.ctaUrl || "/portfolio" }}
         />
       )}

@@ -196,3 +196,98 @@ body { background: #fff; color: #190019; }
   .rx .process-steps::after, .rx .why-card svg path { animation: none; }
 }
 .rx .project-card .project-title { display: inline-block; padding: .4rem .8rem; border-radius: 10px; background: #fffffff2; color: var(--heading); box-shadow: 0 8px 20px -14px #2b124c66; }
+
+/* ===================================================== mobile-first layout pass
+   Base rules are for phones; wider screens add columns. Headings start from the left. */
+.rx .container-fluid { padding-inline: clamp(1.25rem, 4vw, 5rem); }
+.rx .heading-medium { font-size: clamp(1.875rem, 6.5vw, 3.25rem); line-height: 1.08; letter-spacing: -.035em; }
+.rx .paragraph-large { font-size: clamp(1.125rem, 4.4vw, 1.6rem); line-height: 1.45; }
+.rx .paragraph-small { font-size: clamp(1rem, 3.9vw, 1.125rem); line-height: 1.6; }
+.rx .section-title { font-size: .75rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+
+/* Section heads: eyebrow and counter on one line, heading below, all left-aligned. */
+.rx .section-head, .rx .section-head.wide { display: grid; grid-template-columns: 1fr auto; gap: .75rem 1rem; align-items: baseline; }
+.rx .section-head > .sh-label, .rx .section-head.wide > .sh-label { grid-column: 1; grid-row: 1; }
+.rx .section-head > .sh-index, .rx .section-head.wide > .sh-index { grid-column: 2; grid-row: 1; text-align: right; }
+.rx .section-head > .sh-body, .rx .section-head.wide > .sh-body { grid-column: 1 / -1; grid-row: 2; text-align: left; max-width: 52rem; }
+
+/* Page titles start from the left edge, at a size that fits a phone. */
+.rx .page-title-wrap, .rx .page-title-wrap.small, .rx .page-title-wrap.hero { text-align: left; padding: clamp(6.5rem, 14vw, 10rem) 0 clamp(1.5rem, 4vw, 3rem); }
+.rx .page-title { font-size: clamp(2.5rem, 11vw, 6rem); line-height: .98; font-weight: 800; letter-spacing: -.045em; text-transform: none; }
+.rx .page-title-inner { top: 0; }
+.rx .page-pill-wrap { justify-content: flex-start; }
+.rx .hero-heading-wrap, .rx .hero-rotation, .rx .hero-heading { text-align: left; }
+
+/* Phones: cards that would form a long column become swipeable rows. */
+.rx .skills-grid, .rx .why-grid { grid-auto-flow: column; grid-auto-columns: 82%; grid-template-columns: none; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: .75rem; scrollbar-width: none; }
+.rx .skills-grid::-webkit-scrollbar, .rx .why-grid::-webkit-scrollbar { display: none; }
+.rx .skill-card, .rx .why-card { scroll-snap-align: start; }
+.rx .project-labels { display: none; }
+.rx .stats-grid { grid-template-columns: repeat(2, 1fr); }
+.rx .stats-grid > :last-child:nth-child(odd) { grid-column: 1 / -1; }
+
+/* Stacking project cards (homepage). */
+.rx .stack-cards { display: grid; gap: 1.5rem; padding-bottom: 2rem; }
+.rx .stack-card { position: sticky; top: calc(5.25rem + var(--i) * .6rem); display: block; color: var(--text); text-decoration: none; }
+.rx .stack-card-inner { display: grid; overflow: hidden; border-radius: 24px; border: 1px solid #dfb6b2; background: #fff; box-shadow: 0 30px 60px -38px #2b124c80; transform-origin: 50% 0; will-change: transform; }
+.rx .stack-media { aspect-ratio: 16 / 10; background: var(--surface); overflow: hidden; }
+.rx .stack-media img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s var(--ease-out-quart); }
+.rx .stack-card:hover .stack-media img { transform: scale(1.04); }
+.rx .stack-info { display: flex; flex-direction: column; gap: .5rem; padding: 1.25rem 1.25rem 1.4rem; }
+.rx .stack-num { font-size: .75rem; font-weight: 700; letter-spacing: .12em; color: var(--accent); }
+.rx .stack-info h4 { margin: 0; font-size: clamp(1.4rem, 5.5vw, 2.4rem); font-weight: 800; letter-spacing: -.035em; line-height: 1.05; color: var(--heading); }
+.rx .stack-info p { margin: 0; font-size: .95rem; font-weight: 500; color: #3d2440; }
+.rx .stack-info ul { display: flex; flex-wrap: wrap; gap: .4rem; margin: .25rem 0 0; padding: 0; list-style: none; }
+.rx .stack-info li { padding: .3rem .7rem; border-radius: 999px; background: var(--surface); font-size: .75rem; font-weight: 600; color: var(--primary-dark); }
+.rx .stack-view { margin-top: .5rem; font-size: .9rem; font-weight: 700; color: var(--primary); }
+
+/* Grid/list toggle in brand plum. */
+.rx .tabs-menu { background: #2b124ce6; border-color: #2b124c; }
+.rx .tabs-active::before { background: #ffffff33; }
+
+@media (min-width: 768px) {
+  .rx .skills-grid { grid-auto-flow: row; grid-auto-columns: auto; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); overflow: visible; }
+  .rx .why-grid { grid-auto-flow: row; grid-auto-columns: auto; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); overflow: visible; }
+  .rx .project-labels { display: flex; }
+  .rx .stats-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+  .rx .stats-grid > :last-child:nth-child(odd) { grid-column: auto; }
+  .rx .section-head > .sh-body, .rx .section-head.wide > .sh-body { grid-column: 1; }
+}
+@media (min-width: 900px) {
+  .rx .stack-cards { gap: 3rem; }
+  .rx .stack-card { top: calc(6.5rem + var(--i) * .75rem); }
+  .rx .stack-card-inner { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); min-height: min(68vh, 560px); }
+  .rx .stack-media { aspect-ratio: auto; }
+  .rx .stack-info { justify-content: center; padding: clamp(2rem, 3.5vw, 3.5rem); gap: .8rem; }
+  .rx .stack-info p { font-size: 1.05rem; }
+}
+
+/* Page headers: tagline pill sized to fit, captions left-aligned and wrapping on phones. */
+.rx .page-pill-wrap { position: static; justify-content: flex-start; margin-bottom: 1.25rem; }
+.rx .page-pill { width: min(100%, 24rem); background: var(--surface); color: var(--primary-dark); border: 1px solid #dfb6b2; border-radius: 999px; }
+.rx .caption-grid { grid-template-columns: 1fr; row-gap: .5rem; justify-items: start; }
+.rx .caption-grid > *, .rx .caption-grid > :nth-child(2), .rx .caption-grid > :nth-child(3) { justify-content: flex-start; text-align: left; }
+.rx .hero-caption { color: var(--accent); font-weight: 600; }
+
+/* Portfolio hero: project mockups cross-fade softly behind a light wash. */
+.rx .work-hero { color: var(--text); background: var(--background-alt); min-height: min(100svh, 52rem); }
+.rx .work-slides { background: var(--background-alt); }
+.rx .work-slides img { object-position: 70% center; }
+.rx .work-slides::after { background: linear-gradient(90deg, #fffaf8 0%, #fffaf8e0 45%, #fffaf866 100%); }
+
+/* About-page stats: readable figures on a card surface instead of busy imagery. */
+.rx .achievement { background: linear-gradient(160deg, #fff, var(--surface)); border: 1px solid #dfb6b266; border-radius: 20px; }
+.rx .achievement img { display: none; }
+.rx .achievement-number { color: var(--primary); font-weight: 800; letter-spacing: -.04em; }
+.rx .achievement .section-caption { color: var(--text); font-weight: 600; }
+
+@media (min-width: 768px) {
+  .rx .caption-grid { grid-template-columns: 1fr 1fr 1fr; align-items: end; }
+  .rx .caption-grid > :nth-child(3) { justify-content: flex-end; text-align: right; justify-self: end; }
+  .rx .work-slides::after { background: linear-gradient(90deg, #fffaf8 0%, #fffaf8d9 38%, #fffaf800 75%); }
+}
+@media (max-width: 767px) {
+  .rx .work-slides::after { background: linear-gradient(180deg, #fffaf8 0%, #fffaf8e6 55%, #fffaf8b3 100%); }
+}
+.rx .work-hero .page-title-wrap { background: transparent; box-shadow: none; border: 0; }
+.rx .achievement-number { font-size: clamp(2.25rem, 4vw, 3.5rem); }
