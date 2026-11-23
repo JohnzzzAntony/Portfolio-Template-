@@ -2,6 +2,7 @@
  * Renders the brand films (video/BrandFilm.tsx) from the project media:
  *   public/videos/brand-hero.mp4 + public/images/brand/hero-poster.webp  (homepage hero)
  *   public/videos/brand-reel.mp4 + public/images/brand/reel-poster.webp  (homepage motion section)
+ *   public/videos/{skills,process}-film.mp4 + posters                       (skills and process sections)
  *   public/images/brand/{commerce,systems,web}.webp                       (page and section artwork)
  *
  *   node scripts/render-brand-films.mjs
@@ -29,6 +30,8 @@ await mkdir("public/images/brand", { recursive: true });
 for (const [id, file, props, posterFrame] of [
   ["BrandHero", "brand-hero", { slugs: slugs.slice(0, 15) }, 0],
   ["BrandReel", "brand-reel", { slugs }, 45],
+  ["SkillsFilm", "skills-film", {}, 30],
+  ["ProcessFilm", "process-film", {}, 200],
 ]) {
   const composition = await selectComposition({ serveUrl, id, inputProps: props, browserExecutable });
   await renderMedia({ composition, serveUrl, inputProps: props, browserExecutable, codec: "h264", crf: 27, concurrency: 4, muted: true, outputLocation: `public/videos/${file}.mp4` });

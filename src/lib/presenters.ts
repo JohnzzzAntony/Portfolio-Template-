@@ -22,7 +22,6 @@ export function projectItem(project: ProjectRecord): ProjectItem {
     image: [project.previewImage, project.coverImage].find(isLiveCapture) ?? cmsProjectImage(project),
     alt: `${project.title} on desktop, tablet and mobile`,
     labels: project.services.map((s) => s.title),
-    description: project.category || undefined,
   };
 }
 

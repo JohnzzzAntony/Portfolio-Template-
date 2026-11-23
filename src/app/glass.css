@@ -251,7 +251,6 @@ main > div > section:first-child {
 
 .section.shadow,
 .playground,
-.cg-section,
 .cs-section,
 .split {
   box-shadow: var(--g-shadow);
@@ -964,156 +963,6 @@ main > div > section:first-child {
 .cs-float {
   font-size: clamp(5rem, 11vw, 13rem);
   color: rgba(44, 58, 58, 0.05);
-}
-
-/* ------------------------------------------------------ cinematic gallery */
-.cg-section {
-  padding: clamp(2.5rem, 4.6vw, 4.5rem) 0 clamp(1.5rem, 3vw, 3rem);
-  overflow: clip;
-}
-
-.cg-head {
-  align-items: end;
-  gap: 1rem;
-  padding: 0 var(--r-page-x);
-  margin-bottom: clamp(1.5rem, 2.6vw, 2.5rem);
-}
-
-.cg-head-label {
-  font-size: var(--r-fs-caption);
-  letter-spacing: 0.18em;
-  color: var(--g-sage);
-}
-
-.cg-head-title {
-  font-size: clamp(1.9rem, 3.9vw, 4rem);
-  line-height: 1;
-  letter-spacing: -0.036em;
-  text-transform: none;
-  color: var(--g-ink);
-  max-width: 60%;
-}
-
-a.cg-head-cta {
-  padding: 0.4rem 0.9rem 0.44rem;
-  border: 1px solid var(--g-hairline);
-  border-radius: 999px;
-  background: var(--g-glass-2);
-  font-size: var(--r-fs-caption);
-  letter-spacing: 0.12em;
-  color: rgba(44, 58, 58, 0.78);
-}
-
-a.cg-head-cta:hover {
-  color: var(--g-ink);
-  background: var(--g-glass-3);
-}
-
-.cg-head-cta svg {
-  width: 0.75rem;
-  height: 0.75rem;
-}
-
-.cg-track-wrap {
-  perspective: 1600px;
-}
-
-.cg-track {
-  gap: clamp(0.85rem, 1.4vw, 1.4rem);
-  padding: clamp(1.25rem, 2.4vw, 2.5rem) 0;
-}
-
-.cg-card {
-  width: min(62vw, 780px);
-  height: min(30vw, 380px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: var(--g-radius);
-  box-shadow: 0 26px 54px -34px rgba(26, 48, 42, 0.6);
-}
-
-.cg-card-overlay {
-  background: linear-gradient(
-    to bottom,
-    rgba(18, 32, 28, 0.32) 0%,
-    rgba(18, 32, 28, 0.06) 30%,
-    rgba(18, 32, 28, 0.38) 66%,
-    rgba(18, 32, 28, 0.6) 100%
-  );
-}
-
-.cg-card-dim {
-  background: rgba(232, 239, 236, 0.4);
-}
-
-.cg-card-content {
-  padding: 0;
-  justify-content: flex-end;
-}
-
-.cg-card-meta {
-  padding: 0 1rem;
-  font-size: 0.6rem;
-  letter-spacing: 0.16em;
-  color: rgba(248, 252, 250, 0.78);
-  margin-bottom: 0.4rem;
-}
-
-.cg-card-title {
-  padding: 0 1rem;
-  font-size: clamp(1.15rem, 2.1vw, 2.1rem);
-  line-height: 1.04;
-  letter-spacing: -0.03em;
-  text-transform: none;
-  margin-bottom: 0.85rem;
-  color: #fafdfb;
-  text-shadow: 0 6px 22px rgba(10, 24, 20, 0.4);
-}
-
-.cg-card-footer {
-  gap: 0.5rem;
-  transform: none;
-  opacity: 1;
-  margin: 0;
-  padding: 0.45rem 0.5rem 0.45rem 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.26);
-  background: rgba(255, 255, 255, 0.18);
-  -webkit-backdrop-filter: blur(16px) saturate(150%);
-  backdrop-filter: blur(16px) saturate(150%);
-  transition: background 0.4s ease;
-}
-
-.cg-card:hover .cg-card-footer {
-  background: rgba(255, 255, 255, 0.3);
-}
-
-.cg-card-number {
-  font-size: 0.6rem;
-  letter-spacing: 0.16em;
-  color: rgba(248, 252, 250, 0.82);
-}
-
-.cg-card-view {
-  padding: 0.32rem 0.6rem 0.34rem 0.8rem;
-  border: 1px solid rgba(255, 255, 255, 0.42);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.22);
-  font-size: 0.6rem;
-  letter-spacing: 0.14em;
-  color: #ffffff;
-  gap: 0.35rem;
-}
-
-.cg-card-view svg {
-  width: 0.72rem;
-  height: 0.72rem;
-}
-
-.cg-card-corners {
-  display: none;
-}
-
-.cg-nav {
-  display: none;
 }
 
 /* ------------------------------------------------------- portfolio cards */
@@ -1953,19 +1802,8 @@ textarea.r-input {
     mix-blend-mode: normal;
   }
 
-  .cg-head-title {
-    max-width: 100%;
-    text-align: left;
-  }
 
-  .cg-card {
-    width: 84vw;
-    height: 46vw;
-  }
 
-  .cg-card-title {
-    font-size: clamp(1.5rem, 4vw, 2.4rem);
-  }
 
   .cs-headline {
     font-size: clamp(2.2rem, 7.4vw, 3.6rem);
@@ -2086,24 +1924,9 @@ textarea.r-input {
     height: 40vw;
   }
 
-  .cg-card {
-    width: 88vw;
-    height: 58vw;
-  }
 
-  .cg-card-footer {
-    padding: 0.4rem 0.4rem 0.4rem 0.85rem;
-  }
 
-  .cg-head {
-    flex-wrap: wrap;
-    gap: 0.6rem;
-  }
 
-  .cg-head-title {
-    font-size: clamp(1.6rem, 8vw, 2.4rem);
-    max-width: 100%;
-  }
 
   .cs-section {
     padding: 2.25rem var(--r-page-x) 1.75rem;
@@ -2255,17 +2078,8 @@ textarea.r-input {
     padding-left: 0.6rem;
   }
 
-  .cg-card {
-    height: 64vw;
-  }
 
-  .cg-card-title {
-    font-size: 1.35rem;
-  }
 
-  .cg-head-cta {
-    display: none;
-  }
 
   .service-card {
     width: 88vw;

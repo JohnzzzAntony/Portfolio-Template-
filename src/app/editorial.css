@@ -1151,214 +1151,6 @@ button.button:hover {
 }
 .cursor-cin.is-drag .cursor-cin-label { opacity: 1; }
 
-/* -------------------------------------------------- 3D gallery */
-.cg-section {
-  position: relative; background: var(--c-bg);
-  padding: clamp(6rem, 12vw, 14rem) 0;
-  overflow: visible;
-}
-.cg-head {
-  position: relative; z-index: 2;
-  display: flex; align-items: flex-end; justify-content: space-between;
-  padding: 0 var(--r-page-x);
-  margin-bottom: clamp(3rem, 6vw, 7rem);
-}
-.cg-head-label {
-  font-size: var(--r-fs-caption); letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--c-muted);
-}
-.cg-head-title {
-  font-size: clamp(3.5rem, 8vw, 9rem);
-  line-height: 0.82; font-weight: 600;
-  letter-spacing: -0.04em; text-transform: uppercase;
-  color: var(--c-white);
-  text-align: right; max-width: 70%;
-}
-.cg-head-cta {
-  font-size: var(--r-fs-caption); letter-spacing: 0.06em; text-transform: uppercase;
-  color: var(--c-muted);
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  transition: color 0.3s ease;
-}
-.cg-head-cta:hover { color: var(--c-white); }
-.cg-head-cta svg { width: 1rem; height: 1rem; transition: transform 0.3s var(--c-ease-out); }
-.cg-head-cta:hover svg { transform: translate(3px,-3px); }
-
-/* Gallery track + perspective container */
-.cg-track-wrap {
-  position: relative;
-  perspective: var(--c-persp);
-  perspective-origin: 50% 40%;
-}
-.cg-track {
-  display: flex; flex-direction: column;
-  align-items: center;
-  gap: clamp(3rem, 6vw, 7rem);
-  padding: clamp(4rem, 8vw, 10rem) 0;
-  transform-style: preserve-3d;
-}
-
-/* Individual 3D card */
-.cg-card {
-  position: relative;
-  width: var(--c-card-w);
-  height: var(--c-card-h);
-  border-radius: 6px;
-  overflow: hidden;
-  cursor: pointer;
-  will-change: transform, opacity;
-  transform-style: preserve-3d;
-  transform-origin: 50% 50%;
-  /* Default state: angled away */
-  transform: perspective(var(--c-persp)) rotateX(18deg) scale(0.88);
-  opacity: 0.45;
-  transition: transform 0.08s linear, opacity 0.08s linear;
-  text-decoration: none;
-  display: block;
-  flex: none;
-}
-
-/* Active (near viewport center) card */
-.cg-card.is-active {
-  transform: perspective(var(--c-persp)) rotateX(0deg) scale(1);
-  opacity: 1;
-}
-/* Card above active */
-.cg-card.is-above {
-  transform: perspective(var(--c-persp)) rotateX(-14deg) scale(0.9);
-  opacity: 0.6;
-}
-/* Card below active */
-.cg-card.is-below {
-  transform: perspective(var(--c-persp)) rotateX(22deg) scale(0.86);
-  opacity: 0.5;
-}
-/* Far cards */
-.cg-card.is-far {
-  transform: perspective(var(--c-persp)) rotateX(30deg) scale(0.78);
-  opacity: 0.25;
-}
-
-.cg-card-media {
-  position: absolute; inset: 0;
-  background: var(--c-surface);
-  overflow: hidden;
-}
-.cg-card-media img,
-.cg-card-media video {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transition: transform 0.7s var(--c-ease-expo);
-  will-change: transform;
-}
-.cg-card:hover .cg-card-media img,
-.cg-card:hover .cg-card-media video {
-  transform: scale(1.04);
-}
-
-/* Overlays */
-.cg-card-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(9,9,9,0.08) 0%,
-    rgba(9,9,9,0.0) 38%,
-    rgba(9,9,9,0.55) 72%,
-    rgba(9,9,9,0.82) 100%
-  );
-  z-index: 1;
-  transition: opacity 0.5s ease;
-}
-.cg-card:hover .cg-card-overlay { opacity: 0.9; }
-
-.cg-card-dim {
-  position: absolute; inset: 0;
-  background: rgba(9,9,9,0.45);
-  z-index: 1;
-  opacity: 1;
-  transition: opacity 0.5s ease;
-}
-.cg-card.is-active .cg-card-dim,
-.cg-card:hover .cg-card-dim { opacity: 0; }
-
-/* Card content */
-.cg-card-content {
-  position: absolute; inset: 0; z-index: 2;
-  display: flex; flex-direction: column; justify-content: flex-end;
-  padding: clamp(1.5rem, 3vw, 2.5rem);
-}
-.cg-card-meta {
-  font-size: clamp(0.65rem, 1vw, 0.75rem);
-  letter-spacing: 0.1em; text-transform: uppercase;
-  color: rgba(245,245,240,0.6);
-  margin-bottom: 0.6rem;
-  display: flex; align-items: center; gap: 0.5rem;
-}
-.cg-card-meta-sep { opacity: 0.3; }
-.cg-card-title {
-  font-size: clamp(2rem, 4.5vw, 5.5rem);
-  line-height: 0.85; font-weight: 600;
-  letter-spacing: -0.04em; text-transform: uppercase;
-  color: var(--c-white);
-  margin-bottom: 1.25rem;
-  transform: translateY(0.5rem);
-  transition: transform 0.5s var(--c-ease-expo);
-}
-.cg-card:hover .cg-card-title { transform: translateY(0); }
-
-.cg-card-footer {
-  display: flex; align-items: center; justify-content: space-between;
-  transform: translateY(1rem); opacity: 0;
-  transition: transform 0.5s var(--c-ease-expo), opacity 0.4s ease;
-}
-.cg-card:hover .cg-card-footer { transform: translateY(0); opacity: 1; }
-.cg-card.is-active .cg-card-footer { transform: translateY(0); opacity: 0.7; }
-
-.cg-card-number {
-  font-size: clamp(0.6rem, 0.9vw, 0.7rem);
-  letter-spacing: 0.12em; text-transform: uppercase;
-  color: rgba(245,245,240,0.5);
-}
-.cg-card-view {
-  display: inline-flex; align-items: center; gap: 0.4rem;
-  font-size: clamp(0.6rem, 0.9vw, 0.7rem);
-  letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--c-white);
-}
-.cg-card-view svg { width: 0.9rem; height: 0.9rem; transition: transform 0.4s var(--c-ease-out); }
-.cg-card:hover .cg-card-view svg { transform: translate(3px,-3px); }
-
-/* Corner markers */
-.cg-card-corners { position: absolute; inset: 0; z-index: 3; pointer-events: none; opacity: 0; transition: opacity 0.4s ease; }
-.cg-card:hover .cg-card-corners { opacity: 1; }
-.cg-card-corner {
-  position: absolute; width: 18px; height: 18px;
-  border-color: rgba(245,245,240,0.5); border-style: solid;
-}
-.cg-card-corner.tl { top: 1.25rem; left: 1.25rem; border-width: 1px 0 0 1px; }
-.cg-card-corner.tr { top: 1.25rem; right: 1.25rem; border-width: 1px 1px 0 0; }
-.cg-card-corner.bl { bottom: 1.25rem; left: 1.25rem; border-width: 0 0 1px 1px; }
-.cg-card-corner.br { bottom: 1.25rem; right: 1.25rem; border-width: 0 1px 1px 0; }
-
-/* Gallery navigation dots */
-.cg-nav {
-  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-  position: absolute; right: var(--r-page-x); top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-}
-.cg-nav-dot {
-  width: 4px; height: 4px; border-radius: 50%;
-  background: rgba(245,245,240,0.3);
-  transition: background 0.3s ease, transform 0.3s var(--c-ease-out);
-  cursor: pointer; border: 0;
-}
-.cg-nav-dot.is-active {
-  background: var(--c-white);
-  transform: scale(1.75);
-}
-
 /* -------------------------------------------------- statement section */
 .cs-section {
   position: relative; background: var(--c-bg);
@@ -1546,13 +1338,6 @@ button.button:hover {
   will-change: transform;
 }
 
-/* -------------------------------------------------- gallery scrub (JS-driven) */
-/* All card transforms are applied inline by the JS engine; these are defaults */
-.cg-card[data-cin-card] {
-  /* JS overrides these via inline style */
-  transition: opacity 0.12s linear;
-}
-
 /* -------------------------------------------------- text reveal dark */
 .cin-reveal { overflow: hidden; display: block; }
 .cin-reveal-inner { display: block; }
@@ -1563,9 +1348,6 @@ button.button:hover {
     --c-card-w: min(90vw, 820px);
     --c-card-h: min(70vw, 560px);
   }
-  .cg-head { flex-wrap: wrap; gap: 1rem; }
-  .cg-head-title { max-width: 100%; text-align: left; font-size: clamp(2.5rem, 7vw, 5rem); }
-  .cg-nav { display: none; }
   .cs-sub { grid-template-columns: 1fr; }
   .cs-sub-cta { text-align: left; }
   .cs-headline { font-size: clamp(3rem, 10vw, 8rem); }
@@ -1576,11 +1358,6 @@ button.button:hover {
     --c-card-h: 65vw;
     --c-persp: 800px;
   }
-  .cg-card { border-radius: 4px; }
-  .cg-card-title { font-size: clamp(1.5rem, 6.5vw, 3rem); }
-  .cg-card.is-above { transform: perspective(var(--c-persp)) rotateX(-8deg) scale(0.93); }
-  .cg-card.is-below { transform: perspective(var(--c-persp)) rotateX(12deg) scale(0.9); }
-  .cg-card.is-far { transform: perspective(var(--c-persp)) rotateX(18deg) scale(0.82); }
   .cs-headline { font-size: clamp(2.5rem, 11vw, 6rem); }
   .cs-section { padding: clamp(5rem, 12vw, 8rem) var(--r-page-x); }
   .cs-float { display: none; }
@@ -1589,5 +1366,4 @@ button.button:hover {
   :root {
     --c-card-h: 72vw;
   }
-  .cg-head-title { font-size: clamp(2rem, 9vw, 3.5rem); }
 }

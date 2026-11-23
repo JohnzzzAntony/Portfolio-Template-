@@ -5,16 +5,14 @@ import {
   BenefitsSection,
   BlogSection,
   Hero,
-  PlaygroundSection,
   PortfolioSection,
   ServicesCarousel,
 } from "@/components/editorial/sections";
-import { CinematicGallery } from "@/components/editorial/CinematicGallery";
 import { StatementSection } from "@/components/editorial/StatementSection";
 import { PortfolioMotion } from "@/components/editorial/PortfolioMotion";
-import { getBenefits, getPage, getPosts, getProjects, getServices, getSettings, sectionMap } from "@/lib/cms";
+import { FaqSection, HireCta, ProcessSection, SkillsSection, StatsBand, WhySection } from "@/components/editorial/ClientSections";
+import { getAchievements, getBenefits, getPage, getPosts, getProjects, getServices, getSettings, sectionMap } from "@/lib/cms";
 import { postItem, projectItem } from "@/lib/presenters";
-import { isLiveCapture } from "@/lib/live-projects";
 import { ART, BENEFIT_ART, serviceArt, media } from "@/lib/media";
 
 export async function generateMetadata() {
@@ -27,12 +25,13 @@ export default async function HomePage() {
   const page = await getPage("home");
   if (!page) notFound();
 
-  const [settings, services, benefits, posts, projects] = await Promise.all([
+  const [settings, services, benefits, posts, projects, achievements] = await Promise.all([
     getSettings(),
     getServices(),
     getBenefits(),
     getPosts(3),
     getProjects(),
+    getAchievements(),
   ]);
 
   const s = sectionMap(page.sections);
@@ -50,21 +49,8 @@ export default async function HomePage() {
     ? heroImage
     : media(page.heroImage, ART.heroMobile);
 
-  // The gallery showcases the first four projects; the grid picks up from there
-  // so the same work is never presented twice in a row.
   const cards = projects.map((project) => ({ project, item: projectItem(project) })).filter(({ item }) => item.image);
-  const cinematicSelection = cards.slice(0, 4);
-  const gridProjects = cards.slice(4, 12).map(({ item }) => item);
-
-  const cinematicProjects = cinematicSelection.map(({ project, item }, i) => ({
-    title: project.title,
-    category: project.category,
-    year: project.year,
-    href: item.href!,
-    // The gallery shows each project's banner, which already carries the title.
-    image: isLiveCapture(project.coverImage) ? project.coverImage : item.image!,
-    number: `/${String(i + 1).padStart(2, "0")}`,
-  }));
+  const gridProjects = cards.slice(0, 8).map(({ item }) => item);
 
   return (
     <>
@@ -77,6 +63,8 @@ export default async function HomePage() {
         image={heroImage}
         imageMobile={heroImageMobile}
       />
+
+      <StatsBand items={achievements} />
 
       {s.about && (
         <AboutSection
@@ -103,6 +91,8 @@ export default async function HomePage() {
         />
       )}
 
+      <SkillsSection copy={s.skills} />
+
       {/* ── CINEMATIC STATEMENT ────────────────────────────────────── */}
       <StatementSection
         label={s.mission?.label || "(Our Approach)"}
@@ -117,17 +107,6 @@ export default async function HomePage() {
 
       <PortfolioMotion />
 
-      {/* ── 3D CINEMATIC PROJECT GALLERY ──────────────────────────── */}
-      {cinematicProjects.length > 0 && (
-        <CinematicGallery
-          projects={cinematicProjects}
-          label={s.portfolio?.label || "(Selected Work)"}
-          title={s.portfolio?.heading || "Selected\nProjects"}
-          ctaLabel={s.portfolio?.ctaLabel || "View all projects"}
-          ctaHref={s.portfolio?.ctaUrl || "/portfolio"}
-        />
-      )}
-
       {/* Standard portfolio grid (tab/list view) */}
       {gridProjects.length > 0 && (
         <PortfolioSection
@@ -138,6 +117,9 @@ export default async function HomePage() {
           cta={{ body: s.portfolio?.body, label: s.portfolio?.ctaLabel || "View all projects", href: s.portfolio?.ctaUrl || "/portfolio" }}
         />
       )}
+
+      <ProcessSection copy={s.process} />
+      <WhySection copy={s.why} />
 
       {benefits.length > 0 && (
         <BenefitsSection
@@ -165,13 +147,9 @@ export default async function HomePage() {
         />
       )}
 
-      <PlaygroundSection
-        label={s.playground?.label || "(Lab)"}
-        index={s.playground?.index || "/06"}
-        heading={s.playground?.heading || "Creative Lab"}
-        cta={s.playground?.ctaUrl ? { label: s.playground.ctaLabel || "View archive", href: s.playground.ctaUrl } : undefined}
-        images={cards.slice(0, 3).map(({ project, item }) => ({ src: item.image!, alt: `${project.title} — ${project.category}` }))}
-      />
+
+      <FaqSection copy={s.faq} />
+      <HireCta copy={s.hire} email={settings.email} phone={settings.phone} />
     </>
   );
 }
