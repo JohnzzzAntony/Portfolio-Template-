@@ -5,9 +5,7 @@ import { CtaRow, PageTop, ProjectCard } from "@/components/editorial/sections";
 import { Button, Marquee, SectionHead } from "@/components/editorial/ui";
 import { getProject, getProjects, getRelatedProjects } from "@/lib/cms";
 import { projectItem } from "@/lib/presenters";
-import { cmsProjectImage, liveProjectImage } from "@/lib/live-projects";
-
-const LIVE_CAPTURE = /^\/images\/projects\/[\w-]+\/(banner|devices|desktop|tablet|mobile|screens\/0\d)\.webp$/;
+import { cmsProjectImage, isLiveCapture, liveProjectImage } from "@/lib/live-projects";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -90,7 +88,7 @@ export default async function ProjectPage({ params }: Params) {
   ].filter(([, value]) => value);
   const verifiedImage = cmsProjectImage(project);
   // Media made by scripts/build-project-media.mjs is captured from the live site, so it is verified too.
-  const captured = (url: string) => LIVE_CAPTURE.test(url);
+  const captured = isLiveCapture;
   const cover = captured(project.coverImage) ? project.coverImage : verifiedImage;
   const mockups = project.images.filter((image) => (image.url === verifiedImage && liveProjectImage(project.slug)) || (captured(image.url) && !image.url.includes("/screens/")));
   const screens = project.images.filter((image) => captured(image.url) && image.url.includes("/screens/"));

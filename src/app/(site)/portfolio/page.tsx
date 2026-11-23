@@ -4,8 +4,9 @@ import { notFound } from "next/navigation";
 import { CallToAction, PortfolioSection } from "@/components/editorial/sections";
 import { Marquee, ScrollDown } from "@/components/editorial/ui";
 import { WorkSlides } from "@/components/editorial/WorkSlides";
-import { getPage, getSettings, sectionMap } from "@/lib/cms";
-import { liveProjects, liveProjectItem } from "@/lib/live-projects";
+import { getPage, getProjects, getSettings, sectionMap } from "@/lib/cms";
+import { isLiveCapture } from "@/lib/live-projects";
+import { projectItem } from "@/lib/presenters";
 import { pageMetadata } from "@/lib/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -16,9 +17,9 @@ export default async function PortfolioPage() {
   const page = await getPage("portfolio");
   if (!page) notFound();
 
-  const settings = await getSettings();
+  const [settings, projects] = await Promise.all([getSettings(), getProjects()]);
   const s = sectionMap(page.sections);
-  const covers = liveProjects.flatMap(project => project.image ? [project.image] : []).slice(0, 3);
+  const covers = projects.map((project) => project.coverImage).filter(isLiveCapture).slice(0, 3);
 
   return (
     <>
@@ -49,7 +50,7 @@ export default async function PortfolioPage() {
         label={s.portfolio?.label}
         index={s.portfolio?.index}
         heading={s.portfolio?.heading || "Selected Work"}
-        projects={liveProjects.map(liveProjectItem)}
+        projects={projects.map(projectItem).filter((item) => item.image)}
       />
 
       <CallToAction

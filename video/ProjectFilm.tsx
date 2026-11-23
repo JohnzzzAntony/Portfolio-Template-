@@ -1,5 +1,10 @@
 import React from "react";
-import { AbsoluteFill, Composition, Img, interpolate, registerRoot, staticFile, useCurrentFrame, Easing } from "remotion";
+import { AbsoluteFill, Composition, Img, interpolate, registerRoot, staticFile, useCurrentFrame, Easing, delayRender, continueRender } from "remotion";
+
+// Manrope is the brand's only typeface; hold rendering until it has loaded.
+const fontHandle = delayRender("Manrope");
+new FontFace("Manrope", `url(${staticFile("fonts/manrope-vf.woff2")})`, { weight: "200 800" })
+  .load().then((font) => { document.fonts.add(font); continueRender(fontHandle); });
 
 type Props = { slug: string; title: string; category: string; accent: string; pageHeight: number };
 
@@ -25,16 +30,17 @@ function ProjectFilm({ slug, title, category, accent, pageHeight }: Props) {
   const devicesScale = interpolate(frame, [200, DURATION], [1.04, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
 
   return (
-    <AbsoluteFill style={{ background: `radial-gradient(circle at 75% 20%, ${accent}55, #0d0d0c 60%)`, fontFamily: "Georgia, serif", color: "#f4f1ea" }}>
+    <AbsoluteFill style={{ background: `radial-gradient(circle at 82% 12%, #dfb6b2c0, transparent 55%), radial-gradient(circle at 8% 96%, ${accent}29, transparent 60%), #fffaf8`, fontFamily: "Manrope, sans-serif", color: "#190019" }}>
       <AbsoluteFill style={{ alignItems: "center", justifyContent: "center", opacity: titleOpacity, flexDirection: "column" }}>
-        <div style={{ fontFamily: "Segoe UI, sans-serif", fontSize: 18, letterSpacing: 6, textTransform: "uppercase", opacity: 0.7 }}>{category}</div>
-        <div style={{ fontSize: 96, marginTop: 12 }}>{title}</div>
+        <div style={{ fontSize: 18, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#854f6c" }}>{category}</div>
+        <div style={{ fontSize: title.length > 18 ? 72 : 96, fontWeight: 800, letterSpacing: "-0.045em", marginTop: 12 }}>{title}</div>
+        <div style={{ width: 80, height: 4, borderRadius: 4, background: "#522b5b", marginTop: 24 }} />
       </AbsoluteFill>
 
       <AbsoluteFill style={{ alignItems: "center", justifyContent: "center", opacity: browserOpacity, transform: `translateY(${browserIn}px)` }}>
-        <div style={{ width: browserW, borderRadius: 14, overflow: "hidden", boxShadow: "0 40px 90px rgba(0,0,0,.55)", background: "#1c1c1b" }}>
-          <div style={{ height: 34, display: "flex", alignItems: "center", gap: 8, padding: "0 14px", background: "#232322" }}>
-            {["#ff5f57", "#febc2e", "#28c840"].map((c) => <span key={c} style={{ width: 11, height: 11, borderRadius: 6, background: c }} />)}
+        <div style={{ width: browserW, borderRadius: 14, overflow: "hidden", boxShadow: "0 40px 90px -30px rgba(43,18,76,.45)", background: "#fbe4d8", border: "2px solid #dfb6b2" }}>
+          <div style={{ height: 34, display: "flex", alignItems: "center", gap: 8, padding: "0 14px", background: "#fbe4d8" }}>
+            {["#dfb6b2", "#854f6c", "#522b5b"].map((c) => <span key={c} style={{ width: 11, height: 11, borderRadius: 6, background: c }} />)}
           </div>
           <div style={{ height: viewportH, overflow: "hidden", position: "relative" }}>
             <Img src={staticFile(`images/projects/${slug}/full.webp`)} style={{ width: browserW, position: "absolute", top: -scroll, left: 0 }} />

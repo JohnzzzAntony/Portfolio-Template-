@@ -14,7 +14,7 @@ export function Footer({
   headline,
   cta,
   socials,
-  image = "/images/premium/hero.webp",
+  image = "/images/brand/brand-hero-poster.webp",
   badge,
   credits,
   links = [],

@@ -3,8 +3,8 @@ import { notFound } from "next/navigation";
 
 import { PageTop, ProjectCard, ServicesGalleryHero, ServiceStackItem } from "@/components/editorial/sections";
 import { Button, SectionHead } from "@/components/editorial/ui";
-import { getPage, getServices, getSettings, sectionMap } from "@/lib/cms";
-import { liveProjects, liveProjectItem } from "@/lib/live-projects";
+import { getPage, getServices, getSettings, sectionMap, getFeaturedProject } from "@/lib/cms";
+import { projectItem } from "@/lib/presenters";
 import { ART, serviceArt, media } from "@/lib/media";
 import { pageMetadata } from "@/lib/seo";
 
@@ -17,7 +17,7 @@ export default async function ServicesPage() {
   if (!page) notFound();
 
   const [settings, services] = await Promise.all([getSettings(), getServices()]);
-  const featured = liveProjects[0];
+  const featured = await getFeaturedProject();
   const s = sectionMap(page.sections);
   const gallery = services.map((service, i) => serviceArt(service.title, service.image, ART.dark[i % 3])).slice(0, 3);
 
@@ -61,7 +61,7 @@ export default async function ServicesPage() {
         <section className="section shadow no-pb">
           <div className="container-fluid">
             <div className="mb-small"><SectionHead label={s.featured?.label} index={s.featured?.index} /></div>
-            <div className="mb-medium"><ProjectCard project={liveProjectItem(featured)} full /></div>
+            <div className="mb-medium"><ProjectCard project={projectItem(featured)} full /></div>
             <div className="align-center" data-ix="fade-up">
               <Button href={s.featured?.ctaUrl || "/portfolio"}>{s.featured?.ctaLabel || "View all Projects"}</Button>
             </div>

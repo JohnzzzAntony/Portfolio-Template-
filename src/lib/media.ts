@@ -1,17 +1,17 @@
-import replacedMedia from "./replaced-media.json";
+import replacedMedia from "./replaced-media.json" with { type: "json" };
 
 /** Committed artwork used whenever content leaves an image empty. */
 export const ART = {
-  hero: "/images/premium/hero.webp",
-  heroMobile: "/images/premium/hero.webp",
-  portrait: "/images/premium/studio.webp",
-  pill: "/images/premium/systems.webp",
-  mission: "/images/premium/systems.webp",
-  benefits: "/images/premium/studio.webp",
-  footer: "/images/premium/hero.webp",
-  page: "/images/premium/studio.webp",
-  dark: ["/images/premium/systems.webp", "/images/premium/commerce.webp", "/images/premium/security.webp"],
-  light: ["/images/premium/studio.webp", "/images/premium/analytics.webp", "/images/premium/commerce.webp"],
+  hero: "/images/brand/brand-hero-poster.webp",
+  heroMobile: "/images/brand/brand-hero-poster.webp",
+  portrait: "/images/brand/web.webp",
+  pill: "/images/brand/systems.webp",
+  mission: "/images/brand/systems.webp",
+  benefits: "/images/brand/web.webp",
+  footer: "/images/brand/brand-hero-poster.webp",
+  page: "/images/brand/web.webp",
+  dark: ["/images/brand/systems.webp", "/images/brand/commerce.webp", "/images/brand/systems.webp"],
+  light: ["/images/brand/web.webp", "/images/brand/commerce.webp", "/images/brand/commerce.webp"],
 };
 
 /** Original service illustrations replace the seeded project screenshots. */
@@ -60,7 +60,7 @@ export const PLAYGROUND_ART = [
  * - Retired /images/work/* paths fall back.
  * - Valid uploads from CMS (/files/*), external URLs, or local public paths (/images/*) are returned.
  */
-export function media(src: string | null | undefined, fallback = "/images/premium/systems.webp"): string {
+export function media(src: string | null | undefined, fallback = "/images/brand/systems.webp"): string {
   if (!src) return fallback;
   const trimmed = src.trim();
   if (!trimmed || /^\/media\/[\w-]+\.svg$/.test(trimmed) || trimmed.startsWith("/images/work/")) {
@@ -72,41 +72,41 @@ export function media(src: string | null | undefined, fallback = "/images/premiu
 
 /** Retired decorative artwork is replaced even when saved in the CMS. */
 const LEGACY_ART: Record<string, string> = {
-  "/files/architectbuildingdigitalsyste20261018175623-432891a6.mp4": "/images/premium/hero.webp",
-  "/files/architectbuildingdigitalsyste20261018175623-dd3c8a1d.mp4": "/images/premium/hero.webp",
-  "/files/cinematicneonhaloportraitpng2k20261018005649-9a079cc6.jpg": "/images/premium/studio.webp",
-  "/files/whatsapp-image-2026-11-01-at-75624-am-e1d2291c.jpg": "/images/premium/hero.webp",
-  "/files/01-ecommerce-solutions-aeb1dba9.png": "/images/premium/commerce.webp",
-  "/files/02-pos-payment-solutions-6f18ab3a.png": "/images/premium/commerce.webp",
-  "/files/03-web-software-development-69ff2f70.png": "/images/premium/systems.webp",
-  "/files/04-marketing-analytics-bd13a284.png": "/images/premium/analytics.webp",
-  "/files/05-quality-assurance-testing-303ee344.png": "/images/premium/security.webp",
-  "/files/06-cloud-it-infrastructure-b28ec0f9.png": "/images/premium/systems.webp",
-  "/images/current-work/shopify-theme-customization.webp": "/images/premium/commerce.webp",
-  "/images/current-work/seo-product-feeds.webp": "/images/premium/analytics.webp",
-  "/images/current-work/flower-district-store-locations.webp": "/images/premium/studio.webp",
-  "/images/current-work/daima-market-expansion.webp": "/images/premium/commerce.webp",
-  "/images/current-work/lead-generation-workflow.webp": "/images/premium/systems.webp",
-  "/images/current-work/commerce-payment-methods.webp": "/images/premium/commerce.webp",
+  "/files/architectbuildingdigitalsyste20261018175623-432891a6.mp4": "/videos/brand-hero.mp4",
+  "/files/architectbuildingdigitalsyste20261018175623-dd3c8a1d.mp4": "/videos/brand-hero.mp4",
+  "/files/cinematicneonhaloportraitpng2k20261018005649-9a079cc6.jpg": "/images/brand/web.webp",
+  "/files/whatsapp-image-2026-11-01-at-75624-am-e1d2291c.jpg": "/images/brand/brand-hero-poster.webp",
+  "/files/01-ecommerce-solutions-aeb1dba9.png": "/images/brand/commerce.webp",
+  "/files/02-pos-payment-solutions-6f18ab3a.png": "/images/brand/commerce.webp",
+  "/files/03-web-software-development-69ff2f70.png": "/images/brand/systems.webp",
+  "/files/04-marketing-analytics-bd13a284.png": "/images/brand/commerce.webp",
+  "/files/05-quality-assurance-testing-303ee344.png": "/images/brand/systems.webp",
+  "/files/06-cloud-it-infrastructure-b28ec0f9.png": "/images/brand/systems.webp",
+  "/images/current-work/shopify-theme-customization.webp": "/images/brand/commerce.webp",
+  "/images/current-work/seo-product-feeds.webp": "/images/brand/commerce.webp",
+  "/images/current-work/flower-district-store-locations.webp": "/images/brand/web.webp",
+  "/images/current-work/daima-market-expansion.webp": "/images/brand/commerce.webp",
+  "/images/current-work/lead-generation-workflow.webp": "/images/brand/systems.webp",
+  "/images/current-work/commerce-payment-methods.webp": "/images/brand/commerce.webp",
   "/images/current-work/finora-accounting-concept.webp": "/images/projects/finora/mockup-1.webp",
-  "/images/art/hero.webp": "/images/premium/hero.webp",
-  "/images/art/hero-mobile.webp": "/images/premium/hero.webp",
-  "/images/art/silk-portrait.webp": "/images/premium/studio.webp",
-  "/images/art/silk-pill.webp": "/images/premium/systems.webp",
-  "/images/art/mission.webp": "/images/premium/systems.webp",
-  "/images/art/benefits.webp": "/images/premium/studio.webp",
-  "/images/art/footer.webp": "/images/premium/hero.webp",
-  "/images/art/page.webp": "/images/premium/studio.webp",
-  "/images/art/dark-1.webp": "/images/premium/systems.webp",
-  "/images/art/dark-2.webp": "/images/premium/commerce.webp",
-  "/images/art/dark-3.webp": "/images/premium/security.webp",
-  "/images/art/light-1.webp": "/images/premium/studio.webp",
-  "/images/art/light-2.webp": "/images/premium/analytics.webp",
-  "/images/art/light-3.webp": "/images/premium/commerce.webp",
-  "/images/art/01-ecommerce-solutions.png": "/images/premium/commerce.webp",
-  "/images/art/02-pos-payment-solutions.png": "/images/premium/commerce.webp",
-  "/images/art/03-web-software-development.png": "/images/premium/systems.webp",
-  "/images/art/04-marketing-analytics.png": "/images/premium/analytics.webp",
-  "/images/art/05-quality-assurance-testing.png": "/images/premium/security.webp",
-  "/images/art/06-cloud-it-infrastructure.png": "/images/premium/systems.webp"
+  "/images/art/hero.webp": "/images/brand/brand-hero-poster.webp",
+  "/images/art/hero-mobile.webp": "/images/brand/brand-hero-poster.webp",
+  "/images/art/silk-portrait.webp": "/images/brand/web.webp",
+  "/images/art/silk-pill.webp": "/images/brand/systems.webp",
+  "/images/art/mission.webp": "/images/brand/systems.webp",
+  "/images/art/benefits.webp": "/images/brand/web.webp",
+  "/images/art/footer.webp": "/images/brand/brand-hero-poster.webp",
+  "/images/art/page.webp": "/images/brand/web.webp",
+  "/images/art/dark-1.webp": "/images/brand/systems.webp",
+  "/images/art/dark-2.webp": "/images/brand/commerce.webp",
+  "/images/art/dark-3.webp": "/images/brand/systems.webp",
+  "/images/art/light-1.webp": "/images/brand/web.webp",
+  "/images/art/light-2.webp": "/images/brand/commerce.webp",
+  "/images/art/light-3.webp": "/images/brand/commerce.webp",
+  "/images/art/01-ecommerce-solutions.png": "/images/brand/commerce.webp",
+  "/images/art/02-pos-payment-solutions.png": "/images/brand/commerce.webp",
+  "/images/art/03-web-software-development.png": "/images/brand/systems.webp",
+  "/images/art/04-marketing-analytics.png": "/images/brand/commerce.webp",
+  "/images/art/05-quality-assurance-testing.png": "/images/brand/systems.webp",
+  "/images/art/06-cloud-it-infrastructure.png": "/images/brand/systems.webp"
 };

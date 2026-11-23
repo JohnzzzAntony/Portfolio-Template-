@@ -12,9 +12,9 @@ import {
 import { CinematicGallery } from "@/components/editorial/CinematicGallery";
 import { StatementSection } from "@/components/editorial/StatementSection";
 import { PortfolioMotion } from "@/components/editorial/PortfolioMotion";
-import { getBenefits, getPage, getPosts, getServices, getSettings, sectionMap } from "@/lib/cms";
-import { postItem } from "@/lib/presenters";
-import { liveProjects, liveProjectItem } from "@/lib/live-projects";
+import { getBenefits, getPage, getPosts, getProjects, getServices, getSettings, sectionMap } from "@/lib/cms";
+import { postItem, projectItem } from "@/lib/presenters";
+import { isLiveCapture } from "@/lib/live-projects";
 import { ART, BENEFIT_ART, serviceArt, media } from "@/lib/media";
 
 export async function generateMetadata() {
@@ -27,11 +27,12 @@ export default async function HomePage() {
   const page = await getPage("home");
   if (!page) notFound();
 
-  const [settings, services, benefits, posts] = await Promise.all([
+  const [settings, services, benefits, posts, projects] = await Promise.all([
     getSettings(),
     getServices(),
     getBenefits(),
     getPosts(3),
+    getProjects(),
   ]);
 
   const s = sectionMap(page.sections);
@@ -49,18 +50,19 @@ export default async function HomePage() {
     ? heroImage
     : media(page.heroImage, ART.heroMobile);
 
-  // The gallery showcases the first four projects; the grid below picks up from
-  // there so the same work is never presented twice in a row.
-  const capturedProjects = liveProjects.filter(project => project.image);
-  const cinematicSelection = capturedProjects.slice(0, 4);
-  const gridProjects = liveProjects.filter(project => !cinematicSelection.includes(project)).slice(0, 8);
+  // The gallery showcases the first four projects; the grid picks up from there
+  // so the same work is never presented twice in a row.
+  const cards = projects.map((project) => ({ project, item: projectItem(project) })).filter(({ item }) => item.image);
+  const cinematicSelection = cards.slice(0, 4);
+  const gridProjects = cards.slice(4, 12).map(({ item }) => item);
 
-  const cinematicProjects = cinematicSelection.map((project, i) => ({
+  const cinematicProjects = cinematicSelection.map(({ project, item }, i) => ({
     title: project.title,
-    category: new URL(project.url).hostname,
-    year: "",
-    href: project.url,
-    image: project.image,
+    category: project.category,
+    year: project.year,
+    href: item.href!,
+    // The gallery shows each project's banner, which already carries the title.
+    image: isLiveCapture(project.coverImage) ? project.coverImage : item.image!,
     number: `/${String(i + 1).padStart(2, "0")}`,
   }));
 
@@ -132,7 +134,7 @@ export default async function HomePage() {
           label={s.portfolio?.label}
           index={s.portfolio?.index}
           heading={`${s.portfolio?.heading || "Selected Work"}\n${settings.copyright.replace(/[()]/g, "")}`}
-          projects={gridProjects.map(liveProjectItem)}
+          projects={gridProjects}
           cta={{ body: s.portfolio?.body, label: s.portfolio?.ctaLabel || "View all projects", href: s.portfolio?.ctaUrl || "/portfolio" }}
         />
       )}
@@ -168,11 +170,7 @@ export default async function HomePage() {
         index={s.playground?.index || "/06"}
         heading={s.playground?.heading || "Creative Lab"}
         cta={s.playground?.ctaUrl ? { label: s.playground.ctaLabel || "View archive", href: s.playground.ctaUrl } : undefined}
-        images={[
-          { src: "/images/portfolio-art/orbital-systems.png", alt: "Original chrome orbital sculpture — personal brand motion study" },
-          { src: "/images/portfolio-art/orbit-mark.svg", alt: "Original dimensional orbital vector" },
-          { src: "/images/portfolio-art/commerce-flow.svg", alt: "Original connected commerce diagram" },
-        ]}
+        images={cards.slice(0, 3).map(({ project, item }) => ({ src: item.image!, alt: `${project.title} — ${project.category}` }))}
       />
     </>
   );

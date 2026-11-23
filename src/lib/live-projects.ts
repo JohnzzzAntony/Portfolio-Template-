@@ -1,9 +1,11 @@
 import catalog from "./project-catalog.json";
 import captureReport from "../../public/images/projects/live/capture-report.json";
-import type { ProjectItem } from "@/components/editorial/cards";
 
 type Capture = { slug: string; status: string; captures: Partial<Record<"desktop" | "tablet" | "mobile", { image: string }>>; mockup?: string };
 const captures = captureReport.projects as Capture[];
+
+/** Banners, mockups and screens made by scripts/build-project-media.mjs from the live site. */
+export const isLiveCapture = (url?: string) => Boolean(url && /^\/images\/projects\/[\w-]+\/(banner|devices|desktop|tablet|mobile|screens\/0\d)\.webp$/.test(url));
 
 /** Only a successful three-viewport capture can become project imagery. */
 export function liveProjectImage(slug: string): string | undefined {
@@ -13,12 +15,6 @@ export function liveProjectImage(slug: string): string | undefined {
 }
 
 export const liveProjects = catalog.map(project => ({ ...project, image: liveProjectImage(project.slug) }));
-
-export function liveProjectItem(project: (typeof liveProjects)[number]): ProjectItem {
-  return { title: project.title, href: project.url, image: project.image,
-    alt: `${project.title} — captured from the live website`,
-    labels: [new URL(project.url).hostname], description: project.summary };
-}
 
 /** CMS case studies may use captured imagery only when their actual URL matches. */
 export function cmsProjectImage(project: { slug: string; viewUrl?: string }): string | undefined {

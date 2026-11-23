@@ -1,76 +1,134 @@
-/* Public portfolio art direction: ivory, graphite and champagne metal. */
+/* =========================================================================
+   Johns Antony brand system — light edition (Brand Book 01–05).
+   Canvas #FFFFFF / #FFFAF8, card surface #FBE4D8, plum text #190019,
+   actions #522B5B, accents #854F6C / #DFB6B2. Manrope is the only typeface.
+   Large dark backgrounds are avoided; deep plum is for text and small contrast.
+   ========================================================================= */
+
 .rx {
-  --g-paper: #f1eee8; --g-ink: #22211f; --g-sage: #95754d; --g-sage-deep: #6f5330;
-  --r-black: #22211f; --r-white: #faf8f3; --r-muted: #777167; --r-accent: #b6976b;
-  --g-edge: #e2ddd3; --g-edge-soft: #e2ddd3; --g-hairline: #d9d3c9;
-  --g-glass: #f7f5f0; --g-glass-2: #f7f5f0; --g-glass-3: #faf8f3;
-  --g-shadow: 0 8px 32px -24px #332a2030; --g-shadow-lift: 0 16px 36px -22px #332a2040;
-  --g-radius: 10px; --r-radius: 8px; --r-radius-sm: 5px;
-  --r-page-x: clamp(1.2rem, 4vw, 5rem);
-  --r-section-y: clamp(3rem, 7vw, 7rem);
-  --r-fs-body: clamp(.95rem, 1.1vw, 1.1rem);
-  --r-fs-caption: .72rem; --r-fs-paragraph-large: clamp(1.2rem, 2vw, 1.9rem);
-  --r-fs-heading-small: clamp(1.3rem, 2vw, 2rem);
-  --r-fs-card-title: clamp(1.1rem, 1.4vw, 1.5rem);
-  --c-accent: #c9ad83;
-  background: var(--g-paper);
+  --background: #ffffff; --background-alt: #fffaf8; --surface: #fbe4d8;
+  --text: #190019; --heading: #190019; --primary: #522b5b; --primary-dark: #2b124c;
+  --accent: #854f6c; --accent-soft: #dfb6b2;
+
+  /* Map the editorial, glass and cinematic tokens onto the brand palette. */
+  --g-paper: var(--background); --g-ink: var(--text); --g-sage: var(--primary); --g-sage-deep: var(--primary-dark);
+  --g-mist: var(--accent-soft); --g-blush: var(--accent-soft); --g-serif: var(--font-brand), sans-serif;
+  --r-black: var(--text); --r-white: var(--background); --r-muted: #5c3b5e; --r-accent: var(--primary); --r-accent-alt: var(--accent-soft);
+  --r-line: #dfb6b259; --r-placeholder: var(--accent);
+  --g-edge: #dfb6b273; --g-edge-soft: #dfb6b259; --g-hairline: #dfb6b266;
+  --g-glass: var(--background); --g-glass-2: var(--background-alt); --g-glass-3: var(--background);
+  --g-shadow: 0 10px 34px -24px #2b124c40; --g-shadow-lift: 0 18px 40px -22px #2b124c55;
+  --c-bg: var(--background-alt); --c-surface: var(--surface); --c-white: var(--text); --c-muted: var(--accent);
+  --c-accent: var(--primary); --c-line: #dfb6b266; --c-overlay: #19001914;
+  --g-radius: 20px; --r-radius: 16px; --r-radius-sm: 12px;
+  --r-page-x: clamp(1.5rem, 4vw, 5rem);
+  --r-section-y: clamp(3rem, 7vw, 5rem);
+  --r-fs-body: clamp(1rem, 1.1vw, 1.125rem);
+  --r-fs-caption: .75rem; --r-fs-paragraph-large: clamp(1.2rem, 1.8vw, 1.6rem);
+  --r-fs-heading-small: clamp(1.75rem, 2.4vw, 2.75rem);
+  --r-fs-card-title: clamp(1.1rem, 1.4vw, 1.4rem);
+  background: var(--background);
+  color: var(--text);
+  font-family: var(--font-brand), sans-serif;
 }
-.rx .rx-ambient { background: #f1eee8; }
+body { background: #fff; color: #190019; }
+.rx, .rx button, .rx input, .rx textarea, .rx select { font-family: var(--font-brand), sans-serif; }
+.rx p { line-height: 1.6; }
+.rx h1, .rx h2, .rx h3, .rx .heading-medium, .rx .heading-large, .rx .page-title { color: var(--heading); font-weight: 700; letter-spacing: -.035em; }
+.rx .rx-ambient { background: var(--background); }
 .rx .rx-orb, .rx .rx-grain { display: none; }
-.rx main > section, .rx main > div > section, .rx .service-item { background: #f7f5f0; }
-.rx .nav-inner, .rx .nav.is-scrolled .nav-inner { background: #faf8f3f0; border-color: #ddd5c8; box-shadow: 0 8px 30px #15110b0a; }
-.rx .nav-logo { letter-spacing: -.04em; }
-.rx .hero { min-height: min(94svh, 1000px); padding-top: clamp(8rem, 14vw, 15rem); background: #181817; }
-.rx .hero-heading { font-size: clamp(3.5rem, 7.5vw, 8rem); letter-spacing: -.055em; text-shadow: none; }
-.rx .hero-image::after { background: linear-gradient(90deg, #14141385, transparent 75%), linear-gradient(0deg, #10100faa, transparent 45%); }
-.rx .hero-image img, .rx .hero-image video { object-position: 65% center; }
+
+/* Alternating canvases for a warm rhythm. */
+.rx main > section, .rx main > div > section { background: var(--background); }
+.rx main > section:nth-of-type(even), .rx main > div > section:nth-of-type(even) { background: var(--background-alt); }
+.rx .service-item { background: transparent; }
+
+/* Navigation */
+.rx .nav-inner, .rx .nav.is-scrolled .nav-inner { background: #fffaf8f2; border-color: #dfb6b273; box-shadow: 0 8px 30px #2b124c0f; }
+.rx .nav-logo, .rx .nav a { color: var(--text); font-weight: 600; }
+.rx .nav-logo { letter-spacing: -.04em; font-weight: 800; }
+
+/* Hero: light canvas, plum wordmark, brand film on the right. */
+.rx .hero { min-height: min(94svh, 1000px); padding-top: clamp(8rem, 14vw, 15rem); background: var(--background-alt); color: var(--text); }
+.rx .hero-heading { font-size: clamp(2.75rem, 5vw, 4.5rem); font-weight: 800; letter-spacing: -.05em; color: var(--heading); text-shadow: none; }
+.rx .hero-image::after { background: linear-gradient(90deg, #fffaf8 0%, #fffaf8e6 30%, #fffaf800 62%); }
+.rx .hero-image img, .rx .hero-image video { object-position: 70% center; }
 .rx .hero-top { position: relative; z-index: 2; }
-.rx .hero-intro-premium { max-width: 29rem; margin-top: 2rem; font-size: clamp(1rem, 1.35vw, 1.35rem); line-height: 1.5; color: #e6dfd3; }
-.rx .hero-specialties { margin-top: 1.2rem; font-size: .65rem; text-transform: uppercase; letter-spacing: .14em; color: #c7ae8c; max-width: 30rem; }
-.rx .button { min-height: 2.8rem; padding: .7rem 1.3rem; border: 1px solid #b9ae9b; background: transparent; color: #28251f; box-shadow: none; font-size: .75rem; letter-spacing: .08em; transition: background .22s ease, color .22s ease, border-color .22s ease; }
+.rx .hero-intro-premium { max-width: 31rem; margin-top: 2rem; font-size: clamp(1rem, 1.25vw, 1.125rem); line-height: 1.6; font-weight: 500; color: var(--text); }
+.rx .hero-specialties { margin-top: 1.2rem; font-size: .75rem; font-weight: 600; text-transform: uppercase; letter-spacing: .12em; color: var(--accent); max-width: 32rem; }
+.rx .hero-caption, .rx .hero-bottom { color: var(--text); }
+
+/* Buttons: purple fill, white label, 12px radius, Manrope SemiBold. */
+.rx .button { min-height: 2.9rem; padding: .75rem 1.4rem; border: 1px solid var(--primary); border-radius: 12px; background: var(--primary); color: #fff; box-shadow: none; font-size: .9rem; font-weight: 600; letter-spacing: 0; text-transform: none; transition: background .22s ease, border-color .22s ease, transform .22s ease; }
 .rx .button::after, .rx .project-card::after, .rx .service-card::after, .rx .benefit-card::after, .rx .blog-card::after { display: none; }
-.rx .button:hover { background: #28251f; border-color: #28251f; color: #faf8f3; }
-.rx .button.white, .rx .hero .button, .rx .footer .button { background: #f5efe3; color: #25221d; border-color: #f5efe3; }
-.rx .button.white:hover, .rx .footer .button:hover { background: #d7c09c; border-color: #d7c09c; }
-.rx .button:focus-visible, .rx a:focus-visible { outline: 2px solid #b08c55; outline-offset: 5px; }
-.rx .service-card, .rx .benefit-card, .rx .blog-card, .rx .card-item { background: #fcfaf6; border-color: #ddd6ca; box-shadow: none; backdrop-filter: none; }
-.rx .service-card { width: clamp(300px, 35vw, 540px); }
-.rx .service-card-content { padding: 1.6rem; }
-.rx .service-card-thumb { height: clamp(220px, 23vw, 350px); padding: 0; }
-.rx .service-card-image { border-radius: 0; }
-.rx .service-symbol { display: inline-flex; width: 2.5rem; height: 2.5rem; margin-bottom: 1rem; color: #96774e; }
+.rx .button:hover { background: var(--primary-dark); border-color: var(--primary-dark); color: #fff; transform: translateY(-1px); }
+.rx .button.white, .rx .hero .button, .rx .footer .button { background: var(--primary); color: #fff; border-color: var(--primary); }
+.rx .button.white:hover, .rx .footer .button:hover { background: var(--primary-dark); border-color: var(--primary-dark); }
+.rx .button:focus-visible, .rx a:focus-visible { outline: 2px solid var(--primary); outline-offset: 4px; }
+.rx a { color: inherit; }
+
+/* Cards: white or soft ivory, subtle border, 16–20px radius. */
+.rx .service-card, .rx .benefit-card, .rx .blog-card, .rx .card-item { background: #fff; border: 1px solid #dfb6b266; border-radius: 20px; box-shadow: 0 10px 34px -28px #2b124c40; backdrop-filter: none; overflow: hidden; }
+.rx .service-card { width: clamp(300px, 35vw, 520px); }
+.rx .service-card-content { padding: 1.75rem; }
+.rx .service-card-thumb { height: clamp(220px, 23vw, 340px); padding: 0; }
+.rx .service-card-image { border-radius: 0; background: var(--surface); }
+.rx .service-symbol { display: inline-flex; width: 2.5rem; height: 2.5rem; margin-bottom: 1rem; color: var(--primary); }
 .rx .service-symbol svg { width: 100%; height: 100%; }
-.rx .project-card img { transition: transform .4s var(--ease-out-quart); }
+.rx .tag, .rx .tag-blur { background: var(--surface); color: var(--primary-dark); border: 1px solid #dfb6b2; border-radius: 999px; font-weight: 600; }
+
+/* Project cards: the banner art carries its own light canvas. */
+.rx .project-card { border-radius: 20px; overflow: hidden; background: var(--surface); border: 1px solid #dfb6b266; }
+.rx .project-card img { transition: transform .5s var(--ease-out-quart); }
+.rx .project-card:hover img { transform: scale(1.02); }
 .rx .project-card:hover { transform: translateY(-3px); }
-.rx .project-title, .rx .cg-card-title { color: #fff; }
-.rx .project-card::before { height: 100%; background: linear-gradient(#0007, transparent 45%, #0008); }
-.rx .tag-blur { background: #171614c9; color: #f8f4ed; border: 1px solid #ffffff26; }
-.rx .cs-section { background: #1c1c1b; color: #f5efe3; padding: clamp(4rem, 9vw, 9rem) var(--r-page-x); }
-.rx .cs-headline { color: #f5efe3; font-size: clamp(3rem, 6vw, 6.5rem); max-width: 70%; }
-.rx .cs-accent, .rx .cs-label { color: #c9ad83; }
-.rx .cs-sub-text { color: #d1cbc0; }
-.rx .cs-section .button { border-color: #a08a68; color: #f5efe3; }
-.rx .premium-sculpture { position: absolute; right: 2%; top: 10%; width: 32%; height: 65%; background: url('/images/premium/systems.webp') center / cover; border-radius: 50%; opacity: .8; }
-.rx .premium-sculpture canvas { width: 100%; height: 100%; }
-.rx .card-art { aspect-ratio: 3 / 2; object-fit: cover; width: 100%; border-radius: 5px; margin-bottom: 1.5rem; }
-.rx .concept-caption { padding: 1rem var(--r-page-x); font-size: .75rem; color: #777167; }
-.rx .footer { background: #171716; color: #f5efe3; }
-.rx .footer-bg { opacity: .5; }
-.rx .footer-heading, .rx .footer-widget, .rx .footer-credits { color: #f5efe3; }
-.rx .cin-progress-bar { background: #ba9a6a; }
-.rx .cursor-inner { background: #24211de8; }
+.rx .project-title, .rx .cg-card-title { color: var(--heading); font-weight: 700; }
+.rx .project-card::before { height: 100%; background: linear-gradient(#fffaf800 55%, #fffaf8d9); }
+.rx .project-card--type { background: var(--surface); border-color: #dfb6b2; color: var(--text); }
+.rx .project-card--type::after { color: var(--primary); }
+
+/* Statement: a warm card surface, never a dark slab. */
+.rx .cs-section { background: var(--surface); color: var(--text); padding: clamp(4rem, 9vw, 8rem) var(--r-page-x); }
+.rx .cs-headline { color: var(--heading); font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 800; max-width: 75%; }
+.rx .cs-accent, .rx .cs-label { color: var(--accent); }
+.rx .cs-sub-text { color: var(--text); }
+.rx .cs-section .button { border-color: var(--primary); color: #fff; }
+
+/* Cinematic project gallery on the secondary canvas. */
+.rx .cg-section { background: var(--background-alt); }
+.rx .cg-card-media { background: var(--surface); }
+.rx .cg-card-dim, .rx .cg-card-overlay { background: linear-gradient(0deg, #fffaf8f2 0%, #fffaf800 45%); }
+.rx .cg-card-meta, .rx .cg-card-number, .rx .cg-card-view { color: var(--primary); }
+.rx .cg-card-corner { border-color: var(--accent-soft); }
+
+.rx .premium-sculpture { display: none; }
+.rx .card-art { aspect-ratio: 3 / 2; object-fit: cover; width: 100%; border-radius: 16px; margin-bottom: 1.5rem; }
+.rx .concept-caption { padding: 1rem var(--r-page-x); font-size: .8rem; color: var(--accent); }
+
+/* Footer: card surface with plum type. */
+.rx .footer { background: var(--surface); color: var(--text); }
+.rx .footer-bg { opacity: .14; }
+.rx .footer-heading, .rx .footer-widget, .rx .footer-credits, .rx .footer a { color: var(--text); }
+.rx .cin-progress-bar { background: var(--primary); }
+.rx .cursor-inner { background: #522b5be6; }
+
+/* Brand motion: gentle fade and rise only, and none when the user prefers less. */
+@media (prefers-reduced-motion: reduce) {
+  .rx *, .rx *::before, .rx *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+
 @media (max-width: 767px) {
-  .rx .hero { min-height: 90svh; padding-top: 8rem; }
-  .rx .hero-heading { font-size: clamp(3rem, 14vw, 5.2rem); }
+  .rx .hero { min-height: 90svh; padding-top: 7rem; }
+  .rx .hero-heading { font-size: clamp(2.25rem, 11vw, 2.75rem); }
   .rx .hero-intro-premium { max-width: 21rem; font-size: 1rem; }
-  .rx .hero-image::after { background: linear-gradient(90deg, #111b, #1112), linear-gradient(0deg, #1119, transparent); }
+  .rx .hero-image::after { background: linear-gradient(180deg, #fffaf8 0%, #fffaf8d9 45%, #fffaf866 100%); }
   .rx .hero-specialties { max-width: 22rem; line-height: 1.8; }
   .rx .service-card { width: 85vw; }
   .rx .cs-headline { max-width: 100%; }
-  .rx .premium-sculpture { display: none; }
 }
 
 /* Project banners carry their title on the left; on narrow screens keep the device side in frame. */
 @media (max-width: 991px) {
   .parallax-frame img[src*="/banner.webp"] { object-position: 80% 50%; }
 }
+.rx .cg-card-title { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); } /* the banner art carries the title */

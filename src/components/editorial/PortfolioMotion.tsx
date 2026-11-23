@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-/** Original brand animation. Project visuals are supplied separately by captures. */
+/** Project showreel rendered by scripts/render-brand-films.mjs from the live-site banners. */
 export function PortfolioMotion() {
   const ref = useRef<HTMLVideoElement>(null);
   const [paused, setPaused] = useState(false);
@@ -22,10 +22,9 @@ export function PortfolioMotion() {
     return () => { observer.disconnect(); reduced.removeEventListener("change", sync); document.removeEventListener("visibilitychange", sync); video.pause(); };
   }, [paused]);
   return (
-    <section className="portfolio-motion" aria-label="Digital craft motion study">
-      <video ref={ref} loop muted playsInline preload="none" poster="/images/portfolio-art/orbital-systems.png" aria-label="Chrome sculpture rotating within lime orbital lines. Systems. With soul.">
-        <source src="/videos/orbital-systems.webm" type="video/webm" />
-        <source src="/videos/orbital-systems.mp4" type="video/mp4" />
+    <section className="portfolio-motion" aria-label="Project showreel">
+      <video ref={ref} loop muted playsInline preload="none" poster="/images/brand/brand-reel-poster.webp" aria-label="Showreel of project banners: Shopify storefronts, websites and business apps by Johns Antony.">
+        <source src="/videos/brand-reel.mp4" type="video/mp4" />
       </video>
       <button type="button" onClick={() => setPaused(value => !value)} aria-pressed={paused}>{paused ? "Resume motion" : "Pause motion"}</button>
     </section>

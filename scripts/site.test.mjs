@@ -21,7 +21,7 @@ function walk(dir) {
 }
 
 test("media() treats legacy placeholders and retired screenshots as unset", () => {
-  assert.equal(media(undefined), "");
+  assert.equal(media(undefined), ART.pill); // no fallback given: the default artwork
   assert.equal(media(null, ART.hero), ART.hero);
   assert.equal(media("", ART.hero), ART.hero);
   assert.equal(media("/media/og.svg", ART.hero), ART.hero);

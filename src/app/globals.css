@@ -15,7 +15,7 @@
   --color-success: #114c09;
   --color-success-bg: #abe9a3;
 
-  --font-sans: var(--font-grotesk), Arial, sans-serif;
+  --font-sans: var(--font-brand), Arial, sans-serif;
 
   --radius-xs: 2px;
   --radius-sm: 5px;
@@ -37,7 +37,7 @@
     margin: 0;
     background: #fff;
     color: #000;
-    font-family: var(--font-grotesk), Arial, sans-serif;
+    font-family: var(--font-brand), Arial, sans-serif;
     font-size: 1.125rem;
     line-height: 1.5;
     font-weight: 500;

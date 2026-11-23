@@ -5,13 +5,13 @@ import { siteUrl } from "@/lib/site-url";
 import "./globals.css";
 import "./portfolio-assets.css";
 
-// Overused Grotesk (SIL OFL 1.1, see fonts/OverusedGrotesk-OFL.txt), bundled so
-// builds never depend on a font CDN.
-const grotesk = localFont({
-  src: "./fonts/overused-grotesk-vf.woff2",
-  variable: "--font-grotesk",
+// Manrope (SIL OFL 1.1, see fonts/Manrope-OFL.txt), the brand book's only typeface;
+// bundled so builds never depend on a font CDN.
+const manrope = localFont({
+  src: "./fonts/manrope-vf.woff2",
+  variable: "--font-brand",
   display: "swap",
-  weight: "300 900",
+  weight: "200 800",
 });
 
 export const metadata: Metadata = {
@@ -27,7 +27,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={grotesk.variable} suppressHydrationWarning>
+    <html lang="en" className={manrope.variable} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: markScripted }} />
       </head>

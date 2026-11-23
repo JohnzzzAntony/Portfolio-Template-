@@ -142,7 +142,7 @@ html.js:not(.ix-ready) [data-ix], html.js:not(.ix-ready) [data-playground-item],
   .rx {
     background: var(--r-white);
     color: var(--r-black);
-    font-family: var(--font-grotesk), Arial, sans-serif;
+    font-family: var(--font-brand), Arial, sans-serif;
     font-size: var(--r-fs-body);
     line-height: 1.5;
     font-weight: 500;

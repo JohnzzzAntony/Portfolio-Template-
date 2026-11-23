@@ -128,7 +128,7 @@ try {
   };
   const page = (key, data) => prisma.page.updateMany({ where: { key }, data });
 
-  await page("home", { seoTitle: "Shopify Developer & E-commerce Specialist in Dubai", seoDescription: "I build, fix and grow Shopify stores for brands in the UAE and GCC: custom themes, Figma to Shopify, Tabby & Tamara, GA4/GTM tracking, product feeds and Next.js websites." });
+  await page("home", { heroImage: "/videos/brand-hero.mp4", heroImageMobile: "/images/brand/brand-hero-poster.webp", seoTitle: "Shopify Developer & E-commerce Specialist in Dubai", seoDescription: "I build, fix and grow Shopify stores for brands in the UAE and GCC: custom themes, Figma to Shopify, Tabby & Tamara, GA4/GTM tracking, product feeds and Next.js websites." });
   await section("home", "intro", { body: "I build, fix and grow Shopify stores for brands in the UAE and GCC. Custom Shopify themes, Figma-to-Shopify builds, Tabby & Tamara payments, GA4 and Google Tag Manager tracking, Google Shopping feeds and custom Next.js websites — mobile-first, SEO-ready and safe to publish." });
   await section("home", "about", { body: "I run the Shopify storefronts for a group of luxury fragrance, flower and lifestyle brands in Dubai — Karji, Atelier Perfumery, Flower District, Daima, Touch of Oud, Juvenis Paris and more. Theme code, payments, tracking, feeds, ads and the domains behind them, handled by one person who tests every change before it goes live." });
   await section("home", "services", { body: "Shopify development and theme customisation, Figma to Shopify, payments and BNPL, tracking and feeds, speed and SEO, custom websites, n8n automation and the domains and hosting behind them." });

@@ -10,22 +10,17 @@
  *   node scripts/build-project-media.mjs --capture   # also (re)take mobile/tablet shots
  *   node scripts/build-project-media.mjs
  */
-import { spawn } from "node:child_process";
-import { existsSync, mkdtempSync } from "node:fs";
+import { existsSync } from "node:fs";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
-import { tmpdir } from "node:os";
 import path from "node:path";
+import { pathToFileURL } from "node:url";
 import sharp from "sharp";
 
+import { cdpShot, closeBrowser } from "./capture.mjs";
 import { PROJECTS, SCRAPED_PROJECTS } from "./project-content.mjs";
 
 const SITES = ".firecrawl/sites";
 const SHOTS = `${SITES}/shots`;
-const BROWSER = [
-  "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe",
-  "C:/Program Files/Google/Chrome/Application/chrome.exe",
-  "C:/Program Files/BraveSoftware/Brave-Browser/Application/brave.exe",
-].find(existsSync);
 const DESKTOP_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0 Safari/537.36";
 const MOBILE_UA = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1";
 const TABLET_UA = "Mozilla/5.0 (iPad; CPU OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1";
@@ -44,29 +39,43 @@ async function rounded(input, w, h, r) {
 async function browserFrame(shot, w) {
   const h = Math.round(w * 0.625), bar = Math.round(w * 0.03);
   const screen = await rounded(shot, w, h - bar, 0);
-  const dots = ["#ff5f57", "#febc2e", "#28c840"].map((c, i) => `<circle cx="${bar * 0.7 + i * bar * 0.6}" cy="${bar / 2}" r="${bar * 0.17}" fill="${c}"/>`).join("");
-  const frame = svg(w, h, `<rect width="${w}" height="${h}" rx="${bar * 0.5}" fill="#1f1f1e"/>${dots}`);
+  const dots = ["#dfb6b2", "#854f6c", "#522b5b"].map((c, i) => `<circle cx="${bar * 0.7 + i * bar * 0.6}" cy="${bar / 2}" r="${bar * 0.17}" fill="${c}"/>`).join("");
+  const frame = svg(w, h, `<rect width="${w}" height="${h}" rx="${bar * 0.5}" fill="#fbe4d8" stroke="#dfb6b2" stroke-width="2"/>${dots}`);
   return sharp(frame).composite([{ input: screen, top: bar, left: 0 }]).png().toBuffer();
 }
 async function tabletFrame(shot, w) {
   const h = Math.round(w * 1.36), pad = Math.round(w * 0.045);
   const screen = await rounded(shot, w - pad * 2, h - pad * 2, pad * 0.5);
-  const frame = svg(w, h, `<rect width="${w}" height="${h}" rx="${pad * 1.4}" fill="#121212" stroke="#3a3a38" stroke-width="2"/>`);
+  const frame = svg(w, h, `<rect width="${w}" height="${h}" rx="${pad * 1.4}" fill="#190019" stroke="#2b124c" stroke-width="2"/>`);
   return sharp(frame).composite([{ input: screen, top: pad, left: pad }]).png().toBuffer();
 }
 async function phoneFrame(shot, w) {
   const h = Math.round(w * 2.05), pad = Math.round(w * 0.045);
   const screen = await rounded(shot, w - pad * 2, h - pad * 2, w * 0.11);
   const island = `<rect x="${w * 0.36}" y="${pad + w * 0.03}" width="${w * 0.28}" height="${w * 0.07}" rx="${w * 0.035}" fill="#000"/>`;
-  const frame = svg(w, h, `<rect width="${w}" height="${h}" rx="${w * 0.15}" fill="#121212" stroke="#3a3a38" stroke-width="2"/>`);
+  const frame = svg(w, h, `<rect width="${w}" height="${h}" rx="${w * 0.15}" fill="#190019" stroke="#2b124c" stroke-width="2"/>`);
   return sharp(frame).composite([{ input: screen, top: pad, left: pad }, { input: svg(w, h, island) }]).png().toBuffer();
 }
 
+/** Brand light canvas (#FFFAF8) warmed by Dusty Blush and a faint tint of the project's own colour. */
 const backdrop = (w, h, accent) =>
-  svg(w, h, `<defs><radialGradient id="g" cx="78%" cy="18%" r="85%"><stop offset="0" stop-color="${accent}" stop-opacity=".55"/><stop offset=".6" stop-color="#0d0d0c"/></radialGradient></defs><rect width="${w}" height="${h}" fill="#0d0d0c"/><rect width="${w}" height="${h}" fill="url(#g)"/>`);
+  svg(w, h, `<defs>
+    <radialGradient id="a" cx="82%" cy="12%" r="75%"><stop offset="0" stop-color="#dfb6b2" stop-opacity=".75"/><stop offset="1" stop-color="#dfb6b2" stop-opacity="0"/></radialGradient>
+    <radialGradient id="b" cx="8%" cy="96%" r="70%"><stop offset="0" stop-color="${accent}" stop-opacity=".16"/><stop offset="1" stop-color="${accent}" stop-opacity="0"/></radialGradient>
+    <radialGradient id="c" cx="40%" cy="50%" r="60%"><stop offset="0" stop-color="#fbe4d8" stop-opacity=".9"/><stop offset="1" stop-color="#fbe4d8" stop-opacity="0"/></radialGradient>
+  </defs><rect width="${w}" height="${h}" fill="#fffaf8"/><rect width="${w}" height="${h}" fill="url(#c)"/><rect width="${w}" height="${h}" fill="url(#a)"/><rect width="${w}" height="${h}" fill="url(#b)"/>`);
+
+/** A device placed on the canvas with a soft plum shadow beneath it. */
+async function place(input, left, top) {
+  const { width, height } = await sharp(input).metadata();
+  const pad = 60;
+  const shadow = await sharp(svg(width + pad * 2, height + pad * 2, `<rect x="${pad}" y="${pad}" width="${width}" height="${height}" rx="28" fill="#2b124c" fill-opacity=".26"/>`)).blur(26).png().toBuffer();
+  return [{ input: shadow, left: left - pad, top: top - pad + 28 }, { input, left, top }];
+}
 
 async function onBackdrop(w, h, accent, layers) {
-  return sharp(backdrop(w, h, accent)).composite(layers).webp(WEBP);
+  const placed = (await Promise.all(layers.map((l) => (l.shadow === false ? [l] : place(l.input, l.left, l.top))))).flat();
+  return sharp(backdrop(w, h, accent)).composite(placed).webp(WEBP);
 }
 
 /** Dominant colour, lifted towards a usable mid-tone so near-white sites still get a tint. */
@@ -76,74 +85,6 @@ async function accentOf(input) {
   const k = lum > 200 ? 0.55 : lum < 40 ? 2.2 : 1;
   const hex = (v) => Math.max(0, Math.min(255, Math.round(v * k))).toString(16).padStart(2, "0");
   return `#${hex(r)}${hex(g)}${hex(b)}`;
-}
-
-/** Removes cookie banners, newsletter pop-ups and the Shopify preview bar before a capture. */
-const CLEAN_PAGE = `(() => {
-  const sel = ['#shopify-pc__banner', '#shopify-pc__prefs', '#preview-bar-iframe', '#PBarNextFrameWrapper', '[id*="cookie" i]', '[class*="cookie" i]',
-    '[id*="consent" i]', '[class*="consent" i]', '[class*="newsletter-popup" i]', '[class*="popup" i][aria-modal]', '[aria-modal="true"]', 'dialog[open]', '.klaviyo-form', '[class*="kl-private" i]'];
-  document.querySelectorAll(sel.join(',')).forEach((el) => el.remove());
-  for (const el of [document.documentElement, document.body]) { el.style.setProperty('overflow', 'auto', 'important'); }
-})()`;
-
-/** One headless browser for the run, driven over the DevTools protocol with Node's built-in WebSocket. */
-let browser;
-async function launch() {
-  const dir = mkdtempSync(path.join(tmpdir(), "portfolio-capture-"));
-  const child = spawn(BROWSER, ["--headless=new", "--remote-debugging-port=0", `--user-data-dir=${dir}`, "--ignore-certificate-errors", "--hide-scrollbars", "--mute-audio", "about:blank"]);
-  const port = await new Promise((resolve, reject) => {
-    child.stderr.on("data", (d) => { const m = /ws:\/\/[^:]+:(\d+)\//.exec(String(d)); if (m) resolve(m[1]); });
-    child.on("exit", () => reject(new Error("browser exited")));
-  });
-  return { child, port };
-}
-
-async function cdpShot(url, out, { width, height, ua, mobile = false, fullPage = false }) {
-  browser ??= await launch();
-  const target = await (await fetch(`http://127.0.0.1:${browser.port}/json/new?about:blank`, { method: "PUT" })).json();
-  const ws = new WebSocket(target.webSocketDebuggerUrl);
-  await new Promise((r) => ws.addEventListener("open", r, { once: true }));
-  let id = 0;
-  const pending = new Map(), listeners = [];
-  ws.addEventListener("message", ({ data }) => {
-    const msg = JSON.parse(data);
-    if (msg.id && pending.has(msg.id)) { pending.get(msg.id)(msg); pending.delete(msg.id); }
-    else listeners.forEach((fn) => fn(msg));
-  });
-  const send = (method, params = {}) => new Promise((resolve, reject) => {
-    const n = ++id;
-    pending.set(n, (msg) => (msg.error ? reject(new Error(`${method}: ${msg.error.message}`)) : resolve(msg.result)));
-    ws.send(JSON.stringify({ id: n, method, params }));
-  });
-  const wait = (ms) => new Promise((r) => setTimeout(r, ms));
-  try {
-    await send("Page.enable");
-    await send("Emulation.setDeviceMetricsOverride", { width, height, deviceScaleFactor: mobile ? 2 : 1, mobile });
-    await send("Emulation.setUserAgentOverride", { userAgent: ua });
-    const loaded = new Promise((r) => listeners.push((m) => m.method === "Page.loadEventFired" && r()));
-    await send("Page.navigate", { url });
-    await Promise.race([loaded, wait(25_000)]);
-    await wait(3500);
-    let clipHeight = height;
-    if (fullPage) {
-      // Scroll through once so lazy images and scroll-reveals load, then return to the top.
-      const { result } = await send("Runtime.evaluate", { expression: "document.documentElement.scrollHeight", returnByValue: true });
-      for (let y = 0; y < Math.min(result.value, 14000); y += height) { await send("Runtime.evaluate", { expression: `window.scrollTo(0, ${y})` }); await wait(350); }
-      await send("Runtime.evaluate", { expression: "window.scrollTo(0, 0)" });
-      await wait(1200);
-    }
-    await send("Runtime.evaluate", { expression: CLEAN_PAGE });
-    await wait(400);
-    if (fullPage) {
-      const { result } = await send("Runtime.evaluate", { expression: "document.documentElement.scrollHeight", returnByValue: true });
-      clipHeight = Math.min(result.value, 14000);
-    }
-    const { data } = await send("Page.captureScreenshot", { format: "png", captureBeyondViewport: fullPage, clip: { x: 0, y: 0, width, height: clipHeight, scale: 1 } });
-    await writeFile(out, Buffer.from(data, "base64"));
-  } finally {
-    ws.close();
-    await fetch(`http://127.0.0.1:${browser.port}/json/close/${target.id}`).catch(() => {});
-  }
 }
 
 async function build(project, doCapture) {
@@ -201,20 +142,32 @@ async function build(project, doCapture) {
     await (await onBackdrop(1600, 1000, accent, [{ input: desktopDev, left: 180, top: 112 }])).toFile(`${dir}/devices.webp`);
   }
 
-  // Banner: title block on the left, device trio on the right.
-  const text = svg(1920, 1080, `
-    <text x="120" y="420" font-family="Segoe UI, Arial, sans-serif" font-size="${Math.min(24, Math.floor(640 / (category.length * 0.95)))}" letter-spacing="4" fill="#f4f1ea" fill-opacity=".72">${esc(category.toUpperCase())}</text>
-    <text x="114" y="530" font-family="Georgia, 'Times New Roman', serif" font-size="${Math.min(112, Math.floor(660 / (title.length * 0.52)))}" fill="#f4f1ea">${esc(title)}</text>
-    <rect x="120" y="580" width="96" height="3" fill="${accent}"/>
-    <text x="120" y="640" font-family="Segoe UI, Arial, sans-serif" font-size="26" fill="#f4f1ea" fill-opacity=".6">Johns Antony · Dubai</text>`);
+  // Banner: device art on the brand canvas, then the title set in Manrope by the browser.
+  const art = `${SHOTS}/${slug}-banner-art.png`;
   await (await onBackdrop(1920, 1080, accent, [
     { input: await browserFrame(viewport, 980), left: 840, top: 200 },
     ...(handheld ? [{ input: await phoneFrame(mobile, 230), left: 1600, top: 470 }] : []),
-    { input: text },
-  ])).toFile(`${dir}/banner.webp`);
+  ])).png().toFile(art);
+  const html = path.resolve(`${SHOTS}/${slug}-banner.html`);
+  await writeFile(html, bannerHtml({ art: pathToFileURL(path.resolve(art)).href, title, category }));
+  const shot = `${SHOTS}/${slug}-banner.png`;
+  await cdpShot(pathToFileURL(html).href, shot, { width: 1920, height: 1080, ua: DESKTOP_UA });
+  await sharp(shot).webp(WEBP).toFile(`${dir}/banner.webp`);
 
   return { accent, pageHeight };
 }
+
+const FONT = pathToFileURL(path.resolve("public/fonts/manrope-vf.woff2")).href;
+const bannerHtml = ({ art, title, category }) => `<!doctype html><meta charset="utf-8"><style>
+@font-face { font-family: Manrope; src: url("${FONT}") format("woff2"); font-weight: 200 800; }
+html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; }
+body { background: url("${art}") center / cover; font-family: Manrope, sans-serif; color: #190019; }
+.copy { position: absolute; left: 120px; top: 0; bottom: 0; width: 640px; display: flex; flex-direction: column; justify-content: center; }
+.cat { font-size: 22px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #854f6c; }
+h1 { margin: 22px 0 30px; font-size: ${title.length > 22 ? 64 : title.length > 14 ? 80 : 104}px; line-height: 1.02; font-weight: 800; letter-spacing: -.045em; }
+.rule { width: 96px; height: 4px; border-radius: 4px; background: #522b5b; }
+.by { margin-top: 30px; font-size: 24px; font-weight: 600; color: #522b5b; }
+</style><div class="copy"><div class="cat">${esc(category)}</div><h1>${esc(title)}</h1><div class="rule"></div><div class="by">Johns Antony · Dubai</div></div>`;
 
 const doCapture = process.argv.includes("--capture");
 const only = process.argv.find((a) => a.startsWith("--only="))?.slice(7).split(",");
@@ -231,4 +184,4 @@ for (const project of targets.filter((p) => p.capture && (!only || only.includes
   }
 }
 await writeFile(manifestPath, JSON.stringify(manifest, null, 2) + "\n");
-browser?.child.kill();
+closeBrowser();

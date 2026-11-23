@@ -14,15 +14,15 @@
   font-size: clamp(3rem, 8vw, 7rem);
   line-height: 1;
 }
-.portfolio-motion { position: relative; margin: 0 auto; width: min(100%, 1600px); background: #11120e; }
+.portfolio-motion { position: relative; margin: 0 auto; width: min(100%, 1600px); background: #fffaf8; }
 .portfolio-motion video { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: contain; }
-.portfolio-motion button { position: absolute; right: 1rem; bottom: 1rem; padding: .7rem 1rem; border: 1px solid #8f9684; border-radius: 2rem; background: #11120ee6; color: #f4f3eb; cursor: pointer; }
-.portfolio-motion button:focus-visible { outline: 3px solid #d9ff83; outline-offset: 4px; }
+.portfolio-motion button { position: absolute; right: 1rem; bottom: 1rem; padding: .7rem 1rem; border: 1px solid #522b5b; border-radius: 12px; background: #522b5b; color: #fff; font-weight: 600; cursor: pointer; }
+.portfolio-motion button:focus-visible { outline: 3px solid #522b5b; outline-offset: 4px; }
 @media (max-width: 600px) { .portfolio-motion button { position: relative; margin: .75rem; } }
 
 .project-summary { margin: .6rem 0; max-width: 52ch; line-height: 1.45; font-size: clamp(.93rem, 1.1vw, 1.1rem); }
 .project-label { overflow-wrap: anywhere; }
 
 .service-film { max-width: 60rem; margin: 2rem auto; }
-.service-film video { display: block; width: 100%; height: auto; background: #101613; }
+.service-film video { display: block; width: 100%; height: auto; background: #fbe4d8; border-radius: 16px; }
 .service-film figcaption { margin: .65rem 0; font-size: .95rem; }

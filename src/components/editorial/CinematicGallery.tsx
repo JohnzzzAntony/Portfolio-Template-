@@ -65,7 +65,7 @@ function GalleryCard({
           // eslint-disable-next-line @next/next/no-img-element
           <img src={project.image} alt="" loading="lazy" />
         ) : (
-          <div style={{ position: "absolute", inset: 0, background: "#0d0d0d" }} />
+          <div style={{ position: "absolute", inset: 0, background: "var(--c-surface)" }} />
         )}
       </div>
 

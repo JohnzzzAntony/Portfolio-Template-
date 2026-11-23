@@ -40,13 +40,13 @@ function HeroLetters({ text }: { text: string }) {
  * Full-viewport hero: a wordmark that flips in letter by letter in 3D, a strip of
  * disciplines, an intro with a call to action and captions on either side.
  */
-// Advance widths (em) of Overused Grotesk SemiBold capitals, so the wordmark can
-// be sized to one line on the server instead of measuring after paint.
+// Advance widths (em) of Manrope ExtraBold capitals (measured in the browser), so the
+// wordmark can be sized to one line on the server instead of measuring after paint.
 const GLYPH: Record<string, number> = {
-  A: 0.663, B: 0.626, C: 0.677, D: 0.664, E: 0.562, F: 0.562, G: 0.687, H: 0.635, I: 0.219, J: 0.353, K: 0.611, L: 0.544, M: 0.812,
-  N: 0.645, O: 0.705, P: 0.611, Q: 0.701, R: 0.607, S: 0.601, T: 0.609, U: 0.634, V: 0.642, W: 0.987, X: 0.608, Y: 0.608, Z: 0.587,
-  "0": 0.596, "1": 0.357, "2": 0.552, "3": 0.558, "4": 0.572, "5": 0.558, "6": 0.578, "7": 0.541, "8": 0.558, "9": 0.578,
-  " ": 0.199, "&": 0.655, ".": 0.219, ",": 0.219, "-": 0.398, "'": 0.211, "/": 0.449, "+": 0.567,
+  A: 0.683, B: 0.637, C: 0.746, D: 0.71, E: 0.59, F: 0.53, G: 0.741, H: 0.734, I: 0.296, J: 0.513, K: 0.665, L: 0.541, M: 0.86,
+  N: 0.729, O: 0.758, P: 0.65, Q: 0.758, R: 0.67, S: 0.671, T: 0.61, U: 0.726, V: 0.653, W: 0.989, X: 0.672, Y: 0.63, Z: 0.68,
+  "0": 0.674, "1": 0.454, "2": 0.604, "3": 0.591, "4": 0.615, "5": 0.589, "6": 0.622, "7": 0.544, "8": 0.623, "9": 0.622,
+  " ": 0.2, "&": 0.674, ".": 0.32, ",": 0.316, "-": 0.42, "'": 0.276, "/": 0.448, "+": 0.57,
 };
 
 /** Hero size in vw: a compact display size, reduced further when the title would not fit on one line. */
@@ -72,7 +72,7 @@ export function Hero({ title, services = [], text, cta, captionLeft, image, imag
 
   const isVideoUrl = (url?: string) => Boolean(url && /\.(mp4|webm|mov|m4v)(\?.*)?$/i.test(url));
   const isDesktopVideo = isVideoUrl(image);
-  const mobileExplicit = Boolean(imageMobile && imageMobile !== image && imageMobile !== "/images/premium/hero.webp");
+  const mobileExplicit = Boolean(imageMobile && imageMobile !== image && imageMobile !== "/images/brand/brand-hero-poster.webp");
   const effectiveMobileSrc = mobileExplicit ? imageMobile : isDesktopVideo ? image : (imageMobile || image);
   const isMobileVideo = isVideoUrl(effectiveMobileSrc);
 
@@ -315,7 +315,7 @@ export function BenefitCard({ item, className }: { item: BenefitItem; className?
   );
 }
 
-export function BenefitsSection({ label = "(Benefits)", index, headingOne, headingTwo, items, image = "/images/premium/studio.webp", grid = false, defaultPadding = false }: { label?: string; index?: string; headingOne?: string; headingTwo?: string; items: BenefitItem[]; image?: string; grid?: boolean; defaultPadding?: boolean }) {
+export function BenefitsSection({ label = "(Benefits)", index, headingOne, headingTwo, items, image = "/images/brand/web.webp", grid = false, defaultPadding = false }: { label?: string; index?: string; headingOne?: string; headingTwo?: string; items: BenefitItem[]; image?: string; grid?: boolean; defaultPadding?: boolean }) {
   return (
     <section className="section no-p">
       <div className={cn("bg-section", defaultPadding && "default-padding")}>

@@ -1,7 +1,7 @@
 import type { PostItem, ProjectItem } from "@/components/editorial/sections";
 import { ART, media } from "@/lib/media";
 import { formatDate } from "@/lib/utils";
-import { cmsProjectImage } from "@/lib/live-projects";
+import { cmsProjectImage, isLiveCapture } from "@/lib/live-projects";
 
 /** "Design®\nWith\npurpose" → three lines, with a trailing ® or ™ lifted into a superscript. */
 export function missionWords(heading?: string | null): [string, string, string, string | undefined] {
@@ -12,15 +12,17 @@ export function missionWords(heading?: string | null): [string, string, string, 
   return [match ? match[1] : lines[0], lines[1], rest, match?.[2]];
 }
 
-type ProjectRecord = { slug: string; title: string; coverImage: string; previewImage: string; viewUrl?: string; services: { title: string }[] };
+type ProjectRecord = { slug: string; title: string; category?: string; coverImage: string; previewImage: string; viewUrl?: string; services: { title: string }[] };
 
 export function projectItem(project: ProjectRecord): ProjectItem {
   return {
     title: project.title,
     href: `/projects/${project.slug}`,
-    image: cmsProjectImage(project),
-    alt: project.title,
+    // Cards overlay their own title, so they prefer the text-free device mockup over the banner.
+    image: [project.previewImage, project.coverImage].find(isLiveCapture) ?? cmsProjectImage(project),
+    alt: `${project.title} on desktop, tablet and mobile`,
     labels: project.services.map((s) => s.title),
+    description: project.category || undefined,
   };
 }
 
